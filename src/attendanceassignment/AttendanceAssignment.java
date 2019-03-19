@@ -34,6 +34,7 @@ public class AttendanceAssignment extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/Rootlayout.fxml"));
         BorderPane rootLayout = loader.load();
         RootlayoutController rCon = loader.getController();
+        
         SceneDragger sDragOne = new SceneDragger();
         Parent menuBar = rCon.getMenuBar();
         sDragOne.makeDraggable(menuBar, stage);

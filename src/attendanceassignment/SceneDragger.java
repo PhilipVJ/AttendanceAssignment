@@ -21,7 +21,7 @@ public class SceneDragger
     private double yOffset = 0;
 
     /**
-     * Makes the root in the given stage draggable
+     * Makes the stage draggable by dragging the given Parent
      *
      * @param root
      * @param stage
