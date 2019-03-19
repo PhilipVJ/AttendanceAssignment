@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.AdminViewController">
+   <children>
+      <Label alignment="CENTER" layoutX="99.0" layoutY="54.0" prefHeight="128.0" prefWidth="403.0" text="Admin view" textAlignment="CENTER">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnBack" buttonType="RAISED" layoutX="355.0" layoutY="427.0" onAction="#btnBackAction" prefHeight="42.0" prefWidth="147.0" stylesheets="@../../css/Style.css" text="BACK" />
+   </children>
+</AnchorPane>

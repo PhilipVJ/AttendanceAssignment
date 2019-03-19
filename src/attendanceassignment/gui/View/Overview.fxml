@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="bpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.Controller.OverviewController">
+   <bottom>
+      <ButtonBar minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" BorderPane.alignment="BOTTOM_LEFT">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#btnBack" prefHeight="25.0" prefWidth="346.0" text="Back" />
+          <Button minWidth="0.0" mnemonicParsing="false" onAction="#btnBarChart" prefHeight="25.0" text="View Days" />
+            <Button mnemonicParsing="false" onAction="#btnPieChart" text="View  Percentage" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets left="-15.0" right="5.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+</BorderPane>

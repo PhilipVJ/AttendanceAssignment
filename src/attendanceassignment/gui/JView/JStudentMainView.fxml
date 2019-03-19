@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="550.0" styleClass="mainFxmlClass" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JStudentMainViewController">
+   <children>
+      <JFXButton layoutX="196.0" layoutY="41.0" onAction="#setAttendance" prefHeight="159.0" prefWidth="159.0" stylesheets="@../../css/Style.css" text="Meld ankomst" AnchorPane.topAnchor="41.0" />
+      <JFXButton layoutX="196.0" layoutY="250.0" onAction="#showStatistics" prefHeight="159.0" prefWidth="159.0" stylesheets="@../../css/Style.css" text="Se statistik" AnchorPane.bottomAnchor="41.0" />
+      <Label fx:id="userLabel" layoutX="14.0" layoutY="30.0" prefHeight="21.0" prefWidth="98.0" />
+   </children>
+</AnchorPane>

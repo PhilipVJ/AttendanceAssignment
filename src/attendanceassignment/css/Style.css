@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 10, 2019, 8:49:39 PM
+    Author     : Anders
+*/
+
+.root{
+    -fx-background-color: linear-gradient(#7CAFC2 , #FFFFFF);
+    
+}
+
+.label{
+    
+    -fx-background-radius: 6;
+
+}
+.button{
+    -fx-background-color: linear-gradient(#FFFFFF, #DC9656);
+    -fx-text-fill: #181818;
+    -fx-background-radius: 12;
+}
+.piechart{
+    
+}
+
+
+.menu-bar {
+
+    -fx-background-color: #000000;
+
+}
+
+
+.context-menu {
+
+    -fx-background-color: derive(#000000,10%);
+
+}
+
+
+
+.menu-bar .label {
+
+    -fx-font-size: 11pt;
+
+    -fx-font-family: "Segoe UI semibold";
+
+    -fx-text-fill: #DC9656;
+
+    -fx-opacity: 1;
+
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.RootlayoutController">
+   <top>
+      <HBox prefHeight="16.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menuBar" prefHeight="33.0" prefWidth="493.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log ud" />
+                    <MenuItem mnemonicParsing="false" onAction="#close" text="Luk" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Hjælp">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showAbout" text="Om" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ImageView fitHeight="33.0" fitWidth="95.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@minimize.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="95.0" onMouseClicked="#closeWindows" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@x.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
