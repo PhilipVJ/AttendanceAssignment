@@ -5,8 +5,10 @@
  */
 package attendanceassignment.bll;
 
+import attendanceassignment.be.Person;
 import attendanceassignment.be.Student;
-import attendanceassignment.dal.PeopelInfo;
+import attendanceassignment.be.Teacher;
+import attendanceassignment.dal.UserDB;
 import attendanceassignment.dal.StudentData;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,12 +24,12 @@ import javax.swing.JOptionPane;
 public class BLLManager {
     StudentData studentData = new StudentData();
     
-    PeopelInfo peopInfo;
+    UserDB userDb;
     
     
     public BLLManager() throws IOException
     {
-        peopInfo = new PeopelInfo();
+        userDb = new UserDB();
     }
     
     /**
@@ -100,15 +102,16 @@ public class BLLManager {
         return students;
     }
 
-    public boolean loginToStudentTeacher(String username, String password, int typeTS) throws SQLException, IOException 
+    public Person login(String username, String password) throws SQLException, IOException 
     {
-        try{
-        return peopInfo.loginConnection(username, password, typeTS);
-        } catch (SQLException ex){
-            
-        }
-        return false;
+      
+        return userDb.userLogin(username, password);
+        
+       
     }
+
+
+
     
     
 }

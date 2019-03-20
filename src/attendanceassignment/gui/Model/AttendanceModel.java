@@ -6,7 +6,9 @@
 package attendanceassignment.gui.Model;
 
 import attendanceassignment.be.Attendance;
+import attendanceassignment.be.Person;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.Teacher;
 import attendanceassignment.bll.BLLManager;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,36 +21,33 @@ import javafx.scene.chart.XYChart;
  * @author Anders
  */
 public class AttendanceModel {
-    BLLManager bllMan;
-    
+
+    private BLLManager bllMan;
+
     private final ObservableList<Student> students = FXCollections.observableArrayList();
-    
-    
-    public AttendanceModel() throws IOException
-    {
+    private Person user;
+
+    public AttendanceModel() throws IOException {
         bllMan = new BLLManager();
     }
-    
+
     /**
-     * calls barchart data from bll
-     * applies attendance to weekdays
+     * calls barchart data from bll applies attendance to weekdays
      */
-    public XYChart.Series getStudentDataBarChart(String username){
+    public XYChart.Series getStudentDataBarChart(String username) {
         Student student;
         student = bllMan.getStudentDataBarChart(username);
-        
-         //Create dataset for the barchart
-        
+
+        //Create dataset for the barchart
         XYChart.Series dataset = new XYChart.Series();
 //        dataset.setName("");
-        
-        for(Attendance attendance :  student.getWeekdayList())
-        {
+
+        for (Attendance attendance : student.getWeekdayList()) {
             dataset.getData().add(new XYChart.Data(attendance.getDayName(), attendance.getAbsence()));
         }
         return dataset;
-    } 
-    
+    }
+
     /**
      * calls piechart data from bll
      */
@@ -57,70 +56,69 @@ public class AttendanceModel {
 //        ObservableList<PieChart.Data> pieChartData = bllManager.getStudentsDataPieChart();
 //        return pieChartData;
 //    }
-    
     /**
      * calls tableview data from bll
      */
-     public ObservableList<Student> getAbsentTableview(){
+    public ObservableList<Student> getAbsentTableview() {
 
         ObservableList<Student> student = bllMan.getAbsentTableview();
-        return student;  
+        return student;
     }
-     
-     /**
+
+    /**
      * calls tableview data from bll
      */
-     public ObservableList<Student> getTeachEditTV(){
+    public ObservableList<Student> getTeachEditTV() {
 
         ObservableList<Student> student = bllMan.getTeachEditTV();
-        return student;  
+        return student;
     }
-     
-    /**
-     * calls tableview data from bll 
-     */
-    public ObservableList<Student> getSemester1Students(){
 
-        ObservableList<Student> students = bllMan.getSemester1Students();
-        return students;   
-    }
-    
     /**
      * calls tableview data from bll
      */
-    public ObservableList<Student> getSemester2Students(){
+    public ObservableList<Student> getSemester1Students() {
+
+        ObservableList<Student> students = bllMan.getSemester1Students();
+        return students;
+    }
+
+    /**
+     * calls tableview data from bll
+     */
+    public ObservableList<Student> getSemester2Students() {
 
         ObservableList<Student> students2 = bllMan.getSemester2Students();
         return students2;
     }
-    
+
     /**
      * calls tableview data from bll
      */
-    public ObservableList<Student> getSemester3Students(){
+    public ObservableList<Student> getSemester3Students() {
 
         ObservableList<Student> students3 = bllMan.getSemester3Students();
-        return students3; 
+        return students3;
     }
-    
+
     /**
      * calls tableview data from bll
      */
-    public ObservableList<Student> getSemester4Students(){
+    public ObservableList<Student> getSemester4Students() {
 
         ObservableList<Student> students4 = bllMan.getSemester4Students();
         return students4;
     }
 
-    public boolean loginToStudentTeacher(String username, String password, int typeTS) throws SQLException, IOException 
-    {
-        return bllMan.loginToStudentTeacher(username, password, typeTS);
+    public Person login(String username, String password) throws SQLException, IOException {
+        user = bllMan.login(username, password);
+        return user;
     }
-   
     
-    
-}
-   
-    
-    
+    public Person getUser()
+    {
+        return user;
+    }
 
+
+}

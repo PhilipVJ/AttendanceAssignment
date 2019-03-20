@@ -5,6 +5,7 @@
  */
 package attendanceassignment.gui.JController;
 
+import attendanceassignment.be.Person;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -39,7 +40,6 @@ public class JLoginController implements Initializable {
     AttendanceModel atModel;
     private Stage stage;
 
-    @FXML
     private JFXComboBox<String> comboboxChoose;
     @FXML
     private AnchorPane anchorPane;
@@ -67,7 +67,6 @@ public class JLoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboboxChoose.getItems().addAll(chooseYouRole());
 
         try {
             atModel = new AttendanceModel();
@@ -79,47 +78,30 @@ public class JLoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws SQLException, IOException {
 
-        boolean isUserFound = atModel.loginToStudentTeacher(
-                username.getText(),
-                password.getText(),
-                comboboxChoose.getSelectionModel().getSelectedIndex());
-        
-        if (isUserFound == true && comboboxChoose.getSelectionModel().isSelected(0))
+        Person user = atModel.login(username.getText(), password.getText());
+        if (user==null)
         {
-            
+            return;
+            // der skal gøres noget mere her
+        }
+        if (user.getType().equals("Teacher")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));          
+            AnchorPane root = loader.load();
+            JTeacherViewController con = loader.getController();
+            con.setModel(atModel);
+            con.setUser();         
+            rootLayout.setCenter(root);
         }
         
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
-//        AnchorPane root = loader.load();
-//        rootLayout.setCenter(root);
-
-
-        
-        else if (isUserFound == true && comboboxChoose.getSelectionModel().isSelected(1))
-        {
-            System.out.println("username: " + username.getText());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));
-            Parent root = loader.load();
-
-            stage = (Stage) anchorPane.getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
+        if (user.getType().equals("Student")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
+            AnchorPane root = loader.load();
+            JStudentMainViewController con = loader.getController();
+            con.setModel(atModel);
+            con.setUser();
+            rootLayout.setCenter(root);
         }
-        else if(isUserFound == true && comboboxChoose.getSelectionModel().isSelected(2))
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/AdminView.fxml"));
-            Parent root = loader.load();
 
-            stage = (Stage) anchorPane.getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            System.out.println("forkert et eller andet");
-        }
     }
 
     @FXML
@@ -130,7 +112,5 @@ public class JLoginController implements Initializable {
     public void setRootLayout(BorderPane toSet) {
         rootLayout = toSet;
     }
-
-
 
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.image.Image?>
@@ -19,6 +18,5 @@
       <JFXPasswordField fx:id="password" layoutX="142.0" layoutY="247.0" prefHeight="31.0" prefWidth="267.0" promptText="Adgangskode" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0" />
       <JFXButton buttonType="RAISED" layoutX="142.0" layoutY="311.0" onAction="#login" prefHeight="31.0" prefWidth="103.0" text="Login" AnchorPane.leftAnchor="142.0" AnchorPane.topAnchor="311.0" />
       <JFXButton buttonType="RAISED" layoutX="306.0" layoutY="311.0" onAction="#exit" prefHeight="31.0" prefWidth="103.0" text="Exit" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="311.0" />
-      <JFXComboBox fx:id="comboboxChoose" layoutX="205.0" layoutY="141.0" prefHeight="30.0" prefWidth="140.0" promptText="Vælg profiltype" />
    </children>
 </AnchorPane>

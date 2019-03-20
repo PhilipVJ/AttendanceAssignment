@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Student;
+import attendanceassignment.gui.Model.AttendanceModel;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.JFXTreeView;
@@ -43,6 +44,8 @@ public class JTeacherViewController implements Initializable
     private Label numberOfRequests;
     @FXML
     private JFXTreeTableView<Student> tableView;
+    
+    private AttendanceModel aModel;
 
     /**
      * Initializes the controller class.
@@ -55,7 +58,7 @@ TreeTableColumn<Student, String> firstNameCol= new TreeTableColumn<Student, Stri
 TreeTableColumn<Student, String> lastNameCol= new TreeTableColumn<Student, String>("Last name");
 tableView.getColumns().addAll(firstNameCol, lastNameCol);
 Student test1 = new Student("Hans", "Jensen");
-Student test2 = new Student("Kaj", "Hansen");
+Student test2 = new Student("Poul", "Hansen");
 
  ObservableList<Student> students = FXCollections.observableArrayList();
  students.add(test1);
@@ -89,6 +92,16 @@ tableView.setShowRoot(false);
     @FXML
     private void chooseClass(ActionEvent event)
     {
+    }
+    
+    public void setModel(AttendanceModel model)
+    {
+        this.aModel = model;
+    }
+    
+    public void setUser()
+    {
+        userNameTag.setText(aModel.getUser().getFirstname());
     }
 
 }

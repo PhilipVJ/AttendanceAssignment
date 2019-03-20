@@ -5,6 +5,7 @@
  */
 package attendanceassignment.gui.JController;
 
+import attendanceassignment.gui.Model.AttendanceModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ public class JStudentMainViewController implements Initializable
     
     @FXML
     private Label userLabel;
+    private AttendanceModel atModel;
 
     /**
      * Initializes the controller class.
@@ -40,6 +42,14 @@ public class JStudentMainViewController implements Initializable
    @FXML 
    private void showStatistics(ActionEvent event)
     {
+    }
+
+    void setModel(AttendanceModel atModel) {
+        this.atModel = atModel;
+    }
+
+    void setUser() {
+       userLabel.setText(atModel.getUser().getFirstname());
     }
     
 }
