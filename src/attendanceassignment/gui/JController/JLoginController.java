@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import attendanceassignment.gui.Model.AttendanceModel;
+import attendanceassignment.gui.Model.Utility;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -82,11 +83,7 @@ public class JLoginController implements Initializable {
         User user = atModel.login(username.getText(), password.getText());
         if (user==null)
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fejl");
-            alert.setHeaderText("Login fejlede");
-            alert.setContentText("Brugernavn eller adgangskode er ugyldigt. Prøv igen.");
-            alert.showAndWait();
+            Utility.createErrorAlert("Login fejlede", "Brugernavn eller adgangskode er ugyldigt. Prøv igen.");
             return;
             // der skal gøres noget mere her
         }
