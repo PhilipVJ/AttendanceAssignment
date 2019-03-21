@@ -5,7 +5,7 @@
  */
 package attendanceassignment.bll;
 
-import attendanceassignment.be.Person;
+import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.dal.UserDB;
@@ -102,7 +102,7 @@ public class BLLManager {
         return students;
     }
 
-    public Person login(String username, String password) throws SQLException, IOException 
+    public User login(String username, String password) throws SQLException, IOException 
     {
       
         return userDb.userLogin(username, password);

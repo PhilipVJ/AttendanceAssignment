@@ -5,7 +5,7 @@
  */
 package attendanceassignment.gui.JController;
 
-import attendanceassignment.be.Person;
+import attendanceassignment.be.User;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javax.swing.JOptionPane;
 
@@ -78,9 +79,14 @@ public class JLoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws SQLException, IOException {
 
-        Person user = atModel.login(username.getText(), password.getText());
+        User user = atModel.login(username.getText(), password.getText());
         if (user==null)
         {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText("Login fejlede");
+            alert.setContentText("Brugernavn eller adgangskode er ugyldigt. Prøv igen.");
+            alert.showAndWait();
             return;
             // der skal gøres noget mere her
         }

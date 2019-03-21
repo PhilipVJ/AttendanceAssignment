@@ -5,7 +5,7 @@
  */
 package attendanceassignment.dal;
 
-import attendanceassignment.be.Person;
+import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.dal.DbConnection;
@@ -29,9 +29,9 @@ public class UserDB {
         db = new DbConnection();
     }
 
-    public Person userLogin(String username, String password) throws SQLException {
+    public User userLogin(String username, String password) throws SQLException {
 
-        Person user = null;
+        User user = null;
         String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
         ResultSet rs = null;
         Connection con = db.getConnection();
@@ -49,9 +49,9 @@ public class UserDB {
         return user;
     }
 
-    private Person getUser(int id) throws SQLServerException, SQLException {
+    private User getUser(int id) throws SQLServerException, SQLException {
 
-        Person user = null;
+        User user = null;
         String sql = "SELECT * FROM Person WHERE personID = ?";
         ResultSet rs = null;
         Connection con = db.getConnection();
@@ -64,7 +64,7 @@ public class UserDB {
             String firstName = rs.getString("firstname");
             String lastName = rs.getString("lastname");
             String type = rs.getString("pType");
-            user = new Person(id,firstName, lastName, type);
+            user = new User(id,firstName, lastName, type);
         }
         System.out.println("Returning: "+user.getFirstname()+" ID:"+user.getId());
         return user;

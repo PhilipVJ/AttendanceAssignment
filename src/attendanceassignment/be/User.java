@@ -9,14 +9,14 @@ package attendanceassignment.be;
  *
  * @author Philip
  */
-public class Person {
+public class User {
 
     private String firstname;
     private String lastname;
     private String type;
     private final int id;
 
-    public Person(int id, String firstname, String lastname, String type) {
+    public User(int id, String firstname, String lastname, String type) {
         this.id=id;
         this.firstname = firstname;
         this.lastname = lastname;

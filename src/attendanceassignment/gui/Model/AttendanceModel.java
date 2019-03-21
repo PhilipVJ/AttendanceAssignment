@@ -6,7 +6,7 @@
 package attendanceassignment.gui.Model;
 
 import attendanceassignment.be.Attendance;
-import attendanceassignment.be.Person;
+import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.bll.BLLManager;
@@ -25,7 +25,7 @@ public class AttendanceModel {
     private BLLManager bllMan;
 
     private final ObservableList<Student> students = FXCollections.observableArrayList();
-    private Person user;
+    private User user;
 
     public AttendanceModel() throws IOException {
         bllMan = new BLLManager();
@@ -110,12 +110,12 @@ public class AttendanceModel {
         return students4;
     }
 
-    public Person login(String username, String password) throws SQLException, IOException {
+    public User login(String username, String password) throws SQLException, IOException {
         user = bllMan.login(username, password);
         return user;
     }
     
-    public Person getUser()
+    public User getUser()
     {
         return user;
     }
