@@ -6,9 +6,11 @@
 package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
+import attendanceassignment.be.Teacher;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,10 +23,16 @@ public class test3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException, IOException, SQLException {
-       Attendance att = new Attendance(2,new Date());
-         
+//       Attendance att = new Attendance(2,new Date());
+//         
         AbscensData abs = new AbscensData();
-        abs.setAttendance(att);
+        ArrayList<Date> all = abs.getAbsentDays(2);
+        for (Date date : all) {
+            System.out.println(""+date.toString());
+            
+        }
+        System.out.println("Done");
+
     }
     
 }

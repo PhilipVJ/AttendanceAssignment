@@ -23,6 +23,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -42,6 +43,7 @@ public class JTeacherViewController implements Initializable
     private JFXTreeTableView<Student> tableView;
     
     private AttendanceModel aModel;
+    private BorderPane rootLayout;
 
     /**
      * Initializes the controller class.
@@ -99,5 +101,7 @@ tableView.setShowRoot(false);
     {
         userNameTag.setText(aModel.getUser().getFirstname());
     }
-
+    public void setRootLayout(BorderPane toSet) {
+        rootLayout = toSet;
+    }
 }

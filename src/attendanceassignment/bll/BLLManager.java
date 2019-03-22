@@ -8,12 +8,15 @@ package attendanceassignment.bll;
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.Teacher;
 import attendanceassignment.dal.AbscensData;
 import attendanceassignment.dal.UserDB;
 import attendanceassignment.dal.StudentData;
+import attendanceassignment.dal.TeacherDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
 
@@ -23,7 +26,8 @@ import javafx.collections.ObservableList;
  */
 public class BLLManager {
     StudentData studentData;
-    AbscensData abscensData;
+    AbscensData abscensData = new AbscensData();
+    TeacherDAO tDAO = new TeacherDAO();
     UserDB userDb;
     
     
@@ -114,6 +118,19 @@ public class BLLManager {
         return userDb.userLogin(username, password);
         
        
+    }
+
+    public ArrayList<Teacher> getAllTeachers() throws SQLException {
+    return tDAO.getAllTeachers();
+       
+    }
+
+    public ArrayList<Date> getAbsentDays(int id) {
+       return abscensData.getAbsentDays(id);
+    }
+
+    public boolean requestAttendanceChange(int student, int teacher, Date date) {
+      return abscensData.requestAttendanceChange(student, teacher, date);
     }
 
 

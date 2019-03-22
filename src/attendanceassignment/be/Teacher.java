@@ -5,29 +5,28 @@
  */
 package attendanceassignment.be;
 
-/**
- *
- * @author Anders
- * 
- */
-
-/**
- * class not yet in use
- */
 public class Teacher {
-    String username;
-    String password;
-    
-    public String getName(){
-        return username;
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Teacher(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
     }
-    public void setUsername(String username){
-        this.username = username;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public String setPassword(){
-        return password;
+
+    public String getLastName() {
+        return lastName;
     }
-    public void setPassword(String password){
-        this.password = password;
+
+    public int getId() {
+        return id;
     }
+
 }

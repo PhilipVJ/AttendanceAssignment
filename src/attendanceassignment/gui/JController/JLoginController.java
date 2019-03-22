@@ -87,6 +87,7 @@ public class JLoginController implements Initializable {
             AnchorPane root = loader.load();
             JTeacherViewController con = loader.getController();
             con.setModel(atModel);
+            con.setRootLayout(rootLayout);
             con.setUser();         
             rootLayout.setCenter(root);
         }
@@ -97,6 +98,7 @@ public class JLoginController implements Initializable {
             JStudentMainViewController con = loader.getController();
             con.setModel(atModel);
             con.setUser();
+            con.setRootLayout(rootLayout);
             rootLayout.setCenter(root);
         }
 

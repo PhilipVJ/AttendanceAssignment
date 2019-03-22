@@ -7,12 +7,15 @@ package attendanceassignment.gui.AttModel;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.Teacher;
 import attendanceassignment.be.User;
 import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.UserDBFactory;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
@@ -126,6 +129,18 @@ public class AttendanceModel {
     public User getUser()
     {
         return user;
+    }
+
+    public ArrayList<Teacher> getAllTeachers() throws SQLException {
+      return bllMan.getAllTeachers();
+    }
+
+    public ArrayList<Date> getAbsentDays() {
+        return bllMan.getAbsentDays(user.getId());
+    }
+
+    public boolean requestAttendanceChange(int teacher, Date date) {
+       return bllMan.requestAttendanceChange(user.getId(),teacher,date);
     }
 
 
