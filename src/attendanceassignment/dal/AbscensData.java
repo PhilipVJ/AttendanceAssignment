@@ -58,9 +58,9 @@ public class AbscensData {
 
     }
 
-    public boolean requestAttendanceChange(int student, int teacher, Date toChange) {
+    public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException {
 
-        boolean success = false;
+        
         String sql = "INSERT INTO AttendanceChange VALUES (?,?,?);";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
@@ -70,18 +70,12 @@ public class AbscensData {
             pst.setInt(2, teacher);
             pst.setDate(3, sqlDate);
             pst.execute();
-            success = true;
-
-            return success;
-        } catch (SQLServerException ex) {
-            Logger.getLogger(AbscensData.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AbscensData.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
         }
-        return success;
+
     }
 
-    public ArrayList<Date> getAbsentDays(int studentID)
+    public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException
     {
         
         ArrayList<Date> absentDays = new ArrayList<>();
@@ -95,21 +89,41 @@ public class AbscensData {
             pst.setInt(1, studentID);
             pst.setDate(2, sqlDate);
             ResultSet rs = pst.executeQuery();
-            if(rs.next())
+            while(rs.next())
             {
+                System.out.println("FOUND");
                 Date date = rs.getDate("Date");
                 absentDays.add(date);
             }
             
-           
-        } catch (SQLServerException ex) {
-            Logger.getLogger(AbscensData.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AbscensData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return absentDays;
         
     }
+    
+    public boolean checkForRequestedDay(int studentId, Date toCheck) throws SQLServerException, SQLException
+    {
+ 
+        String sql = "Select * from AttendanceChange where studentID = (?) AND date = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            Date toDay = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(toCheck.getTime());
+            pst.setInt(1, studentId);
+            pst.setDate(2, sqlDate);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next())
+            {
+                System.out.println("true");
+                return true;
+            }
+            
+        }
+        System.out.println("false");
+        return false;
+    }
+            
     
     
 }

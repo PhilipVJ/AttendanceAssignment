@@ -28,5 +28,10 @@ public class Teacher {
     public int getId() {
         return id;
     }
+    
+    public String toString()
+    {
+        return firstName+" "+lastName;
+    }
 
 }

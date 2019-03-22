@@ -26,12 +26,8 @@ public class test3 {
 //       Attendance att = new Attendance(2,new Date());
 //         
         AbscensData abs = new AbscensData();
-        ArrayList<Date> all = abs.getAbsentDays(2);
-        for (Date date : all) {
-            System.out.println(""+date.toString());
-            
-        }
-        System.out.println("Done");
+        Date date = new Date();
+        abs.checkForRequestedDay(2, date);
 
     }
     

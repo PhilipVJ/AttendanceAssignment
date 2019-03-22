@@ -125,12 +125,16 @@ public class BLLManager {
        
     }
 
-    public ArrayList<Date> getAbsentDays(int id) {
+    public ArrayList<Date> getAbsentDays(int id) throws SQLException {
        return abscensData.getAbsentDays(id);
     }
 
-    public boolean requestAttendanceChange(int student, int teacher, Date date) {
+    public boolean requestAttendanceChange(int student, int teacher, Date date) throws SQLException {
       return abscensData.requestAttendanceChange(student, teacher, date);
+    }
+
+    public boolean checkForRequestedDay(int studentId, Date date) throws SQLException {
+        return abscensData.checkForRequestedDay(studentId, date);
     }
 
 

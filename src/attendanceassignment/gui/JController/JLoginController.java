@@ -35,7 +35,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class JLoginController implements Initializable {
 
-    AttendanceModel atModel;
+    private AttendanceModel atModel;
     private Stage stage;
 
     private JFXComboBox<String> comboboxChoose;

@@ -16,5 +16,6 @@
       <JFXButton layoutX="19.0" layoutY="367.0" onAction="#sendRequest" prefHeight="25.0" prefWidth="186.0" text="Anmod om ændring af fravær" AnchorPane.rightAnchor="345.0" />
       <JFXListView fx:id="absentDays" layoutX="20.0" layoutY="58.0" prefHeight="292.0" prefWidth="126.0" AnchorPane.leftAnchor="20.0" />
       <JFXListView fx:id="teacherView" layoutX="174.0" layoutY="226.0" prefHeight="124.0" prefWidth="176.0" />
+      <Label fx:id="checker" layoutX="180.0" layoutY="122.0" text="Label" />
    </children>
 </AnchorPane>
