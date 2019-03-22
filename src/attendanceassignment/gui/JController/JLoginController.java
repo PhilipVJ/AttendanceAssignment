@@ -85,7 +85,6 @@ public class JLoginController implements Initializable {
         {
             Utility.createErrorAlert("Login fejlede", "Brugernavn eller adgangskode er ugyldigt. Prøv igen.");
             return;
-            // der skal gøres noget mere her
         }
         if (user.getType().equals("Teacher")) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));          

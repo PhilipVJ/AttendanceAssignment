@@ -22,14 +22,14 @@ import javax.swing.JOptionPane;
  * @author Anders
  */
 public class BLLManager {
-    StudentData studentData = new StudentData();
+    StudentData studentData;
     
     UserDB userDb;
     
     
-    public BLLManager() throws IOException
+    public BLLManager(UserDB uDb) throws IOException
     {
-        userDb = new UserDB();
+        userDb = uDb;
     }
     
     /**

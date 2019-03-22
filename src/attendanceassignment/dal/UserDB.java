@@ -66,7 +66,7 @@ public class UserDB {
             String type = rs.getString("pType");
             user = new User(id,firstName, lastName, type);
         }
-        System.out.println("Returning: "+user.getFirstname()+" ID:"+user.getId());
+
         return user;
 
     }
