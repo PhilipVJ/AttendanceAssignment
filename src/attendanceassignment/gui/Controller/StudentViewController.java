@@ -5,20 +5,14 @@
  */
 package attendanceassignment.gui.Controller;
 
-import attendanceassignment.gui.Controller.OverviewController;
 import attendanceassignment.be.Student;
-import attendanceassignment.gui.Model.AttendanceModel;
+import attendanceassignment.gui.AttModel.AttendanceModel;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;

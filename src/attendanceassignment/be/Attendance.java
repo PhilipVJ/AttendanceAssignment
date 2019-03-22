@@ -5,6 +5,13 @@
  */
 package attendanceassignment.be;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import static jdk.nashorn.internal.runtime.Debug.id;
+
 /**
  *
  * @author Anders
@@ -13,6 +20,9 @@ public class Attendance {
     
     private String dayName;
     private int absence;
+    int id;
+    Date attendance;
+    
 
     public Attendance() {
     }
@@ -30,6 +40,38 @@ public class Attendance {
      */
     public int getAbsence() {
         return absence;
+    }
+    
+    public Attendance(int id, String attendance) throws ParseException {
+        this.id = id;
+        DateFormat format = new SimpleDateFormat("dd/MM-yyyy", Locale.ENGLISH);
+        Date date = format.parse(attendance);
+        this.attendance = date; 
+        
+    }
+
+    /**
+     * gets absence
+     */
+    public void setDate(Date attendance){
+        this.attendance = attendance;
+    }
+    
+    public Date getDate(){
+     return attendance;
+    }
+    
+    public int getId() {
+     return id;
+    }
+
+    /**
+     *
+     * @param id
+     * set id
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

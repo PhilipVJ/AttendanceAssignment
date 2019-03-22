@@ -6,6 +6,8 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.User;
+import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -15,22 +17,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import attendanceassignment.gui.Model.AttendanceModel;
-import attendanceassignment.gui.Model.Utility;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class

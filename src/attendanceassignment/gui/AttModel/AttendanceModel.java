@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendanceassignment.gui.Model;
+package attendanceassignment.gui.AttModel;
 
 import attendanceassignment.be.Attendance;
-import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
-import attendanceassignment.be.Teacher;
+import attendanceassignment.be.User;
 import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.UserDBFactory;
 import java.io.IOException;
@@ -123,3 +122,4 @@ public class AttendanceModel {
 
 
 }
+

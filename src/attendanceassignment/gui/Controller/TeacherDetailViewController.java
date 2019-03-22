@@ -5,7 +5,7 @@
  */
 package attendanceassignment.gui.Controller;
 
-import attendanceassignment.gui.Model.AttendanceModel;
+import attendanceassignment.gui.AttModel.AttendanceModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

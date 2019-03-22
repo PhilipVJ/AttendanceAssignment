@@ -6,16 +6,13 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Student;
-import attendanceassignment.gui.Model.AttendanceModel;
-import com.jfoenix.controls.JFXTreeTableColumn;
+import attendanceassignment.gui.AttModel.AttendanceModel;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.JFXTreeView;
 
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +23,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 /**
  * FXML Controller class
