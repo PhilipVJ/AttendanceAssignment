@@ -12,6 +12,7 @@ import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.UserDBFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
@@ -46,6 +47,13 @@ public class AttendanceModel {
             dataset.getData().add(new XYChart.Data(attendance.getDayName(), attendance.getAbsence()));
         }
         return dataset;
+    }
+    
+    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException{
+        
+        
+        return bllMan.setAttendance(attendance);
+                
     }
 
     /**

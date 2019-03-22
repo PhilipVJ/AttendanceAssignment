@@ -6,6 +6,7 @@
 package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,39 +28,32 @@ public class AbscensData {
 
     public AbscensData() throws IOException {
         dbc = new DbConnection();
+        System.out.println("dbc"+ dbc);
     }
 
     
     
     
-    public Attendance setAttendance(String attendance) throws ParseException{
-        
-            
+    public boolean setAttendance(Attendance attendance) throws ParseException, SQLServerException, SQLException{
+        boolean success = false;
+            System.out.println("første");
        
-            try (Connection con = dbc.getConnection()){
-                String sql = "INSERT INTO Attendance VALUES (?);";
+            Connection con = dbc.getConnection();
+                String sql = "INSERT INTO Attendance VALUES (?,?);";
 
                 PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                DateFormat format = new SimpleDateFormat("dd/MM-yyyy", Locale.ENGLISH);
-                Date date = format.parse(attendance);
                 
-                pst.setDate(1, (java.sql.Date) date);
+                java.sql.Date sqlDate = new java.sql.Date(attendance.getDate().getTime());
+                System.out.println(""+ sqlDate.toString());
+                pst.setInt(1, attendance.getId());
+                pst.setDate(2, sqlDate);
                
                 
-                 if(pst.executeUpdate() == 1);
-                {
-                ResultSet rs = pst.getGeneratedKeys();
-                rs.next();
-                int id = rs.getInt(1);
-                    
-                Attendance att = new Attendance(id, attendance);
-                return att;
-                }
-        
-            } catch(SQLException e) {
-        
-             }
-         return null;
+                pst.execute();
+                success = true;
+                System.out.println("true");
+            
+         return success;
          
         } 
 

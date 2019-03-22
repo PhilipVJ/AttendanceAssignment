@@ -5,17 +5,17 @@
  */
 package attendanceassignment.bll;
 
+import attendanceassignment.be.Attendance;
 import attendanceassignment.be.User;
 import attendanceassignment.be.Student;
-import attendanceassignment.be.Teacher;
+import attendanceassignment.dal.AbscensData;
 import attendanceassignment.dal.UserDB;
 import attendanceassignment.dal.StudentData;
 import java.io.IOException;
 import java.sql.SQLException;
-import javafx.collections.FXCollections;
+import java.text.ParseException;
+import java.util.Date;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class BLLManager {
     StudentData studentData;
-    
+    AbscensData abscensData;
     UserDB userDb;
     
     
@@ -41,6 +41,12 @@ public class BLLManager {
         return students;
     }
     
+    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException{
+        
+        
+        return abscensData.setAttendance(attendance);
+                
+    }
     /**
      * calls piechart data from dal
      */

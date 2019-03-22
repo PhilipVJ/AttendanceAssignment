@@ -7,6 +7,8 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +26,7 @@ public class JStudentMainViewController implements Initializable
     @FXML
     private Label userLabel;
     private AttendanceModel atModel;
-
+    private Date date;
     /**
      * Initializes the controller class.
      */
@@ -37,6 +39,19 @@ public class JStudentMainViewController implements Initializable
     @FXML
     private void setAttendance(ActionEvent event)
     {
+//        java.sql.Date sqlDate = new java.sql.Date(attendance.getDate().getTime());
+//        date = atModel.setAttendance();
+        
+        
+         
+//        Date date = new Date();
+//        SimpleDateFormat s = new SimpleDateFormat("dd/MM-yyyy");
+//        lblDate.setText(s.format(date));
+//        Attendance att = new Attendance(2,new Date());
+//         
+//        AbscensData abs = new AbscensData();
+//        abs.setAttendance(att);
+//        atModel.setAttendance(attendance);
     }
     
    @FXML 
