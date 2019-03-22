@@ -60,6 +60,8 @@ public class JStudentStatisticsController implements Initializable {
             }
 
         });
+        
+        checker.setText("");
 
     }
 
