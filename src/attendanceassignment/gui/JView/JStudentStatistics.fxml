@@ -8,14 +8,15 @@
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="550.0" styleClass="mainFxmlClass" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JStudentStatisticsController">
    <children>
       <Label layoutX="23.0" layoutY="21.0" text="Logget ind som:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-      <Label fx:id="userNameTag" layoutX="110.0" layoutY="18.0" prefHeight="21.0" prefWidth="141.0" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="userNameTag" layoutX="110.0" layoutY="18.0" prefHeight="21.0" prefWidth="141.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="19.0" />
       <JFXButton layoutX="40.0" layoutY="289.0" onAction="#logOut" prefHeight="50.0" prefWidth="140.0" text="Log ud" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
       <JFXButton layoutX="308.0" layoutY="289.0" onAction="#showOverview" prefHeight="50.0" prefWidth="140.0" text="Overview" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0" />
-      <Label layoutX="180.0" layoutY="50.0" text="Du er i dag registreret som:" AnchorPane.topAnchor="48.0" />
-      <Label fx:id="attendanceTag" layoutX="334.0" layoutY="48.0" prefHeight="21.0" prefWidth="126.0" AnchorPane.topAnchor="48.0" />
-      <JFXButton layoutX="19.0" layoutY="367.0" onAction="#sendRequest" prefHeight="25.0" prefWidth="186.0" text="Anmod om ændring af fravær" AnchorPane.rightAnchor="345.0" />
-      <JFXListView fx:id="absentDays" layoutX="20.0" layoutY="58.0" prefHeight="292.0" prefWidth="126.0" AnchorPane.leftAnchor="20.0" />
-      <JFXListView fx:id="teacherView" layoutX="174.0" layoutY="226.0" prefHeight="124.0" prefWidth="176.0" />
-      <Label fx:id="checker" layoutX="180.0" layoutY="122.0" text="Label" />
+      <JFXButton layoutX="20.0" layoutY="379.0" onAction="#sendRequest" prefHeight="25.0" prefWidth="141.0" text="Anmod om ændring" AnchorPane.rightAnchor="389.0" />
+      <JFXListView fx:id="absentDays" layoutX="20.0" layoutY="77.0" prefHeight="145.0" prefWidth="140.0" AnchorPane.leftAnchor="20.0" />
+      <JFXListView fx:id="teacherView" layoutX="20.0" layoutY="222.0" prefHeight="124.0" prefWidth="140.0" AnchorPane.leftAnchor="20.0" />
+      <Label fx:id="checker" layoutX="22.0" layoutY="353.0" prefHeight="17.0" prefWidth="140.0" />
+      <JFXListView fx:id="requests" layoutX="184.0" layoutY="77.0" prefHeight="145.0" prefWidth="140.0" />
+      <Label layoutX="22.0" layoutY="54.0" prefHeight="17.0" prefWidth="140.0" text="Fraværsdage" />
+      <Label layoutX="181.0" layoutY="54.0" text="Fraværsdage sendt til ændring" />
    </children>
 </AnchorPane>

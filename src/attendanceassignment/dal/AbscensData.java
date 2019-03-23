@@ -33,12 +33,11 @@ public class AbscensData {
 
     public AbscensData() throws IOException {
         dbc = new DbConnection();
-        System.out.println("dbc" + dbc);
+
     }
 
     public boolean setAttendance(Attendance attendance) throws ParseException, SQLServerException, SQLException {
         boolean success = false;
-        System.out.println("første");
 
         Connection con = dbc.getConnection();
         String sql = "INSERT INTO Attendance VALUES (?,?);";
@@ -60,7 +59,6 @@ public class AbscensData {
 
     public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException {
 
-        
         String sql = "INSERT INTO AttendanceChange VALUES (?,?,?);";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
@@ -75,11 +73,10 @@ public class AbscensData {
 
     }
 
-    public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException
-    {
-        
+    public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException {
+
         ArrayList<Date> absentDays = new ArrayList<>();
-        
+
         String sql = "Select Date from Dates where Date NOT IN ( Select Date from Attendance WHERE StudentID=(?)) AND Date <= (?)";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
@@ -89,41 +86,88 @@ public class AbscensData {
             pst.setInt(1, studentID);
             pst.setDate(2, sqlDate);
             ResultSet rs = pst.executeQuery();
-            while(rs.next())
-            {
-                System.out.println("FOUND");
+            while (rs.next()) {
+
                 Date date = rs.getDate("Date");
                 absentDays.add(date);
             }
-            
+
         }
         return absentDays;
-        
     }
-    
-    public boolean checkForRequestedDay(int studentId, Date toCheck) throws SQLServerException, SQLException
-    {
- 
+
+    /**
+     * Checks if the given date already has a change request
+     *
+     * @param studentId
+     * @param toCheck
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException
+     */
+    public boolean checkForRequestedDay(int studentId, Date toCheck) throws SQLServerException, SQLException {
+
         String sql = "Select * from AttendanceChange where studentID = (?) AND date = (?)";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
 
-            Date toDay = new Date();
             java.sql.Date sqlDate = new java.sql.Date(toCheck.getTime());
             pst.setInt(1, studentId);
             pst.setDate(2, sqlDate);
             ResultSet rs = pst.executeQuery();
-            while(rs.next())
-            {
-                System.out.println("true");
+            while (rs.next()) {
+
                 return true;
             }
-            
         }
-        System.out.println("false");
         return false;
     }
-            
     
     
+    public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException {
+
+        ArrayList<Date> requestedDays = new ArrayList<>();
+
+        String sql = "Select * from AttendanceChange where studentID = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            pst.setInt(1, studentID);
+ 
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                Date date = rs.getDate("date");
+                requestedDays.add(date);
+            }
+
+        }
+        return requestedDays;
+    }
+    
+    public ArrayList<Date> getAllNonRequestedAbsentDays(int studentID) throws SQLServerException, SQLException {
+
+        ArrayList<Date> requestedDays = new ArrayList<>();
+
+      String sql = "Select Date from Dates where Date NOT IN ( Select Date from Attendance WHERE StudentID=(?)) AND Date <= (?) AND Date NOT IN(Select date from AttendanceChange WHERE studentID=(?))";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            Date toDay = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(toDay.getTime());
+            pst.setInt(1, studentID);
+            pst.setDate(2, sqlDate);
+            pst.setInt(3, studentID);
+ 
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                Date date = rs.getDate("date");
+                requestedDays.add(date);
+            }
+
+        }
+        return requestedDays;
+    }
+
 }

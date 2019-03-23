@@ -31,8 +31,6 @@ public class JStudentStatisticsController implements Initializable {
 
     @FXML
     private Label userNameTag;
-    @FXML
-    private Label attendanceTag;
 
     @FXML
     private JFXListView<Teacher> teacherView;
@@ -42,41 +40,21 @@ public class JStudentStatisticsController implements Initializable {
     private JFXListView<Date> absentDays;
     @FXML
     private Label checker;
+    @FXML
+    private JFXListView<Date> requests;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller     @FXML
+    private JFXListView<?> requests;
+class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        absentDays.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-            @Override
-            public void handle(MouseEvent event) {
-                Date date = absentDays.getSelectionModel().getSelectedItem();
-                if (date != null) {
-                    checkForRequest(date);
-                }
-            }
-
-        });
-        
-        checker.setText("");
 
     }
 
-    private void checkForRequest(Date date) {
-        try {
-            boolean hasBeenRequested = atModel.checkForRequestedDay(date);
-            if (hasBeenRequested) {
-                checker.setText("Allerede anmodet om ændring");
-            } else {
-                checker.setText("Ikke anmodet om ændring");
-            }
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Problemer med SQL serveren", "En fejl opstod med forbindelsen til serveren");
-        }
-    }
 
     @FXML
     private void logOut(ActionEvent event) {
@@ -92,9 +70,22 @@ public class JStudentStatisticsController implements Initializable {
         Date dateToReq = absentDays.getSelectionModel().getSelectedItem();
         Teacher teacher = teacherView.getSelectionModel().getSelectedItem();
         
-        if (dateToReq == null || teacher == null)
+        if (dateToReq == null)
         {
-            checker.setText("Vælg en dag og en lærer at sende anmodningen til");
+            checker.setText("Vælg en dag du ønsker ændret");
+            return;
+        }
+        
+        if(teacher == null)
+        {
+            checker.setText("Vælg en lærer at sende anmodningen til");
+            return;
+        }
+        
+        
+        if(Utility.compareDateWithToday(dateToReq)>14)
+        {
+            Utility.createErrorAlert("Tidsperiode overskredet", "Anmodninger kan kun sendes hvis den valgte dato er indenfor de sidste 14 dage");
             return;
         }
 
@@ -102,9 +93,11 @@ public class JStudentStatisticsController implements Initializable {
             boolean request = atModel.requestAttendanceChange(teacher.getId(), dateToReq);
             if (request) {
                 checker.setText("Anmodning afsendt");
+                requests.getItems().add(dateToReq);
+                absentDays.getItems().remove(dateToReq);
             }
         } catch (SQLException ex) {
-            Utility.createErrorAlert("Problemer med SQL serveren", "Fejlen skyldes formentlig at du allerede har ansøgt om ændring på den pågældende dag");
+            Utility.createErrorAlert("Problemer med SQL serveren", "En fejl opstod med SQl serveren. Prøv igen senere");
         }
     }
 
@@ -122,10 +115,16 @@ public class JStudentStatisticsController implements Initializable {
             teacherView.getItems().add(teacher);
         }
         // Loads the absence days view
-        ArrayList<Date> absentDays = atModel.getAbsentDays();
-        System.out.println("Size:" + absentDays.size());
+        ArrayList<Date> absentDays = atModel.getAllNonRequestedAbsentDays();
         for (Date date : absentDays) {
             this.absentDays.getItems().add(date);
+        }
+        
+        // Loads the request view
+        ArrayList<Date> requests = atModel.getRequestedDays();
+        for (Date date:requests)
+        {
+            this.requests.getItems().add(date);
         }
     }
 

@@ -147,6 +147,14 @@ public class AttendanceModel {
       return bllMan.checkForRequestedDay(user.getId(),date);
     }
 
+    public ArrayList<Date> getRequestedDays() throws SQLException {
+      return bllMan.getRequestedDays(user.getId());
+    }
+
+    public ArrayList<Date> getAllNonRequestedAbsentDays() throws SQLException {
+       return bllMan.getAllNonRequestedAbsentDays(user.getId());
+    }
+
 
 }
 

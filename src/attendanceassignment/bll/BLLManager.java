@@ -137,6 +137,14 @@ public class BLLManager {
         return abscensData.checkForRequestedDay(studentId, date);
     }
 
+    public ArrayList<Date> getRequestedDays(int id) throws SQLException {
+       return abscensData.getAllRequestsByStudent(id);
+    }
+
+    public ArrayList<Date> getAllNonRequestedAbsentDays(int id) throws SQLException {
+       return abscensData.getAllNonRequestedAbsentDays(id);
+    }
+
 
 
     

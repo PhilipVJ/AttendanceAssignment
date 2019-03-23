@@ -5,6 +5,9 @@
  */
 package attendanceassignment.gui.AttModel;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import javafx.scene.control.Alert;
 
 /**
@@ -19,6 +22,26 @@ public class Utility {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    /**
+     * Returns the number of days between the given date and today
+     *
+     * @param toCompare
+     * @return
+     */
+    public static long compareDateWithToday(Date toCompare) {
+      
+        java.sql.Date sqlDate = new java.sql.Date(toCompare.getTime());
+        java.sql.Date sqlDateToday = new java.sql.Date(new Date().getTime());
+        String dateBeforeString = sqlDate.toString();
+        String dateAfterString = sqlDateToday.toString();
+
+        LocalDate dateBefore = LocalDate.parse(dateBeforeString);
+        LocalDate dateAfter = LocalDate.parse(dateAfterString);
+
+        long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
+        return noOfDaysBetween;
     }
 
 }

@@ -7,6 +7,7 @@ package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Teacher;
+import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -26,8 +27,10 @@ public class test3 {
 //       Attendance att = new Attendance(2,new Date());
 //         
         AbscensData abs = new AbscensData();
-        Date date = new Date();
-        abs.checkForRequestedDay(2, date);
+        System.out.println(""+abs.getAllRequestsByStudent(2).size());
+
+
+        
 
     }
     
