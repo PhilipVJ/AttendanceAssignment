@@ -42,10 +42,9 @@ public class Attendance {
         return absence;
     }
     
-    public Attendance(int id, Date attendance) throws ParseException {
+    public Attendance(int id, Date attendance) {
         this.id = id;
-//        DateFormat format = new SimpleDateFormat("dd/MM-yyyy", Locale.ENGLISH);
-//        Date date = format.parse("",attendance); 
+
         this.attendance = attendance; 
         
     }

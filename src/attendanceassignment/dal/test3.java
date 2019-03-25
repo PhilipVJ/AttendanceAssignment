@@ -26,8 +26,8 @@ public class test3 {
     public static void main(String[] args) throws ParseException, IOException, SQLException {
 //       Attendance att = new Attendance(2,new Date());
 //         
-        AbscensData abs = new AbscensData();
-        System.out.println(""+abs.getAllRequestsByStudent(2).size());
+        Date d = new Date();
+        System.out.println(""+d);
 
 
         

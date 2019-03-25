@@ -145,6 +145,11 @@ public class BLLManager {
        return abscensData.getAllNonRequestedAbsentDays(id);
     }
 
+    public void addAttendance(Attendance att) throws ParseException, SQLException
+    {
+        abscensData.setAttendance(att);
+    }
+
 
 
     

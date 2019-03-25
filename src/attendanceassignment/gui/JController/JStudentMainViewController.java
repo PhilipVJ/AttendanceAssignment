@@ -5,10 +5,12 @@
  */
 package attendanceassignment.gui.JController;
 
+import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -42,18 +44,10 @@ public class JStudentMainViewController implements Initializable {
     }
 
     @FXML
-    private void setAttendance(ActionEvent event) {
-//        java.sql.Date sqlDate = new java.sql.Date(attendance.getDate().getTime());
-//        date = atModel.setAttendance();
-
-//        Date date = new Date();
-//        SimpleDateFormat s = new SimpleDateFormat("dd/MM-yyyy");
-//        lblDate.setText(s.format(date));
-//        Attendance att = new Attendance(2,new Date());
-//         
-//        AbscensData abs = new AbscensData();
-//        abs.setAttendance(att);
-//        atModel.setAttendance(attendance);
+    private void setAttendance(ActionEvent event) throws ParseException, SQLException {
+        Attendance att = new Attendance(atModel.getUser().getId(), new Date());
+        atModel.addAttendance(att);
+        
     }
 
     @FXML

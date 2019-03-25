@@ -155,6 +155,11 @@ public class AttendanceModel {
        return bllMan.getAllNonRequestedAbsentDays(user.getId());
     }
 
+    public void addAttendance(Attendance att) throws ParseException, SQLException
+    {
+        bllMan.addAttendance(att);
+    }
+
 
 }
 
