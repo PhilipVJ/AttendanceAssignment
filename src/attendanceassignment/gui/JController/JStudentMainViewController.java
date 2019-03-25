@@ -7,6 +7,7 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -72,6 +73,17 @@ public class JStudentMainViewController implements Initializable {
 
     public void setRootLayout(BorderPane toSet) {
         rootLayout = toSet;
+    }
+
+    @FXML
+    private void changeAttendance(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentChangeAttendance.fxml"));
+        AnchorPane root = loader.load();
+        JStudentChangeAttendanceController con = loader.getController();
+        con.setModel(atModel);
+        con.loadView();
+        con.setRootLayout(rootLayout);
+        rootLayout.setCenter(root);
     }
 
 }
