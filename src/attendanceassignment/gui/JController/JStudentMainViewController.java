@@ -7,12 +7,14 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -46,8 +48,22 @@ public class JStudentMainViewController implements Initializable {
 
     @FXML
     private void setAttendance(ActionEvent event) throws ParseException, SQLException {
+        int curTime = LocalDateTime.now().getHour();
+        int tooLate = 25;
+        int tooEarly = 0;
+        
+        if(curTime < tooLate && curTime > tooEarly){
         Attendance att = new Attendance(atModel.getUser().getId(), new Date());
         atModel.addAttendance(att);
+        }
+        if(curTime > tooLate){
+            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan kun sættes frem til klokken " + tooLate);
+        }
+        if(curTime < tooEarly){
+            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan først sættes fra klokken " + tooEarly);
+        }
+        
+        
         
     }
 
