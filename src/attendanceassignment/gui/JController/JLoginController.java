@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -106,7 +107,8 @@ public class JLoginController implements Initializable {
 
     @FXML
     private void exit(ActionEvent event) {
-
+        
+        Platform.exit();
     }
 
     public void setRootLayout(BorderPane toSet) {
