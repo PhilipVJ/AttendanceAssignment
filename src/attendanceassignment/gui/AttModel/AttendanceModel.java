@@ -160,6 +160,9 @@ public class AttendanceModel {
     {
         bllMan.addAttendance(att);
     }
+    public ArrayList<Date> getAttendance() throws SQLException {
+       return bllMan.getAttendance(user.getId());
+    }
 
 
 

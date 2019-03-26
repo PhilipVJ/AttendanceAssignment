@@ -149,6 +149,9 @@ public class BLLManager {
     {
         abscensData.setAttendance(att);
     }
+    public ArrayList<Date> getAttendance(int id) throws SQLException {
+       return abscensData.getAttendance(id);
+    }
 
 
 
