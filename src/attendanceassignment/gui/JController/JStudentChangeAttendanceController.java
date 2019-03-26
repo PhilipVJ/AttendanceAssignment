@@ -58,9 +58,12 @@ public class JStudentChangeAttendanceController implements Initializable {
 
         // Loads the teacher view
         ArrayList<Teacher> allTeachers = atModel.getAllTeachers();
+        
+        
         for (Teacher teacher : allTeachers) {
-
+            if(teacher.getClassses().contains(atModel.getUser().getAllClasses().get(0))){
             teacherView.getItems().add(teacher);
+            }
         }
         // Loads the absence days view
         ArrayList<Date> absentDays = atModel.getAllNonRequestedAbsentDays();

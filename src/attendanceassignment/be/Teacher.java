@@ -5,16 +5,24 @@
  */
 package attendanceassignment.be;
 
+import java.util.ArrayList;
+
 public class Teacher {
 
     private String firstName;
     private String lastName;
     private int id;
+    private ArrayList<String> classes;
 
     public Teacher(String firstName, String lastName, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
+    }
+    
+    public void addClasses(ArrayList<String> classes)
+    {
+        this.classes = classes;
     }
 
     public String getFirstName() {
@@ -27,6 +35,11 @@ public class Teacher {
 
     public int getId() {
         return id;
+    }
+    
+    public ArrayList<String> getClassses()
+    {
+        return classes;
     }
     
     public String toString()
