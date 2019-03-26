@@ -83,7 +83,7 @@ public class UserDB
 
     }
 
-    public ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
+    public  ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
     {
         ArrayList<String> allClasses = new ArrayList<>();
         String sql = "SELECT * FROM PersonClass INNER JOIN Class ON PersonClass.classID = Class.classID WHERE personID=(?);";

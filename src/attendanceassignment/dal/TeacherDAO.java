@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package attendanceassignment.dal;
-
 import attendanceassignment.be.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
@@ -53,6 +52,8 @@ public class TeacherDAO
             return allTeachers;
         }
     }
+    
+    
     
     public ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
     {

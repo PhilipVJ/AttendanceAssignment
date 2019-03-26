@@ -34,7 +34,6 @@ public class User
     {
 
         classes.add(className);
-
     }
 
     public String getFirstname()
@@ -57,14 +56,12 @@ public class User
         return id;
     }
 
+    // Returns the list of all classes. If the user is a student - the list size is only 1.
     public List<String> getAllClasses()
     {
         return classes;
     }
 
-    public String getFirstClass()
-    {
-        return classes.get(0);
-    }
+
 
 }

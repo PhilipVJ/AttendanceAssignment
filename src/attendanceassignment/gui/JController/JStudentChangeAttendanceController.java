@@ -28,7 +28,8 @@ import javafx.scene.layout.BorderPane;
  *
  * @author Philip
  */
-public class JStudentChangeAttendanceController implements Initializable {
+public class JStudentChangeAttendanceController implements Initializable
+{
 
     @FXML
     private JFXListView<Date> absentDays;
@@ -47,48 +48,57 @@ public class JStudentChangeAttendanceController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
-    void loadView() throws SQLException {
-  
-        
+    void loadView() throws SQLException
+    {
+
+        String studentClassName = atModel.getUser().getAllClasses().get(0);
         userNameTag.setText(atModel.getUser().getFirstname());
 
         // Loads the teacher view
         ArrayList<Teacher> allTeachers = atModel.getAllTeachers();
-        
-        
-        for (Teacher teacher : allTeachers) {
-            if(teacher.getClassses().contains(atModel.getUser().getAllClasses().get(0))){
-            teacherView.getItems().add(teacher);
+
+        for (Teacher teacher : allTeachers)
+        {
+            // Checks if the teacher teaches in the students class
+            if (teacher.getClassses().contains(studentClassName))
+            {
+                teacherView.getItems().add(teacher);
             }
         }
         // Loads the absence days view
         ArrayList<Date> absentDays = atModel.getAllNonRequestedAbsentDays();
-        for (Date date : absentDays) {
+        for (Date date : absentDays)
+        {
             this.absentDays.getItems().add(date);
         }
 
         // Loads the request view
         ArrayList<Date> requests = atModel.getRequestedDays();
-        for (Date date : requests) {
+        for (Date date : requests)
+        {
             this.requests.getItems().add(date);
         }
     }
 
-    public void setModel(AttendanceModel atModel) {
+    public void setModel(AttendanceModel atModel)
+    {
         this.atModel = atModel;
     }
 
-    public void setRootLayout(BorderPane toSet) {
+    public void setRootLayout(BorderPane toSet)
+    {
         rootLayout = toSet;
     }
 
     @FXML
-    private void goBack(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
+    private void goBack(ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
         AnchorPane root = loader.load();
         JStudentMainViewController con = loader.getController();
         con.setModel(atModel);
@@ -98,37 +108,44 @@ public class JStudentChangeAttendanceController implements Initializable {
     }
 
     @FXML
-    private void sendRequest(ActionEvent event) {
+    private void sendRequest(ActionEvent event)
+    {
 
         Date dateToReq = absentDays.getSelectionModel().getSelectedItem();
         Teacher teacher = teacherView.getSelectionModel().getSelectedItem();
 
-        if (dateToReq == null) {
+        if (dateToReq == null)
+        {
             checker.setText("Vælg en dag du ønsker ændret");
             return;
         }
 
-        if (teacher == null) {
+        if (teacher == null)
+        {
             checker.setText("Vælg en lærer at sende anmodningen til");
             return;
         }
 
-        if (Utility.compareDateWithToday(dateToReq) > 14) {
+        if (Utility.compareDateWithToday(dateToReq) > 14)
+        {
             Utility.createErrorAlert("Tidsperiode overskredet", "Anmodninger kan kun sendes hvis den valgte dato er indenfor de sidste 14 dage");
             return;
         }
 
-        try {
+        try
+        {
             boolean request = atModel.requestAttendanceChange(teacher.getId(), dateToReq);
-            if (request) {
+            if (request)
+            {
                 checker.setText("Anmodning afsendt");
                 requests.getItems().add(dateToReq);
                 absentDays.getItems().remove(dateToReq);
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             Utility.createErrorAlert("Problemer med SQL serveren", "En fejl opstod med SQl serveren. Prøv igen senere");
         }
-    
-}
+
+    }
 
 }
