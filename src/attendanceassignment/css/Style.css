@@ -72,7 +72,7 @@ and open the template in the editor.
     -fx-background-color: white;
 }
 
-.list-even{
+.list-cell:even {
     -fx-cell-hover-color: #0093ff;
     -fx-background-color: white;
 }
