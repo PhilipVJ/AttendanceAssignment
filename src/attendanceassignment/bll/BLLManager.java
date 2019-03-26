@@ -28,12 +28,12 @@ public class BLLManager {
     StudentData studentData;
     AbscensData abscensData = new AbscensData();
     TeacherDAO tDAO = new TeacherDAO();
-    UserDB userDb;
+    UserDB userDb = new UserDB();
     
     
-    public BLLManager(UserDB uDb) throws IOException
+    public BLLManager() throws IOException
     {
-        userDb = uDb;
+   
     }
     
     /**
