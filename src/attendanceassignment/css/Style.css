@@ -66,3 +66,13 @@ and open the template in the editor.
     -fx-background-color: #0093ff;
     -fx-text-fill: white;
 }
+
+.list-cell:odd {
+    -fx-cell-hover-color: #0093ff;
+    -fx-background-color: white;
+}
+
+.list-even{
+    -fx-cell-hover-color: #0093ff;
+    -fx-background-color: white;
+}

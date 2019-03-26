@@ -52,6 +52,8 @@ public class JStudentChangeAttendanceController implements Initializable {
     }
 
     void loadView() throws SQLException {
+  
+        
         userNameTag.setText(atModel.getUser().getFirstname());
 
         // Loads the teacher view
