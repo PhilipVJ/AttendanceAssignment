@@ -51,6 +51,8 @@ public class AbscensData
         return success;
 
     }
+    
+    
 
     public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException
     {
@@ -69,6 +71,7 @@ public class AbscensData
         }
 
     }
+    
 
     public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException
     {
@@ -94,6 +97,27 @@ public class AbscensData
 
         }
         return absentDays;
+    }
+    
+    public ArrayList<Date> allSchoolDays() throws SQLServerException, SQLException
+    {
+        ArrayList<Date> presentDays = new ArrayList<>();
+        Date date = new Date();
+        
+        String sql = "SELECT * FROM Dates WHERE date <= (?)";
+        
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) 
+        {
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            pst.setDate(1, sqlDate);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next())
+            {
+                Date dater = rs.getDate("Date");
+                presentDays.add(dater);
+            }
+        }
+        return presentDays;
     }
 
     /**
@@ -126,8 +150,31 @@ public class AbscensData
         return false;
     }
 
-    public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException
-    {
+
+    public ArrayList<Date> getAttendance(int studentID) throws SQLServerException, SQLException {
+
+        ArrayList<Date> attendance = new ArrayList<>();
+
+        String sql = "SELECT * FROM Attendance WHERE StudentID = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            pst.setInt(1, studentID);
+ 
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                Date date = rs.getDate("date");
+                attendance.add(date);
+            }
+
+        }
+        return attendance;
+    }
+    
+    
+    public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException {
+
 
         ArrayList<Date> requestedDays = new ArrayList<>();
 

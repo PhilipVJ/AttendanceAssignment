@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -51,11 +52,19 @@ public class JStudentMainViewController implements Initializable {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 25;
         int tooEarly = 0;
-        
+//        Date curDate = new Date();
+//
+//        ArrayList<Date> absDays = atModel.getAttendance();
         if(curTime < tooLate && curTime > tooEarly){
-        Attendance att = new Attendance(atModel.getUser().getId(), new Date());
-        atModel.addAttendance(att);
+//            if(!absDays.contains(curDate)){
+             
+                Attendance att = new Attendance(atModel.getUser().getId(), new Date());
+                atModel.addAttendance(att);
+//            }else{
+//                Utility.createErrorAlert("Fravær er sat", "Fravær for i dag er allerede blevet sat " + tooLate);
+//                }
         }
+        
         if(curTime > tooLate){
             Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan kun sættes frem til klokken " + tooLate);
         }
