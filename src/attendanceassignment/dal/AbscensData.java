@@ -6,7 +6,6 @@
 package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
-import attendanceassignment.be.Teacher;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,14 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -42,7 +36,7 @@ public class AbscensData {
         Connection con = dbc.getConnection();
         String sql = "INSERT INTO Attendance VALUES (?,?);";
 
-        PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pst = con.prepareStatement(sql);
 
         java.sql.Date sqlDate = new java.sql.Date(attendance.getDate().getTime());
         System.out.println("" + sqlDate.toString());
@@ -56,6 +50,8 @@ public class AbscensData {
         return success;
 
     }
+    
+    
 
     public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException {
 
@@ -72,6 +68,7 @@ public class AbscensData {
         }
 
     }
+    
 
     public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException {
 
@@ -142,6 +139,26 @@ public class AbscensData {
             }
         }
         return false;
+    }
+    public ArrayList<Date> getAttendance(int studentID) throws SQLServerException, SQLException {
+
+        ArrayList<Date> attendance = new ArrayList<>();
+
+        String sql = "SELECT * FROM Attendance WHERE StudentID = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            pst.setInt(1, studentID);
+ 
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                Date date = rs.getDate("date");
+                attendance.add(date);
+            }
+
+        }
+        return attendance;
     }
     
     

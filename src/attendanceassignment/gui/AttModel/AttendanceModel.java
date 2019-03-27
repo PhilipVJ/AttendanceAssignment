@@ -10,7 +10,8 @@ import attendanceassignment.be.Student;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.be.User;
 import attendanceassignment.bll.BLLManager;
-import attendanceassignment.dal.UserDBFactory;
+import attendanceassignment.dal.UserDB;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -32,7 +33,7 @@ public class AttendanceModel {
     private User user;
 
     public AttendanceModel() throws IOException {
-        bllMan = new BLLManager(UserDBFactory.getUserDB());
+        bllMan = new BLLManager();
     }
 
     /**
@@ -158,6 +159,9 @@ public class AttendanceModel {
     public void addAttendance(Attendance att) throws ParseException, SQLException
     {
         bllMan.addAttendance(att);
+    }
+    public ArrayList<Date> getAttendance() throws SQLException {
+       return bllMan.getAttendance(user.getId());
     }
 
 
