@@ -95,6 +95,27 @@ public class AbscensData {
         }
         return absentDays;
     }
+    
+    public ArrayList<Date> allSchoolDays() throws SQLServerException, SQLException
+    {
+        ArrayList<Date> presentDays = new ArrayList<>();
+        Date date = new Date();
+        
+        String sql = "SELECT * FROM Dates WHERE date <= (?)";
+        
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) 
+        {
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            pst.setDate(1, sqlDate);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next())
+            {
+                Date dater = rs.getDate("Date");
+                presentDays.add(dater);
+            }
+        }
+        return presentDays;
+    }
 
     /**
      * Checks if the given date already has a change request
