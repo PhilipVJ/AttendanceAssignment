@@ -51,6 +51,14 @@ public class JTeacherViewController implements Initializable {
     private BorderPane rootLayout;
     @FXML
     private JFXComboBox<String> classChooser;
+    @FXML
+    private TreeTableColumn<Student, String> firstNameCol;
+    @FXML
+    private TreeTableColumn<Student, String> lastNameCol;
+    @FXML
+    private TreeTableColumn<Student, String> classNameCol;
+    @FXML
+    private TreeTableColumn<Student, String> absenceCol;
 
     /**
      * Initializes the controller class.
@@ -89,30 +97,20 @@ public class JTeacherViewController implements Initializable {
         ObservableList<String> allClasses = FXCollections.observableArrayList(aModel.getUser().getAllClasses());
         classChooser.setItems(allClasses);
 
-        
-
         // Setup tableview
-     
-        TreeTableColumn<Student, String> firstNameCol = new TreeTableColumn<Student, String>("Fornavn");
-        TreeTableColumn<Student, String> lastNameCol = new TreeTableColumn<Student, String>("Efternavn");
-        TreeTableColumn<Student, String> classNameCol = new TreeTableColumn<Student, String>("Hold");
-        TreeTableColumn<Student, String> absenceCol = new TreeTableColumn<Student, String>("Fraværsprocent");
-        
+
         firstNameCol.setSortable(false);
         lastNameCol.setSortable(false);
         classNameCol.setSortable(false);
         absenceCol.setSortable(false);
-        
+
         absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
-        
-        
-        
+
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
         lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("lastName"));
         classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("className"));
         absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("absence"));
-        
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, classNameCol, absenceCol);
+     
 
         tableView.setShowRoot(false);
         tableView.getSortOrder().setAll(absenceCol);
@@ -124,7 +122,7 @@ public class JTeacherViewController implements Initializable {
         String className = classChooser.getValue();
         try {
             ArrayList<Student> classStudents = aModel.getClassStudents(className);
-            System.out.println(""+classStudents.size());
+            System.out.println("" + classStudents.size());
             ObservableList<Student> students = FXCollections.observableArrayList(classStudents);
             TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
             tableView.setRoot(root);

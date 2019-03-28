@@ -16,10 +16,10 @@ import javafx.beans.property.StringProperty;
  */
 public class Student extends RecursiveTreeObject<Student> {
 
-    private StringProperty lastName;
-    private StringProperty firstName;
-    private StringProperty className;
-    private StringProperty absence;
+    private final StringProperty lastName;
+    private final StringProperty firstName;
+    private final StringProperty className;
+    private final StringProperty absence;
 
     public Student(String firstName, String lastName, String className, double absence) {
         this.firstName = new SimpleStringProperty();

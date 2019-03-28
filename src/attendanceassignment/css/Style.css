@@ -83,6 +83,23 @@ and open the template in the editor.
 
 }
 
+.tree-table-view *.scroll-bar:horizontal *.increment-button,
+.tree-table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.tree-table-view *.scroll-bar:horizontal *.increment-arrow,
+.tree-table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
 
 
 
