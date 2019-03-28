@@ -74,12 +74,23 @@ public class BLLManager {
         abscensData.setAttendance(att);
     }
 
-    public ArrayList<Date> getAttendance(int id) throws SQLException {
-        return abscensData.getAttendance(id);
-    }
+
+
 
     public ArrayList<Student> getClassStudents(String className) throws SQLException {
         return abscensData.getClassStudents(className);
+    }
+
+    public boolean checkForAttendance(int studentId, Date date) throws SQLException {
+       return abscensData.checkForAttendance(studentId ,date);
+    }
+
+    public ArrayList<Date> getAllSchoolDays() throws SQLException
+    {
+        
+
+        return abscensData.allSchoolDays();
+
     }
 
 }

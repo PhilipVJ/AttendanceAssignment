@@ -8,7 +8,9 @@ package attendanceassignment.dal;
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.be.User;
+import attendanceassignment.bll.BLLManager;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.JController.JStudentStatisticsController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,8 +27,7 @@ public class test3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException, IOException, SQLException {
-        AbscensData abs = new AbscensData();
-        abs.getClassStudents("CS2019");
+
 
     }
 

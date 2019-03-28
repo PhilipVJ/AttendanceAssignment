@@ -131,26 +131,31 @@ public class AbscensData {
         return false;
     }
 
-    public ArrayList<Date> getAttendance(int studentID) throws SQLServerException, SQLException {
 
-        ArrayList<Date> attendance = new ArrayList<>();
 
-        String sql = "SELECT * FROM Attendance WHERE StudentID = (?)";
+    public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException {
+
+
+        String sql = "SELECT * FROM Attendance WHERE studentID = (?) AND date = (?)";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
 
-            pst.setInt(1, studentID);
+
+            pst.setInt(1, studentId);
+
+            java.sql.Date sqlDate = new java.sql.Date(toCheck.getTime());
+            pst.setInt(1, studentId);
+            pst.setDate(2, sqlDate);
 
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
 
-                Date date = rs.getDate("date");
-                attendance.add(date);
+                return true;
             }
-
-        }
-        return attendance;
+        }return false;
+        
     }
+
 
     public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException {
 
