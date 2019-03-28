@@ -94,7 +94,6 @@ public class JStudentStatisticsController implements Initializable
 
     public void setchart() throws SQLException
     {
-        
         ArrayList<Date> allSchoolDays = atModel.getAllSchoolDays();
         ArrayList<Date> abscentDays = atModel.getAbsentDays();
         
@@ -117,14 +116,12 @@ public class JStudentStatisticsController implements Initializable
             int udregningsformel = (int) (fravaersDage / alleSkoleDage * 100);
             
             series.getData().add(new XYChart.Data("" + alleSkoleDage, udregningsformel));
-            
         }
         
         lineChart.setTitle("Fraværs statistik");
         lineChart.getData().add(series);
         lineChart.setLegendVisible(false);
         lineChart.getXAxis().setLabel("Antal dage til dagsdato");
-        lineChart.getXAxis().setTranslateX(-30);
         lineChart.getYAxis().setLabel("Fravær i procent %");
         
         
