@@ -133,26 +133,23 @@ public class AbscensData {
 
 
 
-    public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException {
-
+     public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException {
 
         String sql = "SELECT * FROM Attendance WHERE studentID = (?) AND date = (?)";
 
         try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
 
-
-            pst.setInt(1, studentId);
-
             java.sql.Date sqlDate = new java.sql.Date(toCheck.getTime());
             pst.setInt(1, studentId);
             pst.setDate(2, sqlDate);
-
             ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-
+                      
+            
+            if (rs.next()) 
                 return true;
-            }
-        }return false;
+            else
+                return false;
+        }
         
     }
 

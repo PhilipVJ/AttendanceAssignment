@@ -24,7 +24,7 @@ public class testie {
         AbscensData a = new AbscensData();
         Date toDay = new Date();
         java.sql.Date sqlDate = new java.sql.Date(toDay.getTime());
-        boolean b = a.checkForAttendance(2, sqlDate);
+        boolean b = a.checkForRequestedDay(2, toDay);
 
         if(b = true){
             System.out.println("true");
