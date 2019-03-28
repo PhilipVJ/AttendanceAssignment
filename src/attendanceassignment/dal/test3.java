@@ -25,13 +25,9 @@ public class test3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException, IOException, SQLException {
-UserDB uDb = new UserDB();
-User user = uDb.userLogin("mog88", "mog88");
-        System.out.println(""+user.getAllClasses().size());
-
-
-        
+        AbscensData abs = new AbscensData();
+        abs.getClassStudents("CS2019");
 
     }
-    
+
 }

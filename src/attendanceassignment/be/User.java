@@ -19,7 +19,7 @@ public class User
     private String lastname;
     private String type;
     private final int id;
-    private List<String> classes;
+    private ArrayList<String> classes;
 
     public User(int id, String firstname, String lastname, String type)
     {
@@ -57,7 +57,7 @@ public class User
     }
 
     // Returns the list of all classes. If the user is a student - the list size is only 1.
-    public List<String> getAllClasses()
+    public ArrayList<String> getAllClasses()
     {
         return classes;
     }

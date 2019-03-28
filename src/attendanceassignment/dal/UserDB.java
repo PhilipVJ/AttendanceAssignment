@@ -6,9 +6,6 @@
 package attendanceassignment.dal;
 
 import attendanceassignment.be.User;
-import attendanceassignment.be.Student;
-import attendanceassignment.be.Teacher;
-import attendanceassignment.dal.DbConnection;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,6 +94,7 @@ public class UserDB
             allClasses.add(className);
 
         }
+        System.out.println("Number of classes: "+allClasses.size());
         return allClasses;
 
     }

@@ -89,7 +89,8 @@ public class JLoginController implements Initializable {
             JTeacherViewController con = loader.getController();
             con.setModel(atModel);
             con.setRootLayout(rootLayout);
-            con.setUser();         
+            con.setUser();   
+            con.loadViews();
             rootLayout.setCenter(root);
         }
         

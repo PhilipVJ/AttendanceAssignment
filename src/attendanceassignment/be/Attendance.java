@@ -17,81 +17,30 @@ import static jdk.nashorn.internal.runtime.Debug.id;
  * @author Anders
  */
 public class Attendance {
-    
-    private String dayName;
-    private int absence;
+
     int id;
     Date attendance;
-    
 
-    public Attendance() {
-    }
-    
-    /**
-     * attendance contructor with specific parameters
-     */
-    public Attendance (String dayName, int absence) {
-        this.dayName = dayName;
-        this.absence = absence;
-    }
-
-    /**
-     * gets absence
-     */
-    public int getAbsence() {
-        return absence;
-    }
-    
     public Attendance(int id, Date attendance) {
         this.id = id;
+        this.attendance = attendance;
 
-        this.attendance = attendance; 
-        
     }
 
-    /**
-     * gets absence
-     */
-    public void setDate(Date attendance){
+    public void setDate(Date attendance) {
         this.attendance = attendance;
     }
-    
-    public Date getDate(){
-     return attendance;
-    }
-    
-    public int getId() {
-     return id;
+
+    public Date getDate() {
+        return attendance;
     }
 
-    /**
-     *
-     * @param id
-     * set id
-     */
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * sets absence
-     */
-    public void setAbsence(int absence) {
-        this.absence = absence;
-    }
-
-    /**
-     * gets day name
-     */
-    public String getDayName() {
-        return dayName;
-    }
-
-    /**
-     * sets day name
-     */
-    public void setDayName(String dayName) {
-        this.dayName = dayName;
     }
 
 }
