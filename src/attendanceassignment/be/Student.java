@@ -39,7 +39,7 @@ public class Student extends RecursiveTreeObject<Student> {
         {
         this.absence.set("0.0");
         }
-        System.out.println("FRAVÆR: "+absence);
+
     }
 
     public String getFirstName() {
@@ -63,9 +63,6 @@ public class Student extends RecursiveTreeObject<Student> {
 
         return absence.get();
     }
-    
-    
-    
     
 
 }

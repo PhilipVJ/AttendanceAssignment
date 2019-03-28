@@ -97,7 +97,14 @@ public class JTeacherViewController implements Initializable {
         TreeTableColumn<Student, String> lastNameCol = new TreeTableColumn<Student, String>("Efternavn");
         TreeTableColumn<Student, String> classNameCol = new TreeTableColumn<Student, String>("Hold");
         TreeTableColumn<Student, String> absenceCol = new TreeTableColumn<Student, String>("Fraværsprocent");
+        
+        firstNameCol.setSortable(false);
+        lastNameCol.setSortable(false);
+        classNameCol.setSortable(false);
+        absenceCol.setSortable(false);
+        
         absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
+        
         
         
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
