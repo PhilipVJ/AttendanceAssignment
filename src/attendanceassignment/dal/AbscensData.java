@@ -7,6 +7,7 @@ package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
+import attendanceassignment.gui.AttModel.Utility;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -234,7 +235,8 @@ public class AbscensData {
             while (rs.next()) {
                String firstName = rs.getString("firstname");
                String lastName = rs.getString("lastname");
-               Student toAdd = new Student(firstName, lastName, className);
+               int id = rs.getInt("personID");
+               Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)));
                classStudents.add(toAdd);
             }
             System.out.println("Students: "+classStudents.size());

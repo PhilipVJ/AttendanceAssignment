@@ -7,6 +7,7 @@ package attendanceassignment.gui.AttModel;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.control.Alert;
 
@@ -42,6 +43,15 @@ public class Utility {
 
         long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
         return noOfDaysBetween;
+    }
+    
+    public static double calculateAbsencePercentage(ArrayList<Date> allSchoolDays, ArrayList<Date> absentDays)
+    {    
+        double result = 0;
+        double abscentDaye = absentDays.size();
+        double allSchoolday = allSchoolDays.size();
+        result = (abscentDaye / allSchoolday * 100.00);
+        return result;
     }
 
 }

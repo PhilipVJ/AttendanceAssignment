@@ -24,6 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -88,16 +89,26 @@ public class JTeacherViewController implements Initializable {
         ObservableList<String> allClasses = FXCollections.observableArrayList(aModel.getUser().getAllClasses());
         classChooser.setItems(allClasses);
 
+        
+
         // Setup tableview
-        TreeTableColumn<Student, String> firstNameCol = new TreeTableColumn<Student, String>("First name");
-        TreeTableColumn<Student, String> lastNameCol = new TreeTableColumn<Student, String>("Last name");
-        TreeTableColumn<Student, String> classNameCol = new TreeTableColumn<Student, String>("Class name");
+     
+        TreeTableColumn<Student, String> firstNameCol = new TreeTableColumn<Student, String>("Fornavn");
+        TreeTableColumn<Student, String> lastNameCol = new TreeTableColumn<Student, String>("Efternavn");
+        TreeTableColumn<Student, String> classNameCol = new TreeTableColumn<Student, String>("Hold");
+        TreeTableColumn<Student, String> absenceCol = new TreeTableColumn<Student, String>("Fraværsprocent");
+        absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
+        
+        
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
         lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("lastName"));
         classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("className"));
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, classNameCol);
+        absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("absence"));
+        
+        tableView.getColumns().addAll(firstNameCol, lastNameCol, classNameCol, absenceCol);
 
         tableView.setShowRoot(false);
+        tableView.getSortOrder().setAll(absenceCol);
 
     }
 

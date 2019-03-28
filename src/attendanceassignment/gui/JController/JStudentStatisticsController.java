@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -71,7 +72,7 @@ public class JStudentStatisticsController implements Initializable
     {
         userNameTag.setText(atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
-        lblFravær.setText("" + df.format(calculateDaysProcent()));
+        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays())));
         setchart();
     }
 
@@ -131,26 +132,4 @@ public class JStudentStatisticsController implements Initializable
     }
     
     
-    public double calculateDaysProcent() throws SQLException
-    {
-        ArrayList<Date> allSchoolDays = atModel.getAllSchoolDays();
-        ArrayList<Date> abscentDays = atModel.getAbsentDays();
-        
-        double result = 0;
-        
-        System.out.println("hvilkendag:" + allSchoolDays.toString());
-        
-        double abscentDaye = abscentDays.size();
-        double allSchoolday = allSchoolDays.size();
-        System.out.println("fraværsdage: " + abscentDaye);
-        System.out.println("skoledage: " + allSchoolday);
-        
-        result = (abscentDaye / allSchoolday * 100.00);
-        System.out.println("udregn for helvede" + result);
-        return result;
-    }
-    
-    
-    
-
 }

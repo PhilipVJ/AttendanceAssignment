@@ -13,7 +13,7 @@
       <JFXButton layoutX="45.0" layoutY="276.0" onAction="#back" prefHeight="50.0" prefWidth="100.0" text="Tilbage" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" />
       <JFXButton layoutX="489.0" layoutY="15.0" onAction="#showRequests" prefHeight="50.0" prefWidth="126.0" text="Vis" AnchorPane.rightAnchor="20.0" />
       <JFXButton layoutX="200.0" layoutY="295.0" onAction="#showDetails" prefHeight="50.0" prefWidth="332.0" text="Detaljer" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="20.0" />
-      <JFXComboBox fx:id="classChooser" layoutX="24.0" layoutY="70.0" onAction="#chooseClass" prefHeight="31.0" prefWidth="160.0" promptText="Vælg klasse" AnchorPane.leftAnchor="20.0" />
+      <JFXComboBox fx:id="classChooser" focusColor="#4fb6bf" layoutX="24.0" layoutY="70.0" onAction="#chooseClass" prefHeight="31.0" prefWidth="160.0" promptText="Vælg klasse" styleClass="combo-box" stylesheets="@../../css/Style.css" unFocusColor="#dab521" AnchorPane.leftAnchor="20.0" />
       <Label layoutX="257.0" layoutY="20.0" prefHeight="21.0" prefWidth="133.0" text="Antal anmodninger:" AnchorPane.topAnchor="20.0" />
       <Label fx:id="numberOfRequests" layoutX="275.0" layoutY="44.0" prefHeight="21.0" prefWidth="79.0" AnchorPane.topAnchor="44.0" />
       <JFXTreeTableView fx:id="tableView" layoutX="200.0" layoutY="70.0" prefHeight="336.0" prefWidth="332.0" AnchorPane.rightAnchor="20.0" />
