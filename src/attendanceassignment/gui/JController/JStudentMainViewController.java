@@ -52,14 +52,18 @@ public class JStudentMainViewController implements Initializable {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 25;
         int tooEarly = 0;
-//        boolean b = atModel.checkForAttendance(date);
-        if(curTime < tooLate && curTime > tooEarly){
+        date = new Date();
+        boolean b = atModel.checkForAttendance(date);
+        
+        if(b == false && (curTime < tooLate && curTime > tooEarly)){
              
                 Attendance att = new Attendance(atModel.getUser().getId(), new Date());
                 atModel.addAttendance(att);
 
         }
-        
+        if(b==true){
+            Utility.createErrorAlert("Fravær er sat", "Du har allerede sat dit fravær for i dag");
+        }
         if(curTime > tooLate){
             Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan kun sættes frem til klokken " + tooLate);
         }
