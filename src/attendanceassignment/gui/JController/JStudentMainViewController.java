@@ -52,17 +52,12 @@ public class JStudentMainViewController implements Initializable {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 25;
         int tooEarly = 0;
-//        Date curDate = new Date();
-//
-//        ArrayList<Date> absDays = atModel.getAttendance();
+//        boolean b = atModel.checkForAttendance(date);
         if(curTime < tooLate && curTime > tooEarly){
-//            if(!absDays.contains(curDate)){
              
                 Attendance att = new Attendance(atModel.getUser().getId(), new Date());
                 atModel.addAttendance(att);
-//            }else{
-//                Utility.createErrorAlert("Fravær er sat", "Fravær for i dag er allerede blevet sat " + tooLate);
-//                }
+
         }
         
         if(curTime > tooLate){
