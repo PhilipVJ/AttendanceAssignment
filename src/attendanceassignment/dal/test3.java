@@ -8,7 +8,9 @@ package attendanceassignment.dal;
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.be.User;
+import attendanceassignment.bll.BLLManager;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.JController.JStudentStatisticsController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,13 +27,16 @@ public class test3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ParseException, IOException, SQLException {
-UserDB uDb = new UserDB();
-User user = uDb.userLogin("mog88", "mog88");
-        System.out.println(""+user.getAllClasses().size());
+//        UserDB uDb = new UserDB();
+//        User user = uDb.userLogin("mog88", "mog88");
+//        System.out.println(""+user.getAllClasses().size());
 
-
+        BLLManager bll = new BLLManager();
         
-
+//        System.out.println("alle skoledage: "+ bll.getAllSchoolDays());
+//        System.out.println("fraværsdage: " + bll.getAbsentDays(2));
+        
+        
     }
     
 }

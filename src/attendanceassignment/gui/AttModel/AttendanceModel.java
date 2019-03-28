@@ -164,7 +164,10 @@ public class AttendanceModel {
        return bllMan.getAttendance(user.getId());
     }
 
-
+    public ArrayList<Date> getAllSchoolDays() throws SQLException
+    {
+        return bllMan.getAllSchoolDays();
+    }
 
 
 }

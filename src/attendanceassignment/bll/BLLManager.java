@@ -153,7 +153,12 @@ public class BLLManager {
        return abscensData.getAttendance(id);
     }
 
+    public ArrayList<Date> getAllSchoolDays() throws SQLException
+    {
+        
 
+        return abscensData.allSchoolDays();
+    }
 
     
     
