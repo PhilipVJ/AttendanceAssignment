@@ -6,17 +6,7 @@
 package attendanceassignment.be;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -40,9 +30,15 @@ public class Student extends RecursiveTreeObject<Student> {
         this.firstName.set(firstName);
         this.lastName.set(lastName);
         this.className.set(className);
-        DecimalFormat df = new DecimalFormat("#.00");
         
+        if(absence!=0){
+        DecimalFormat df = new DecimalFormat("#.0");
         this.absence.set(df.format(absence));
+        }
+        else
+        {
+        this.absence.set("0.0");
+        }
         System.out.println("FRAVÆR: "+absence);
     }
 
