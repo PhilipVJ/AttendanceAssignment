@@ -58,13 +58,13 @@ public class JStudentMainViewController implements Initializable {
                 atModel.addAttendance(att);
         }
         if(attendanceHasBeenSet==true){
-            Utility.createErrorAlert("Fravær er sat", "Du har allerede sat dit fravær for i dag");
+            Utility.createErrorAlert("Tidstedeværelse er sat", "Du er allerede sat som tilstedeværende for i dag");
         }
         if(curTime > tooLate){
-            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan kun sættes frem til klokken " + tooLate);
+            Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan kun sættes frem til klokken " + tooLate);
         }
         if(curTime < tooEarly){
-            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan først sættes fra klokken " + tooEarly);
+            Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan først sættes fra klokken " + tooEarly);
         }
               
     }
