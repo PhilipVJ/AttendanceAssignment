@@ -50,22 +50,21 @@ public class JStudentMainViewController implements Initializable {
         int tooLate = 25;
         int tooEarly = 9;
         date = new Date();
-        boolean b = atModel.checkForAttendance(date);
+        boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
         
-        if(b == false && (curTime < tooLate && curTime > tooEarly)){
+        if(attendanceHasBeenSet == false && (curTime < tooLate && curTime > tooEarly)){
              
-                Attendance att = new Attendance(atModel.getUser().getId(), new Date());
+                Attendance att = new Attendance(atModel.getUser().getId(), date);
                 atModel.addAttendance(att);
-
         }
-        if(b==true){
-            Utility.createErrorAlert("Fravær er sat", "Du har allerede sat dit fravær for i dag");
+        if(attendanceHasBeenSet==true){
+            Utility.createErrorAlert("Tidstedeværelse er sat", "Du er allerede sat som tilstedeværende for i dag");
         }
         if(curTime > tooLate){
-            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan kun sættes frem til klokken " + tooLate);
+            Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan kun sættes frem til klokken " + tooLate);
         }
         if(curTime < tooEarly){
-            Utility.createErrorAlert("Tidsperiode overskredet", "Fravær kan først sættes fra klokken " + tooEarly);
+            Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan først sættes fra klokken " + tooEarly);
         }
               
     }
