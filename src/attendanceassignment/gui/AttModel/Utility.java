@@ -101,7 +101,7 @@ public class Utility {
     public static void makeLineChart(ArrayList<Date> allSchoolDays, ArrayList<Date> abscentDays, LineChart<String, Double> lineChart) {
         XYChart.Series<String, Double> series = new XYChart.Series<>();
 
-        double alleSkoleDage = 0;
+        int alleSkoleDage = 0;
         double fravaersDage = 0;
 
         for (Date alleDage : allSchoolDays) {

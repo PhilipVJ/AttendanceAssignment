@@ -159,7 +159,7 @@ public class JTeacherViewController implements Initializable {
             CategoryAxis x = new CategoryAxis();
             LineChart lineC = new LineChart(x, y);
             int id = chosenStudent.getValue().getId();
-            
+
             Utility.makeLineChart(aModel.getAllSchoolDays(), aModel.getAbsentDays(id), lineC);
             BorderPane bPane = new BorderPane();
             bPane.setCenter(lineC);
@@ -180,10 +180,10 @@ public class JTeacherViewController implements Initializable {
 
     @FXML
     private void showAttendanceBar(ActionEvent event) throws SQLException {
-        
-                TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
+
+        TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
         if (chosenStudent != null) {
-            
+
             Stage newStage = new Stage();
 
             NumberAxis y = new NumberAxis();
@@ -206,7 +206,6 @@ public class JTeacherViewController implements Initializable {
 
             newStage.setScene(newScene);
             newStage.show();
-  
 
         }
     }
