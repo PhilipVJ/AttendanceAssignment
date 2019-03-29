@@ -59,13 +59,18 @@ public class JTeacherViewController implements Initializable {
     private TreeTableColumn<Student, String> classNameCol;
     @FXML
     private TreeTableColumn<Student, String> absenceCol;
+    @FXML
+    private Label classAbsence;
+    @FXML
+    private Label avgAbsInfo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
+  avgAbsInfo.setVisible(false);
     }
 
     @FXML
@@ -76,9 +81,6 @@ public class JTeacherViewController implements Initializable {
     private void showRequests(ActionEvent event) {
     }
 
-    @FXML
-    private void showDetails(ActionEvent event) {
-    }
 
     public void setModel(AttendanceModel model) {
         this.aModel = model;
@@ -125,9 +127,31 @@ public class JTeacherViewController implements Initializable {
             ObservableList<Student> students = FXCollections.observableArrayList(classStudents);
             TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
             tableView.setRoot(root);
+            avgAbsInfo.setVisible(true);
+            
+            double combinedAbsence= 0;
+            for (Student classStudent : classStudents) {
+                combinedAbsence+=classStudent.getAbsenceDouble();
+            }
+         
+            
+            double averageAbsence = combinedAbsence / classStudents.size();
+            
+            classAbsence.setText(""+averageAbsence);
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(JTeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @FXML
+    private void showAttendanceLine(ActionEvent event) {
+    }
+
+    @FXML
+    private void showAttendanceBar(ActionEvent event) {
     }
 }

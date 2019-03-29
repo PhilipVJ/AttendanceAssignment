@@ -20,12 +20,14 @@ public class Student extends RecursiveTreeObject<Student> {
     private final StringProperty firstName;
     private final StringProperty className;
     private final StringProperty absence;
+    private final double absenceAsNumber;
 
     public Student(String firstName, String lastName, String className, double absence) {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
         this.className = new SimpleStringProperty();
         this.absence = new SimpleStringProperty();
+        absenceAsNumber = absence;
         
         this.firstName.set(firstName);
         this.lastName.set(lastName);
@@ -62,6 +64,11 @@ public class Student extends RecursiveTreeObject<Student> {
     public String getAbsence() {
 
         return absence.get();
+    }
+    
+    public double getAbsenceDouble()
+    {
+        return absenceAsNumber;
     }
     
     

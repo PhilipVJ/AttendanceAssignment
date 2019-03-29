@@ -50,15 +50,14 @@ public class JStudentMainViewController implements Initializable {
         int tooLate = 25;
         int tooEarly = 9;
         date = new Date();
-        boolean b = atModel.checkForAttendance(date);
+        boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
         
-        if(b == false && (curTime < tooLate && curTime > tooEarly)){
+        if(attendanceHasBeenSet == false && (curTime < tooLate && curTime > tooEarly)){
              
-                Attendance att = new Attendance(atModel.getUser().getId(), new Date());
+                Attendance att = new Attendance(atModel.getUser().getId(), date);
                 atModel.addAttendance(att);
-
         }
-        if(b==true){
+        if(attendanceHasBeenSet==true){
             Utility.createErrorAlert("Fravær er sat", "Du har allerede sat dit fravær for i dag");
         }
         if(curTime > tooLate){

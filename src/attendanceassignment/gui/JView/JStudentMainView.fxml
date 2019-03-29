@@ -8,7 +8,7 @@
    <children>
       <JFXButton layoutX="205.0" layoutY="41.0" onAction="#setAttendance" prefHeight="108.0" prefWidth="140.0" stylesheets="@../../css/Style.css" text="Meld ankomst" AnchorPane.topAnchor="48.0" />
       <JFXButton layoutX="205.0" layoutY="196.0" onAction="#showStatistics" prefHeight="108.0" prefWidth="140.0" stylesheets="@../../css/Style.css" text="Se statistik" />
-      <Label fx:id="userLabel" layoutX="98.0" layoutY="20.0" prefHeight="17.0" prefWidth="140.0" AnchorPane.leftAnchor="135.0" AnchorPane.topAnchor="20.0" />
+      <Label fx:id="userLabel" layoutX="110.0" layoutY="20.0" prefHeight="17.0" prefWidth="140.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="20.0" />
       <Label layoutY="33.0" text="Logget ind som:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <JFXButton layoutX="205.0" layoutY="344.0" onAction="#changeAttendance" prefHeight="108.0" prefWidth="140.0" text="Ændre fravær" AnchorPane.bottomAnchor="48.0" />
    </children>
