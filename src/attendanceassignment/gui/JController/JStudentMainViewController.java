@@ -86,7 +86,7 @@ public class JStudentMainViewController implements Initializable {
     }
 
     void setUser() {
-        userLabel.setText(atModel.getUser().getFirstname());
+        userLabel.setText("Logget ind som: " + atModel.getUser().getFirstname());
     }
 
     public void setRootLayout(BorderPane toSet) {

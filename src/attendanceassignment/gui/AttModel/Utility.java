@@ -128,11 +128,11 @@ public class Utility {
     public static void makeBarChart(ArrayList<Integer> abscentDays, BarChart<String, Integer> barChart) {
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-        series.getData().add(new XYChart.Data("mandag", abscentDays.get(0)));
-        series.getData().add(new XYChart.Data("tirsdag", abscentDays.get(1)));
-        series.getData().add(new XYChart.Data("onsdag", abscentDays.get(2)));
-        series.getData().add(new XYChart.Data("torsdag", abscentDays.get(3)));
-        series.getData().add(new XYChart.Data("fredag", abscentDays.get(4)));
+        series.getData().add(new XYChart.Data("Mandag", abscentDays.get(0)));
+        series.getData().add(new XYChart.Data("Tirsdag", abscentDays.get(1)));
+        series.getData().add(new XYChart.Data("Onsdag", abscentDays.get(2)));
+        series.getData().add(new XYChart.Data("Torsdag", abscentDays.get(3)));
+        series.getData().add(new XYChart.Data("Fredag", abscentDays.get(4)));
 
         barChart.getData().add(series);
         barChart.setLegendVisible(false);

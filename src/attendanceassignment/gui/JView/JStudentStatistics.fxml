@@ -9,12 +9,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="550.0" styleClass="mainFxmlClass" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JStudentStatisticsController">
    <children>
-      <Label layoutX="20.0" layoutY="14.0" prefHeight="20.0" prefWidth="108.0" text="Logget ind som:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0" />
-      <Label fx:id="userNameTag" layoutX="125.0" layoutY="15.0" prefHeight="20.0" prefWidth="140.0" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="15.0" />
+      <Label fx:id="userNameTag" layoutX="125.0" layoutY="15.0" prefHeight="20.0" prefWidth="284.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
       <JFXButton layoutX="40.0" layoutY="289.0" onAction="#goBack" prefHeight="50.0" prefWidth="140.0" text="Tilbage" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
-      <JFXButton layoutX="308.0" layoutY="289.0" onAction="#showOverview" prefHeight="50.0" prefWidth="140.0" text="Overview" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0" />
-      <Label fx:id="checker" layoutX="22.0" layoutY="353.0" prefHeight="17.0" prefWidth="140.0" />
-      <LineChart fx:id="lineChart" layoutY="30.0" prefHeight="379.0" prefWidth="524.0" stylesheets="@../../css/Style.css">
+      <JFXButton layoutX="308.0" layoutY="289.0" onAction="#showOverview" prefHeight="50.0" prefWidth="140.0" text="Fraværsdage" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="20.0" />
+      <LineChart fx:id="lineChart" layoutY="30.0" prefHeight="379.0" prefWidth="524.0" stylesheets="@../../css/Style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -22,7 +20,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="354.0" layoutY="14.0" prefHeight="21.0" prefWidth="108.0" text="Fravær i Procent:" />
-      <Label fx:id="lblFravær" layoutX="460.0" layoutY="14.0" prefHeight="21.0" prefWidth="54.0" />
+      <Label fx:id="lblFravær" layoutX="432.0" layoutY="14.0" prefHeight="21.0" prefWidth="95.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

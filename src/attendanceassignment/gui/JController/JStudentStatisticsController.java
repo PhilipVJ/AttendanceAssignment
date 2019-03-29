@@ -37,8 +37,6 @@ public class JStudentStatisticsController implements Initializable
     private Label userNameTag;
     @FXML
     private LineChart<String, Double> lineChart;
-    @FXML
-    private Label checker;
 
     private AttendanceModel atModel;
     private BorderPane rootLayout;
@@ -71,10 +69,10 @@ public class JStudentStatisticsController implements Initializable
 
     public void loadView() throws SQLException
     {
-        userNameTag.setText(atModel.getUser().getFirstname());
+        userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
         int id = atModel.getUser().getId();
-        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
+        lblFravær.setText("Fravær: " + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
         setchart();
     }
 
@@ -106,8 +104,6 @@ public class JStudentStatisticsController implements Initializable
         ArrayList<Date> abscentDays = atModel.getAbsentDays(id);
         
         Utility.makeLineChart(allSchoolDays, abscentDays,lineChart);
-        
-        
     }
 
 

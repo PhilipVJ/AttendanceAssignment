@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JStudentDaysStatestikController">
    <children>
-      <BarChart fx:id="barChart" layoutY="68.0" prefHeight="338.0" prefWidth="526.0">
+      <BarChart fx:id="barChart" layoutY="54.0" prefHeight="379.0" prefWidth="524.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -17,8 +17,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <JFXButton fx:id="btnBack" layoutX="217.0" layoutY="456.0" onAction="#getBackButton" prefHeight="30.0" prefWidth="156.0" text="Back" />
-      <Label layoutX="14.0" layoutY="14.0" text="Logget ind som:" />
-      <Label fx:id="userLabel" layoutX="120.0" layoutY="14.0" prefHeight="20.0" prefWidth="111.0" />
+      <JFXButton fx:id="btnBack" layoutX="205.0" layoutY="427.0" onAction="#getBackButton" prefHeight="50.0" prefWidth="140.0" text="Tilbage" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="20.0" />
+      <Label fx:id="userLabel" layoutX="47.0" layoutY="14.0" prefHeight="20.0" prefWidth="279.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

@@ -5,7 +5,6 @@
  */
 package attendanceassignment.gui.JController;
 
-import attendanceassignment.be.User;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.Utility;
 import java.net.URL;
@@ -14,17 +13,11 @@ import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -43,7 +36,6 @@ public class JStudentDaysStatestikController implements Initializable {
     private Label userLabel;
     @FXML
     private BarChart<String, Integer> barChart;
-
     @FXML
     private JFXButton btnBack;
 
@@ -65,7 +57,7 @@ public class JStudentDaysStatestikController implements Initializable {
 
     public void loadView() throws SQLException
     {
-        userLabel.setText(atModel.getUser().getFirstname());
+        userLabel.setText("Logget ind som: " + atModel.getUser().getFirstname());
         openBarChart();
     }
     

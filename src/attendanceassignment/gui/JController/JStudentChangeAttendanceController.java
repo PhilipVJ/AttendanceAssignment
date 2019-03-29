@@ -57,7 +57,7 @@ public class JStudentChangeAttendanceController implements Initializable
     {
 
         String studentClassName = atModel.getUser().getAllClasses().get(0);
-        userNameTag.setText(atModel.getUser().getFirstname());
+        userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
 
         // Loads the teacher view
         ArrayList<Teacher> allTeachers = atModel.getAllTeachers();
