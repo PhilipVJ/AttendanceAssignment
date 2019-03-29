@@ -6,7 +6,6 @@
 package attendanceassignment.be;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -15,11 +14,11 @@ import java.util.List;
 public class User
 {
 
-    private String firstname;
-    private String lastname;
-    private String type;
+    private final String firstname;
+    private final String lastname;
+    private final String type;
     private final int id;
-    private ArrayList<String> classes;
+    private final ArrayList<String> classes;
 
     public User(int id, String firstname, String lastname, String type)
     {
@@ -61,6 +60,8 @@ public class User
     {
         return classes;
     }
+    
+    
 
 
 

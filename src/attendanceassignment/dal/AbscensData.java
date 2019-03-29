@@ -205,7 +205,7 @@ public class AbscensData {
             java.sql.Date sqlDate = new java.sql.Date(toDay.getTime());
             String currentDate = sqlDate.toString();
             int curTime = LocalDateTime.now().getHour();
-            System.out.println("" + curTime);
+
             if (curTime < 15 && date.equals(currentDate)) {
                 requestedDays.remove(requestedDay);
                 break;
@@ -236,7 +236,6 @@ public class AbscensData {
                Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)));
                classStudents.add(toAdd);
             }
-            System.out.println("Students: "+classStudents.size());
             return classStudents;
         }
 

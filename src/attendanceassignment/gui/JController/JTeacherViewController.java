@@ -122,7 +122,6 @@ public class JTeacherViewController implements Initializable {
         String className = classChooser.getValue();
         try {
             ArrayList<Student> classStudents = aModel.getClassStudents(className);
-            System.out.println("" + classStudents.size());
             ObservableList<Student> students = FXCollections.observableArrayList(classStudents);
             TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
             tableView.setRoot(root);

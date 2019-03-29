@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class Teacher {
 
-    private String firstName;
-    private String lastName;
-    private int id;
+    private final String firstName;
+    private final String lastName;
+    private final int id;
     private ArrayList<String> classes;
 
     public Teacher(String firstName, String lastName, int id) {
@@ -42,9 +42,12 @@ public class Teacher {
         return classes;
     }
     
+    @Override
     public String toString()
     {
         return firstName+" "+lastName;
     }
+    
+    
 
 }

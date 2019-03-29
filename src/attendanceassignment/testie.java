@@ -5,10 +5,8 @@
  */
 package attendanceassignment;
 
-import attendanceassignment.dal.AbscensData;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 
 /**
  *
@@ -21,17 +19,7 @@ public class testie {
      */
     public static void main(String[] args) throws IOException, SQLException {
         
-        AbscensData a = new AbscensData();
-        Date toDay = new Date();
-        java.sql.Date sqlDate = new java.sql.Date(toDay.getTime());
-        boolean b = a.checkForRequestedDay(2, toDay);
 
-        if(b = true){
-            System.out.println("true");
-        }
-         else{
-             System.out.println("false");
-         }   
             
     }
     

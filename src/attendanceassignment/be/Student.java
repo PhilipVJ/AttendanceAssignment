@@ -64,5 +64,6 @@ public class Student extends RecursiveTreeObject<Student> {
         return absence.get();
     }
     
+    
 
 }

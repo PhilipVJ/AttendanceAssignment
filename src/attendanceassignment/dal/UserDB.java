@@ -94,7 +94,6 @@ public class UserDB
             allClasses.add(className);
 
         }
-        System.out.println("Number of classes: "+allClasses.size());
         return allClasses;
 
     }
