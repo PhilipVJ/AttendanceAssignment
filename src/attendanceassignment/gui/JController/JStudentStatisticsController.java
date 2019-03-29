@@ -51,10 +51,17 @@ public class JStudentStatisticsController implements Initializable
     {
         
     }
-
+   
     @FXML
-    private void showOverview(ActionEvent event)
+    private void showOverview(ActionEvent event) throws IOException, SQLException
     {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentDaysStatestik.fxml"));
+        AnchorPane root = loader.load();
+        JStudentDaysStatestikController con = loader.getController();
+        con.setModel(atModel);
+        con.loadView();
+        con.setRootLayout(rootLayout);
+        rootLayout.setCenter(root);
     }
 
     public void setModel(AttendanceModel atModel)
@@ -66,7 +73,7 @@ public class JStudentStatisticsController implements Initializable
     {
         userNameTag.setText(atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
-        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays())));
+        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays())) + "%");
         setchart();
     }
 
@@ -75,6 +82,10 @@ public class JStudentStatisticsController implements Initializable
         rootLayout = toSet;
     }
 
+    void setUser() {
+        userNameTag.setText(atModel.getUser().getFirstname());
+    }
+    
     @FXML
     private void goBack(ActionEvent event) throws IOException
     {
@@ -113,7 +124,7 @@ public class JStudentStatisticsController implements Initializable
             series.getData().add(new XYChart.Data("" + alleSkoleDage, udregningsformel));
         }
         
-        lineChart.setTitle("Fraværs statistik");
+        //lineChart.setTitle("Fraværs statistik");
         lineChart.getData().add(series);
         lineChart.setLegendVisible(false);
         lineChart.getXAxis().setLabel("Antal dage til dagsdato");

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JStudentDaysStatestikController">
+   <children>
+      <BarChart fx:id="barChart" layoutY="68.0" prefHeight="338.0" prefWidth="526.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <JFXButton fx:id="btnBack" layoutX="217.0" layoutY="456.0" onAction="#getBackButton" prefHeight="30.0" prefWidth="156.0" text="Back" />
+      <Label layoutX="14.0" layoutY="14.0" text="Logget ind som:" />
+      <Label fx:id="userLabel" layoutX="120.0" layoutY="14.0" prefHeight="20.0" prefWidth="111.0" />
+   </children>
+</AnchorPane>

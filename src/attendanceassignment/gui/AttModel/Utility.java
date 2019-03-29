@@ -5,6 +5,7 @@
  */
 package attendanceassignment.gui.AttModel;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -54,4 +55,48 @@ public class Utility {
         return result;
     }
 
+    public static ArrayList<Integer> whichDayAbscent(ArrayList<Date> absentDays)
+    {
+        SimpleDateFormat dage = new SimpleDateFormat("EEEE");
+        
+        ArrayList<Integer> days = new ArrayList();
+
+        int monday = 0;
+        int tuesday = 0;
+        int wedensday = 0;
+        int thursday = 0;
+        int friday = 0;
+
+        for (Date whichDays : absentDays)
+        {
+            String dag = dage.format(whichDays);
+            switch (dag)
+            {
+                case "mandag":
+                    monday++;
+                    break;
+                case "tirsdag":
+                    tuesday++;
+                    break;
+                case "onsdag":
+                    wedensday++;
+                    break;
+                case "torsdag":
+                    thursday++;
+                    break;
+                case "fredag":
+                    friday++;
+                    break;
+            }
+        }
+
+        days.add(monday);
+        days.add(tuesday);
+        days.add(wedensday);
+        days.add(thursday);
+        days.add(friday);
+
+        return days;
+    }
+    
 }
