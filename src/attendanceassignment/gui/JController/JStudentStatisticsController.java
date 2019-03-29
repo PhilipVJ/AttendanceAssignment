@@ -73,7 +73,8 @@ public class JStudentStatisticsController implements Initializable
     {
         userNameTag.setText(atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
-        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays())) + "%");
+        int id = atModel.getUser().getId();
+        lblFravær.setText("" + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
         setchart();
     }
 
@@ -100,38 +101,16 @@ public class JStudentStatisticsController implements Initializable
 
     public void setchart() throws SQLException
     {
+        int id = atModel.getUser().getId();
         ArrayList<Date> allSchoolDays = atModel.getAllSchoolDays();
-        ArrayList<Date> abscentDays = atModel.getAbsentDays();
+        ArrayList<Date> abscentDays = atModel.getAbsentDays(id);
         
-        XYChart.Series<String, Double> series = new XYChart.Series<>();
-        
-        double alleSkoleDage = 0;
-        double fravaersDage = 0;
-        
-        for (Date alleDage : allSchoolDays)
-        {
-            alleSkoleDage++;
-            for (Date absentDay : abscentDays)
-            {
-                if(alleDage.equals(absentDay))
-                {
-                    fravaersDage++;
-                }
-            }
-             
-            int udregningsformel = (int) (fravaersDage / alleSkoleDage * 100);
-            
-            series.getData().add(new XYChart.Data("" + alleSkoleDage, udregningsformel));
-        }
-        
-        //lineChart.setTitle("Fraværs statistik");
-        lineChart.getData().add(series);
-        lineChart.setLegendVisible(false);
-        lineChart.getXAxis().setLabel("Antal dage til dagsdato");
-        lineChart.getYAxis().setLabel("Fravær i procent %");
+        Utility.makeLineChart(allSchoolDays, abscentDays,lineChart);
         
         
     }
+
+
     
     
 }

@@ -55,8 +55,8 @@ public class AttendanceModel {
         return bllMan.getAllTeachers();
     }
 
-    public ArrayList<Date> getAbsentDays() throws SQLException {
-        return bllMan.getAbsentDays(user.getId());
+    public ArrayList<Date> getAbsentDays(int id) throws SQLException {
+        return bllMan.getAbsentDays(id);
     }
 
     public boolean requestAttendanceChange(int teacher, Date date) throws SQLException {

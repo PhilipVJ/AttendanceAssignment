@@ -71,23 +71,13 @@ public class JStudentDaysStatestikController implements Initializable {
     
     public void openBarChart() throws SQLException
     {
-        ArrayList<Integer> abscentDays = Utility.whichDayAbscent(atModel.getAbsentDays());
+        int id = atModel.getUser().getId();
+        ArrayList<Integer> abscentDays = Utility.whichDayAbscent(atModel.getAbsentDays(id));
         
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        
-        series.getData().add(new XYChart.Data("mandag", abscentDays.get(0))); 
-        series.getData().add(new XYChart.Data("tirsdag", abscentDays.get(1))); 
-        series.getData().add(new XYChart.Data("onsdag", abscentDays.get(2))); 
-        series.getData().add(new XYChart.Data("torsdag", abscentDays.get(3))); 
-        series.getData().add(new XYChart.Data("fredag", abscentDays.get(4))); 
-        
-        //barChart.setTitle("Fravær pr. dag");
-        barChart.getData().add(series);
-        barChart.setLegendVisible(false);
-        barChart.getXAxis().setLabel("");
-        barChart.getYAxis().setLabel("Hvor mange dage med fravær");
+        Utility.makeBarChart(abscentDays, barChart); 
        
     }
+
             
     public void setModel(AttendanceModel atModel)
     {
