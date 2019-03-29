@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class User
 {
 
-    private final String firstname;
-    private final String lastname;
+    private final String firstName;
+    private final String lastName;
     private final String type;
     private final int id;
     private final ArrayList<String> classes;
@@ -23,8 +23,8 @@ public class User
     public User(int id, String firstname, String lastname, String type)
     {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.type = type;
         classes = new ArrayList<>();
     }
@@ -37,12 +37,12 @@ public class User
 
     public String getFirstname()
     {
-        return firstname;
+        return firstName;
     }
 
     public String getLastname()
     {
-        return lastname;
+        return lastName;
     }
 
     public String getType()
@@ -59,6 +59,11 @@ public class User
     public ArrayList<String> getAllClasses()
     {
         return classes;
+    }
+    
+    public String toString()
+    {
+        return firstName + " " +lastName;
     }
     
     

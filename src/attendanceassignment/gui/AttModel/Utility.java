@@ -19,7 +19,9 @@ import javafx.scene.control.Alert;
  *
  * @author Philip
  */
-public class Utility {
+public final class Utility {
+    
+    private Utility(){}
 
     public static void createErrorAlert(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -103,7 +105,7 @@ public class Utility {
 
         int alleSkoleDage = 0;
         double fravaersDage = 0;
-        
+
         for (Date alleDage : allSchoolDays) {
             alleSkoleDage++;
             for (Date absentDay : abscentDays) {
@@ -119,7 +121,6 @@ public class Utility {
 
         lineChart.getData().add(series);
         lineChart.setLegendVisible(false);
-        
 
         lineChart.getXAxis().setLabel("Skoledage");
         lineChart.getYAxis().setLabel("Fravær i procent %");

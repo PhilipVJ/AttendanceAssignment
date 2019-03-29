@@ -19,9 +19,8 @@ public class Teacher {
         this.lastName = lastName;
         this.id = id;
     }
-    
-    public void addClasses(ArrayList<String> classes)
-    {
+
+    public void addClasses(ArrayList<String> classes) {
         this.classes = classes;
     }
 
@@ -36,18 +35,14 @@ public class Teacher {
     public int getId() {
         return id;
     }
-    
-    public ArrayList<String> getClassses()
-    {
+
+    public ArrayList<String> getClassses() {
         return classes;
     }
-    
+
     @Override
-    public String toString()
-    {
-        return firstName+" "+lastName;
+    public String toString() {
+        return firstName + " " + lastName;
     }
-    
-    
 
 }

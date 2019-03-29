@@ -24,7 +24,7 @@ import javafx.collections.ObservableList;
  */
 public class AttendanceModel {
 
-    private BLLManager bllMan;
+    private final BLLManager bllMan;
 
     private final ObservableList<Student> students = FXCollections.observableArrayList();
     private User user;

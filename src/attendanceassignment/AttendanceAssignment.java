@@ -5,8 +5,12 @@
  */
 package attendanceassignment;
 
+import attendanceassignment.gui.AttModel.Utility;
 import attendanceassignment.gui.JController.JLoginController;
 import attendanceassignment.gui.JController.RootlayoutController;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,41 +26,40 @@ import javafx.stage.StageStyle;
  */
 public class AttendanceAssignment extends Application {
 
-    private BorderPane rootLayout;
-
-
     @Override
-    public void start(Stage stage) throws Exception {
-        // Sets up the stage and scene
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/Rootlayout.fxml"));
-        BorderPane rootLayout = loader.load();
-        RootlayoutController rCon = loader.getController();
-        
-        SceneDragger sDragOne = new SceneDragger();
-        Parent menuBar = rCon.getMenuBar();
-        sDragOne.makeDraggable(menuBar, stage);
-        
-        Scene scene = new Scene(rootLayout);
-        FXMLLoader loaderTwo = new FXMLLoader();
-        loaderTwo.setLocation(AttendanceAssignment.class.getResource("/attendanceassignment/gui/JView/JLogin.fxml"));
+    public void start(Stage stage) {
+        try {
+            // Sets up the stage and scene
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
 
-        AnchorPane logIn = (AnchorPane) loaderTwo.load();
-        JLoginController con = loaderTwo.getController();
-        
-        con.setRootLayout(rootLayout);
-        rootLayout.setCenter(logIn);
-        
-        SceneDragger sDrag = new SceneDragger();
-        sDrag.makeDraggable(rootLayout, stage);
-        
-        
-        stage.setScene(scene);
-        stage.show();
-   
-       
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/Rootlayout.fxml"));
+            BorderPane rootLayout = loader.load();
+            RootlayoutController rCon = loader.getController();
+
+            SceneDragger sDragOne = new SceneDragger();
+            Parent menuBar = rCon.getMenuBar();
+            sDragOne.makeDraggable(menuBar, stage);
+
+            Scene scene = new Scene(rootLayout);
+            FXMLLoader loaderTwo = new FXMLLoader();
+            loaderTwo.setLocation(AttendanceAssignment.class.getResource("/attendanceassignment/gui/JView/JLogin.fxml"));
+
+            AnchorPane logIn = (AnchorPane) loaderTwo.load();
+            JLoginController con = loaderTwo.getController();
+
+            con.setRootLayout(rootLayout);
+            rootLayout.setCenter(logIn);
+
+            SceneDragger sDrag = new SceneDragger();
+            sDrag.makeDraggable(rootLayout, stage);
+
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Fil ikke fundet", "En eller flere filer blev ikke fundet");
+        }
+
     }
 
     /**
