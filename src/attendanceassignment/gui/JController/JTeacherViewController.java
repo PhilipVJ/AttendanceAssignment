@@ -157,7 +157,9 @@ public class JTeacherViewController implements Initializable {
 
             NumberAxis y = new NumberAxis();
             CategoryAxis x = new CategoryAxis();
+       
             LineChart lineC = new LineChart(x, y);
+            
             int id = chosenStudent.getValue().getId();
 
             Utility.makeLineChart(aModel.getAllSchoolDays(), aModel.getAbsentDays(id), lineC);
@@ -188,6 +190,7 @@ public class JTeacherViewController implements Initializable {
 
             NumberAxis y = new NumberAxis();
             CategoryAxis x = new CategoryAxis();
+            
             BarChart barC = new BarChart(x, y);
             int id = chosenStudent.getValue().getId();
             ArrayList<Integer> absentDays = Utility.whichDayAbscent(aModel.getAbsentDays(id));

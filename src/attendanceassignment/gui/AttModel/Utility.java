@@ -103,7 +103,7 @@ public class Utility {
 
         int alleSkoleDage = 0;
         double fravaersDage = 0;
-
+        
         for (Date alleDage : allSchoolDays) {
             alleSkoleDage++;
             for (Date absentDay : abscentDays) {
@@ -119,7 +119,9 @@ public class Utility {
 
         lineChart.getData().add(series);
         lineChart.setLegendVisible(false);
-        lineChart.getXAxis().setLabel("Antal dage til dagsdato");
+        
+
+        lineChart.getXAxis().setLabel("Skoledage");
         lineChart.getYAxis().setLabel("Fravær i procent %");
     }
 
