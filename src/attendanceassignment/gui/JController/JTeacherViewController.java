@@ -37,7 +37,7 @@ import javafx.scene.layout.BorderPane;
  * @author Philip
  */
 public class JTeacherViewController implements Initializable {
-
+    
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -46,7 +46,7 @@ public class JTeacherViewController implements Initializable {
     private Label numberOfRequests;
     @FXML
     private JFXTreeTableView<Student> tableView;
-
+    
     private AttendanceModel aModel;
     private BorderPane rootLayout;
     @FXML
@@ -70,55 +70,52 @@ public class JTeacherViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-  avgAbsInfo.setVisible(false);
+        avgAbsInfo.setVisible(false);
     }
-
+    
     @FXML
     private void back(ActionEvent event) {
     }
-
+    
     @FXML
     private void showRequests(ActionEvent event) {
     }
-
-
+    
     public void setModel(AttendanceModel model) {
         this.aModel = model;
     }
-
+    
     public void setUser() {
         userNameTag.setText(aModel.getUser().getFirstname());
     }
-
+    
     public void setRootLayout(BorderPane toSet) {
         rootLayout = toSet;
     }
-
+    
     public void loadViews() {
         // Loads the combobox with all the teachers classes
         ObservableList<String> allClasses = FXCollections.observableArrayList(aModel.getUser().getAllClasses());
         classChooser.setItems(allClasses);
 
         // Setup tableview
-
         firstNameCol.setSortable(false);
         lastNameCol.setSortable(false);
         classNameCol.setSortable(false);
         absenceCol.setSortable(false);
-
+        
         absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
-
+               
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
         lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("lastName"));
         classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("className"));
         absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("absence"));
-     
-
+        
         tableView.setShowRoot(false);
         tableView.getSortOrder().setAll(absenceCol);
-
+        
     }
-
+    
     @FXML
     private void chooseClass(ActionEvent event) {
         String className = classChooser.getValue();
@@ -129,28 +126,27 @@ public class JTeacherViewController implements Initializable {
             tableView.setRoot(root);
             avgAbsInfo.setVisible(true);
             
-            double combinedAbsence= 0;
+            double combinedAbsence = 0;
             for (Student classStudent : classStudents) {
-                combinedAbsence+=classStudent.getAbsenceDouble();
+                combinedAbsence += classStudent.getAbsenceDouble();
             }
-         
             
             double averageAbsence = combinedAbsence / classStudents.size();
             
-            classAbsence.setText(""+averageAbsence);
-            
-            
+            classAbsence.setText("" + averageAbsence);
             
         } catch (SQLException ex) {
             Logger.getLogger(JTeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     @FXML
     private void showAttendanceLine(ActionEvent event) {
+        TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
+        System.out.println(""+chosenStudent.getValue().getId());
     }
-
+    
     @FXML
     private void showAttendanceBar(ActionEvent event) {
     }

@@ -233,7 +233,7 @@ public class AbscensData {
                String firstName = rs.getString("firstname");
                String lastName = rs.getString("lastname");
                int id = rs.getInt("personID");
-               Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)));
+               Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)),id);
                classStudents.add(toAdd);
             }
             return classStudents;
