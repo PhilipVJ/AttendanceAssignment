@@ -29,9 +29,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -46,6 +44,9 @@ import javafx.stage.Stage;
  */
 public class JTeacherViewController implements Initializable {
 
+    private AttendanceModel aModel;
+    private BorderPane rootLayout;
+    
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -54,9 +55,6 @@ public class JTeacherViewController implements Initializable {
     private Label numberOfRequests;
     @FXML
     private JFXTreeTableView<Student> tableView;
-
-    private AttendanceModel aModel;
-    private BorderPane rootLayout;
     @FXML
     private JFXComboBox<String> classChooser;
     @FXML
@@ -69,8 +67,6 @@ public class JTeacherViewController implements Initializable {
     private TreeTableColumn<Student, String> absenceCol;
     @FXML
     private Label classAbsence;
-    @FXML
-    private Label avgAbsInfo;
 
     /**
      * Initializes the controller class.
@@ -78,7 +74,7 @@ public class JTeacherViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        avgAbsInfo.setVisible(false);
+        classAbsence.setVisible(false);
     }
 
     @FXML
@@ -94,7 +90,10 @@ public class JTeacherViewController implements Initializable {
     }
 
     public void setUser() {
-        userNameTag.setText(aModel.getUser().getFirstname());
+        userNameTag.setText("Logget ind som: " + aModel.getUser().getFirstname());
+        
+        //mock husk at ændre!!!!
+        numberOfRequests.setText("Antal anmodninger: " + "2");
     }
 
     public void setRootLayout(BorderPane toSet) {
@@ -132,7 +131,7 @@ public class JTeacherViewController implements Initializable {
             ObservableList<Student> students = FXCollections.observableArrayList(classStudents);
             TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
             tableView.setRoot(root);
-            avgAbsInfo.setVisible(true);
+            classAbsence.setVisible(true);
 
             double combinedAbsence = 0;
             for (Student classStudent : classStudents) {
@@ -141,7 +140,7 @@ public class JTeacherViewController implements Initializable {
 
             double averageAbsence = combinedAbsence / classStudents.size();
 
-            classAbsence.setText("" + averageAbsence);
+            classAbsence.setText("Gennemsnitlig fravær: " + averageAbsence + "%");
 
         } catch (SQLException ex) {
             Logger.getLogger(JTeacherViewController.class.getName()).log(Level.SEVERE, null, ex);

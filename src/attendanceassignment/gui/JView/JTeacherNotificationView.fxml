@@ -15,8 +15,8 @@
             <TableColumn prefWidth="176.0" text="Dato" />
         </columns>
       </TableView>
-      <JFXButton layoutX="30.0" layoutY="412.0" onAction="#back" prefHeight="60.0" prefWidth="145.0" text="Tilbage" AnchorPane.leftAnchor="30.0" />
-      <JFXButton layoutX="372.0" layoutY="412.0" onAction="#rejectRequest" prefHeight="60.0" prefWidth="145.0" text="Afvis" AnchorPane.rightAnchor="30.0" />
-      <JFXButton layoutX="203.0" layoutY="412.0" onAction="#acceptRequest" prefHeight="60.0" prefWidth="145.0" text="Accepter" />
+      <JFXButton layoutX="30.0" layoutY="412.0" onAction="#back" prefHeight="50.0" prefWidth="100.0" text="Tilbage" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" />
+      <JFXButton layoutX="372.0" layoutY="412.0" onAction="#rejectRequest" prefHeight="50.0" prefWidth="150.0" text="Afvis" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="15.0" />
+      <JFXButton layoutX="203.0" layoutY="412.0" onAction="#acceptRequest" prefHeight="50.0" prefWidth="150.0" text="Accepter" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="192.0" />
    </children>
 </AnchorPane>
