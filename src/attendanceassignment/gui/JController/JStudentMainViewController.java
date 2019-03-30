@@ -48,7 +48,7 @@ public class JStudentMainViewController implements Initializable {
     private void setAttendance(ActionEvent event) throws ParseException, SQLException {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 25;
-        int tooEarly = 9;
+        int tooEarly = 0;
         date = new Date();
         boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
         
@@ -58,15 +58,14 @@ public class JStudentMainViewController implements Initializable {
                 atModel.addAttendance(att);
         }
         if(attendanceHasBeenSet==true){
-            Utility.createErrorAlert("Tidstedeværelse er sat", "Du er allerede sat som tilstedeværende for i dag");
+            Utility.createErrorAlert("Tilstedeværelse er sat", "Du er allerede sat som tilstedeværende for i dag");
         }
         if(curTime > tooLate){
             Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan kun sættes frem til klokken " + tooLate);
         }
         if(curTime < tooEarly){
             Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan først sættes fra klokken " + tooEarly);
-        }
-              
+        }         
     }
 
     @FXML
