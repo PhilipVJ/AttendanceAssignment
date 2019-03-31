@@ -16,6 +16,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -110,16 +111,15 @@ public class JTeacherViewController implements Initializable {
         lastNameCol.setSortable(false);
         classNameCol.setSortable(false);
         absenceCol.setSortable(false);
-
-        absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
-
-        firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
-        lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("lastName"));
-        classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("className"));
-        absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("absence"));
+                
+        firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("lastName"));
+        classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("className"));
+        absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("absence"));
 
         tableView.setShowRoot(false);
-        tableView.getSortOrder().setAll(absenceCol);
+        
+      
 
     }
 
@@ -131,13 +131,20 @@ public class JTeacherViewController implements Initializable {
             ObservableList<Student> students = FXCollections.observableArrayList(classStudents);
             TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
             tableView.setRoot(root);
+            
             classAbsence.setVisible(true);
 
             double combinedAbsence = 0;
             for (Student classStudent : classStudents) {
                 combinedAbsence += classStudent.getAbsenceDouble();
             }
-
+            
+            Comparator<TreeItem<Student>> byAbsence = ((t, t1) -> {
+                return (int)(t1.getValue().getAbsenceDouble()-t.getValue().getAbsenceDouble());
+            } );
+                          
+            root.getChildren().sort(byAbsence);
+        
             double averageAbsence = combinedAbsence / classStudents.size();
 
             classAbsence.setText("Gennemsnitlig fravær: " + averageAbsence + "%");
