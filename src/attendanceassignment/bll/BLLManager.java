@@ -87,5 +87,10 @@ public class BLLManager {
         return abscensData.allSchoolDays();
 
     }
-
+    
+//    public ArrayList<Student> getTeacherNotifications(int id) throws SQLException {
+//
+//        return abscensData.getTeacherNotifications(id);
+//
+//    }
 }

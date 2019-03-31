@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -79,11 +81,18 @@ public class JTeacherViewController implements Initializable {
     }
 
     @FXML
-    private void back(ActionEvent event) {
+    private void back(ActionEvent event) {     
     }
 
     @FXML
-    private void showRequests(ActionEvent event) {
+    private void showRequests(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherNotificationView.fxml"));          
+        AnchorPane root = loader.load();
+        JTeacherNotificationViewController con = loader.getController();
+        con.setModel(aModel);
+        con.setRootLayout(rootLayout);   
+//        con.loadViews();
+        rootLayout.setCenter(root);
     }
 
     public void setModel(AttendanceModel model) {

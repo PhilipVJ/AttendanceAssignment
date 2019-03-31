@@ -132,9 +132,7 @@ public class AbscensData {
         return false;
     }
 
-
-
-     public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException {
+    public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException {
 
         String sql = "SELECT * FROM Attendance WHERE studentID = (?) AND date = (?)";
 
@@ -144,16 +142,17 @@ public class AbscensData {
             pst.setInt(1, studentId);
             pst.setDate(2, sqlDate);
             ResultSet rs = pst.executeQuery();
-                      
-            
-            if (rs.next()) 
-                return true;
-            else
-                return false;
-        }
-        
-    }
 
+            //checks if value exists
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+    }
 
     public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException {
 
@@ -230,14 +229,46 @@ public class AbscensData {
 
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-               String firstName = rs.getString("firstname");
-               String lastName = rs.getString("lastname");
-               int id = rs.getInt("personID");
-               Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)),id);
-               classStudents.add(toAdd);
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                int id = rs.getInt("personID");
+                Student toAdd = new Student(firstName, lastName, className, Utility.calculateAbsencePercentage(allSchoolDays(), getAbsentDays(id)), id);
+                classStudents.add(toAdd);
             }
             return classStudents;
         }
 
     }
+
+//    public ArrayList<Student> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException {
+//
+//        ArrayList<Student> students = new ArrayList<>();
+//
+//        String sql = "SELECT * FROM AttendanceChange \n"
+//
+//                + "INNER JOIN Person ON AttendanceChange.studentID = Person.personID\n"
+//                + "INNER JOIN PersonClass ON AttendanceChange.studentID = PersonClass.personID\n"
+//                + "INNER JOIN Class ON PersonClass.classID = Class.classID\n"
+//                + "WHERE teacherID = 5";
+//
+//        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+//
+//            pst.setInt(1, teacherID);
+//
+//            ResultSet rs = pst.executeQuery();
+//            while (rs.next()) {
+//
+//                String firstName = rs.getString("firstname");
+//                String lastName = rs.getString("lastname");
+//                Date date = rs.getDate("date");
+//                String className = rs.getString("classname");
+//                int id = rs.getInt("personID");
+//                Student toAdd = new Student(firstName, lastName, date, className, id);
+//                students.add(toAdd);
+//
+//            }
+//
+//        }
+//        return students;
+//    }
 }

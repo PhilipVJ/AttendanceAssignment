@@ -94,6 +94,12 @@ public class AttendanceModel {
     {
         return bllMan.getAllSchoolDays();
     }
+    
+//    public ArrayList<Student> getTeacherNotifications(int id) throws SQLException {
+//
+//        return bllMan.getTeacherNotifications(user.getId());
+//
+//    }
 
 
 
