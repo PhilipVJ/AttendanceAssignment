@@ -162,6 +162,43 @@ public final class Utility
     public static boolean checkNetwork() throws SocketException, IOException
     {
         ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", "ipconfig/all");
+        builder.redirectErrorStream(true);
+        Process p = builder.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        boolean foundEASV = false;
+        boolean foundDNS = false;
+        int counter = 0;
+        while (counter < 20)
+        {
+            line = r.readLine();
+            if (line == null)
+            {
+                return false;
+            }
+            if (line.contains("easv.dk"))
+            {
+                foundEASV = true;
+            }
+            if (line.contains("10.176.111.11"))
+            {
+                foundDNS = true;
+            }
+
+            if (foundEASV == true && foundDNS == true)
+            {
+                System.out.println("Netværk fundet");
+                return true;
+            }
+
+        }
+        return false;
+    }
+    
+     public static boolean checkNetworkOnlyByName() throws SocketException, IOException
+    {
+        ProcessBuilder builder = new ProcessBuilder(
                 "cmd.exe", "/c", "netsh wlan show networks mode=Bssid");
         builder.redirectErrorStream(true);
         Process p = builder.start();
