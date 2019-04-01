@@ -5,6 +5,10 @@
  */
 package attendanceassignment.gui.AttModel;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -19,11 +23,15 @@ import javafx.scene.control.Alert;
  *
  * @author Philip
  */
-public final class Utility {
-    
-    private Utility(){}
+public final class Utility
+{
 
-    public static void createErrorAlert(String header, String content) {
+    private Utility()
+    {
+    }
+
+    public static void createErrorAlert(String header, String content)
+    {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Fejl");
         alert.setHeaderText(header);
@@ -37,7 +45,8 @@ public final class Utility {
      * @param toCompare
      * @return
      */
-    public static long compareDateWithToday(Date toCompare) {
+    public static long compareDateWithToday(Date toCompare)
+    {
 
         java.sql.Date sqlDate = new java.sql.Date(toCompare.getTime());
         java.sql.Date sqlDateToday = new java.sql.Date(new Date().getTime());
@@ -51,7 +60,8 @@ public final class Utility {
         return noOfDaysBetween;
     }
 
-    public static double calculateAbsencePercentage(ArrayList<Date> allSchoolDays, ArrayList<Date> absentDays) {
+    public static double calculateAbsencePercentage(ArrayList<Date> allSchoolDays, ArrayList<Date> absentDays)
+    {
         double result = 0;
         double abscentDaye = absentDays.size();
         double allSchoolday = allSchoolDays.size();
@@ -59,7 +69,8 @@ public final class Utility {
         return result;
     }
 
-    public static ArrayList<Integer> whichDayAbscent(ArrayList<Date> absentDays) {
+    public static ArrayList<Integer> whichDayAbscent(ArrayList<Date> absentDays)
+    {
         SimpleDateFormat dage = new SimpleDateFormat("EEEE");
 
         ArrayList<Integer> days = new ArrayList();
@@ -70,9 +81,11 @@ public final class Utility {
         int thursday = 0;
         int friday = 0;
 
-        for (Date whichDays : absentDays) {
+        for (Date whichDays : absentDays)
+        {
             String dag = dage.format(whichDays);
-            switch (dag) {
+            switch (dag)
+            {
                 case "mandag":
                     monday++;
                     break;
@@ -100,16 +113,20 @@ public final class Utility {
         return days;
     }
 
-    public static void makeLineChart(ArrayList<Date> allSchoolDays, ArrayList<Date> abscentDays, LineChart<String, Double> lineChart) {
+    public static void makeLineChart(ArrayList<Date> allSchoolDays, ArrayList<Date> abscentDays, LineChart<String, Double> lineChart)
+    {
         XYChart.Series<String, Double> series = new XYChart.Series<>();
 
         int alleSkoleDage = 0;
         double fravaersDage = 0;
 
-        for (Date alleDage : allSchoolDays) {
+        for (Date alleDage : allSchoolDays)
+        {
             alleSkoleDage++;
-            for (Date absentDay : abscentDays) {
-                if (alleDage.equals(absentDay)) {
+            for (Date absentDay : abscentDays)
+            {
+                if (alleDage.equals(absentDay))
+                {
                     fravaersDage++;
                 }
             }
@@ -126,7 +143,8 @@ public final class Utility {
         lineChart.getYAxis().setLabel("Fravær i procent %");
     }
 
-    public static void makeBarChart(ArrayList<Integer> abscentDays, BarChart<String, Integer> barChart) {
+    public static void makeBarChart(ArrayList<Integer> abscentDays, BarChart<String, Integer> barChart)
+    {
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         series.getData().add(new XYChart.Data("Mandag", abscentDays.get(0)));
@@ -139,6 +157,32 @@ public final class Utility {
         barChart.setLegendVisible(false);
         barChart.getXAxis().setLabel("");
         barChart.getYAxis().setLabel("Hvor mange dage med fravær");
+    }
+
+    public static boolean checkNetwork() throws SocketException, IOException
+    {
+        ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", "netsh wlan show networks mode=Bssid");
+        builder.redirectErrorStream(true);
+        Process p = builder.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        int counter = 0;
+        while (counter < 20)
+        {
+            line = r.readLine();
+            if (line == null)
+            {
+                return false;
+            }
+
+            if (line.contains("EASV"))
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 
 }

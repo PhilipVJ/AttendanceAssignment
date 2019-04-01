@@ -45,14 +45,14 @@ public class JStudentMainViewController implements Initializable {
     }
 
     @FXML
-    private void setAttendance(ActionEvent event) throws ParseException, SQLException {
+    private void setAttendance(ActionEvent event) throws ParseException, SQLException, IOException {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 25;
         int tooEarly = 0;
         date = new Date();
         boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
         
-        if(attendanceHasBeenSet == false && (curTime < tooLate && curTime > tooEarly)){
+        if(attendanceHasBeenSet == false && (curTime < tooLate && curTime > tooEarly) && Utility.checkNetwork()==true){
              
                 Attendance att = new Attendance(atModel.getUser().getId(), date);
                 atModel.addAttendance(att);

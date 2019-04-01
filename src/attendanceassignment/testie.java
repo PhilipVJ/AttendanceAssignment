@@ -23,15 +23,7 @@ public class testie {
      */
     public static void main(String[] args) throws IOException, SQLException {
         
-        AbscensData abs = new AbscensData();
-        
-        ArrayList<Integer> sko =Utility.whichDayAbscent(abs.getAbsentDays(2));
-        
-        for (Integer integer : sko)
-        {
-            System.out.println( integer );
-        }
-        
+        boolean checkNetwork = Utility.checkNetwork();
         
             
     }
