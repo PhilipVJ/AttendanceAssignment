@@ -7,12 +7,14 @@ package attendanceassignment.bll;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.StudentNotification;
 import attendanceassignment.be.User;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.dal.AbscensData;
 import attendanceassignment.dal.UserDB;
 
 import attendanceassignment.dal.TeacherDAO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -88,9 +90,9 @@ public class BLLManager {
 
     }
     
-//    public ArrayList<Student> getTeacherNotifications(int id) throws SQLException {
-//
-//        return abscensData.getTeacherNotifications(id);
-//
-//    }
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException {
+
+        return abscensData.getTeacherNotifications(teacherId);
+
+    }
 }

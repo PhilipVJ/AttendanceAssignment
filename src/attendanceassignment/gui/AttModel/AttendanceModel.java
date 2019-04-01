@@ -7,9 +7,11 @@ package attendanceassignment.gui.AttModel;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.StudentNotification;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.be.User;
 import attendanceassignment.bll.BLLManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -95,11 +97,9 @@ public class AttendanceModel {
         return bllMan.getAllSchoolDays();
     }
     
-//    public ArrayList<Student> getTeacherNotifications(int id) throws SQLException {
-//
-//        return bllMan.getTeacherNotifications(user.getId());
-//
-//    }
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException {
+        return bllMan.getTeacherNotifications(user.getId());
+    }
 
 
 

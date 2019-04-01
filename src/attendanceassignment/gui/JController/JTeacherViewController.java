@@ -13,9 +13,11 @@ import com.jfoenix.controls.JFXTreeTableView;
 
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -85,13 +87,13 @@ public class JTeacherViewController implements Initializable {
     }
 
     @FXML
-    private void showRequests(ActionEvent event) throws IOException {
+    private void showRequests(ActionEvent event) throws IOException, SQLException, SQLServerException, ParseException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherNotificationView.fxml"));          
         AnchorPane root = loader.load();
         JTeacherNotificationViewController con = loader.getController();
         con.setModel(aModel);
+        con.loadTV();
         con.setRootLayout(rootLayout);   
-//        con.loadViews();
         rootLayout.setCenter(root);
     }
 

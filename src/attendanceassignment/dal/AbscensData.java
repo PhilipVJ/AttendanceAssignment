@@ -7,6 +7,7 @@ package attendanceassignment.dal;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
+import attendanceassignment.be.StudentNotification;
 import attendanceassignment.gui.AttModel.Utility;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
@@ -14,10 +15,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -240,35 +246,35 @@ public class AbscensData {
 
     }
 
-//    public ArrayList<Student> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException {
-//
-//        ArrayList<Student> students = new ArrayList<>();
-//
-//        String sql = "SELECT * FROM AttendanceChange \n"
-//
-//                + "INNER JOIN Person ON AttendanceChange.studentID = Person.personID\n"
-//                + "INNER JOIN PersonClass ON AttendanceChange.studentID = PersonClass.personID\n"
-//                + "INNER JOIN Class ON PersonClass.classID = Class.classID\n"
-//                + "WHERE teacherID = 5";
-//
-//        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
-//
-//            pst.setInt(1, teacherID);
-//
-//            ResultSet rs = pst.executeQuery();
-//            while (rs.next()) {
-//
-//                String firstName = rs.getString("firstname");
-//                String lastName = rs.getString("lastname");
-//                Date date = rs.getDate("date");
-//                String className = rs.getString("classname");
-//                int id = rs.getInt("personID");
-//                Student toAdd = new Student(firstName, lastName, date, className, id);
-//                students.add(toAdd);
-//
-//            }
-//
-//        }
-//        return students;
-//    }
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException, ParseException {
+
+        ArrayList<StudentNotification> notifications = new ArrayList<>();
+
+        String sql = "SELECT * FROM AttendanceChange \n"
+
+                + "INNER JOIN Person ON AttendanceChange.studentID = Person.personID\n"
+                + "INNER JOIN PersonClass ON AttendanceChange.studentID = PersonClass.personID\n"
+                + "INNER JOIN Class ON PersonClass.classID = Class.classID\n"
+                + "WHERE teacherID = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+            pst.setInt(1, teacherID);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                String firstName = rs.getNString("firstname");
+                String lastName = rs.getNString("lastname");
+                String className = rs.getNString("classname");
+                Date dates = rs.getDate("date");
+                DateFormat format = new SimpleDateFormat("dd/MM-yyyy");
+                String absentDay = format.format(dates);
+
+                StudentNotification toAdd = new StudentNotification(firstName, lastName, className, absentDay);
+                notifications.add(toAdd);
+            }
+        }
+        return notifications;
+    }
+ 
 }

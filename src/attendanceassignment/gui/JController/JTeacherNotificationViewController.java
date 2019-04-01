@@ -6,16 +6,21 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Student;
+import attendanceassignment.be.StudentNotification;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,14 +45,15 @@ public class JTeacherNotificationViewController implements Initializable
     private BorderPane rootLayout;
     
     @FXML
-    private JFXTreeTableView<Student> tableView;
-    private TreeTableColumn<Student, String> firstNameCol;
+    private JFXTreeTableView<StudentNotification> tableView;
     @FXML
-    private TreeTableColumn<Student, String> lastNameCol;
+    private TreeTableColumn<StudentNotification, String> firstNameCol;
     @FXML
-    private TreeTableColumn<Student, String> classNameCol;
+    private TreeTableColumn<StudentNotification, String> lastNameCol;
     @FXML
-    private TreeTableColumn<Student, String> absenceCol;
+    private TreeTableColumn<StudentNotification, String> absentDayCol;
+    @FXML
+    private TreeTableColumn<StudentNotification, String> classNameCol;
     /**
      * Initializes the controller class.
      */
@@ -82,27 +88,45 @@ public class JTeacherNotificationViewController implements Initializable
     public void setRootLayout(BorderPane toSet) {
         rootLayout = toSet;
     }
-//    public void loadTV() throws SQLException{
-//        
-//        ArrayList<Date> tvStudents = aModel.getStudentRequestForTeacher(0);
-//            ObservableList<Student> students = FXCollections.observableArrayList(tvStudents);
-//            TreeItem<Student> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
-//            tableView.setRoot(root);
-//        
-//        firstNameCol.setSortable(false);
-//        lastNameCol.setSortable(false);
-//        classNameCol.setSortable(false);
-//        absenceCol.setSortable(false);
-//
-//        absenceCol.setSortType(TreeTableColumn.SortType.ASCENDING);
-//
-//        firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("firstName"));
-//        lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("lastName"));
-//        classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("className"));
-//        absenceCol.setCellValueFactory(new TreeItemPropertyValueFactory<Student, String>("absence"));
-//
-//        tableView.setShowRoot(false);
-//        tableView.getSortOrder().setAll(absenceCol);
-//    
+    public void loadTV() throws SQLException, SQLServerException, ParseException{
+        int teacherID = aModel.getUser().getId();    
+        ArrayList<StudentNotification> tvStudents = aModel.getTeacherNotifications(teacherID);
+        ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);
+        TreeItem<StudentNotification> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
+        
+        
+        firstNameCol.setSortable(false);
+        lastNameCol.setSortable(false);
+        classNameCol.setSortable(false);
+        absentDayCol.setSortable(false);
+
+        absentDayCol.setSortType(TreeTableColumn.SortType.ASCENDING);
+
+        firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("firstName"));
+        lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("lastName"));
+        classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("className"));
+        absentDayCol.setCellValueFactory(
+//                (TreeTableColumn.CellDataFeatures<StudentNotification, String> Produit) ->{
+//                SimpleObjectProperty property = new SimpleObjectProperty();
+//                Date date = Produit.getValue().getAbsentDay();
+//                    SimpleDateFormat s = new SimpleDateFormat("dd/MM-yyyy");
+//                    property.setValue(s.format(date));
+//                    return property;
+//                        }
+                new TreeItemPropertyValueFactory<StudentNotification, String>("absentDay")
+                
+                );
+        
+        tableView.setRoot(root);
+
+    }
+    
+//    public void setTvData() throws SQLException, SQLServerException, ParseException{
+//        int teacherID = aModel.getUser().getId();
+//        ArrayList<StudentNotification> tvStudents = aModel.getTeacherNotifications(teacherID);
+//        ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);
+//        TreeItem<StudentNotification> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
+//        tableView.setRoot(root);
+////        tableView.setRoot(root);
 //    }
 }
