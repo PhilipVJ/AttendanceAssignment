@@ -169,8 +169,8 @@ public final class Utility
         String line;
         boolean foundEASV = false;
         boolean foundDNS = false;
-        int counter = 0;
-        while (counter < 20)
+
+        while (true)
         {
             line = r.readLine();
             if (line == null)
@@ -193,7 +193,7 @@ public final class Utility
             }
 
         }
-        return false;
+
     }
     
      public static boolean checkNetworkOnlyByName() throws SocketException, IOException
@@ -204,8 +204,8 @@ public final class Utility
         Process p = builder.start();
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String line;
-        int counter = 0;
-        while (counter < 20)
+
+        while (true)
         {
             line = r.readLine();
             if (line == null)
@@ -215,11 +215,12 @@ public final class Utility
 
             if (line.contains("EASV"))
             {
+                System.out.println("Fundet netværk igen");
                 return true;
             }
 
         }
-        return false;
+
     }
 
 }

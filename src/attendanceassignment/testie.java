@@ -24,6 +24,7 @@ public class testie {
     public static void main(String[] args) throws IOException, SQLException {
         
         boolean checkNetwork = Utility.checkNetwork();
+        boolean check2 = Utility.checkNetworkOnlyByName();
         
             
     }
