@@ -122,6 +122,11 @@ public class JTeacherViewController implements Initializable {
         lastNameCol.setSortable(false);
         classNameCol.setSortable(false);
         absenceCol.setSortable(false);
+        
+        firstNameCol.setResizable(false);
+        lastNameCol.setResizable(false);
+        classNameCol.setResizable(false);
+        absenceCol.setResizable(false);
                 
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("lastName"));

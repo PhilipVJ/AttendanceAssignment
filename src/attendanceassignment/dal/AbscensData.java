@@ -266,9 +266,9 @@ public class AbscensData {
                 String firstName = rs.getNString("firstname");
                 String lastName = rs.getNString("lastname");
                 String className = rs.getNString("classname");
-                Date dates = rs.getDate("date");
-                DateFormat format = new SimpleDateFormat("dd/MM-yyyy");
-                String absentDay = format.format(dates);
+                Date absentDay = rs.getDate("date");
+//                DateFormat format = new SimpleDateFormat("dd/MM-yyyy");
+//                String absentDay = format.format(dates);
 
                 StudentNotification toAdd = new StudentNotification(firstName, lastName, className, absentDay);
                 notifications.add(toAdd);

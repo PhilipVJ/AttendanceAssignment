@@ -99,24 +99,19 @@ public class JTeacherNotificationViewController implements Initializable
         lastNameCol.setSortable(false);
         classNameCol.setSortable(false);
         absentDayCol.setSortable(false);
-
+        
+        firstNameCol.setResizable(false);
+        lastNameCol.setResizable(false);
+        classNameCol.setResizable(false);
+        absentDayCol.setResizable(false);
+        
         absentDayCol.setSortType(TreeTableColumn.SortType.ASCENDING);
 
         firstNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("firstName"));
         lastNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("lastName"));
         classNameCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("className"));
-        absentDayCol.setCellValueFactory(
-//                (TreeTableColumn.CellDataFeatures<StudentNotification, String> Produit) ->{
-//                SimpleObjectProperty property = new SimpleObjectProperty();
-//                Date date = Produit.getValue().getAbsentDay();
-//                    SimpleDateFormat s = new SimpleDateFormat("dd/MM-yyyy");
-//                    property.setValue(s.format(date));
-//                    return property;
-//                        }
-                new TreeItemPropertyValueFactory<StudentNotification, String>("absentDay")
-                
-                );
-        
+        absentDayCol.setCellValueFactory( new TreeItemPropertyValueFactory<StudentNotification, String>("absentDay"));
+        tableView.setShowRoot(false);
         tableView.setRoot(root);
 
     }
