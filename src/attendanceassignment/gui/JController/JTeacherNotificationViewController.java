@@ -78,14 +78,22 @@ public class JTeacherNotificationViewController implements Initializable
     }
 
     @FXML
-    private void rejectRequest(ActionEvent event){
+    private void rejectRequest(ActionEvent event) throws ParseException, SQLException{
+        StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
+        if(sn==null){
+            Utility.createErrorAlert("Der er ikke valgt en elev", "Vælg venligt den elev du vil rette fravær på");
+        }
+        else{
+            aModel.deleteNotificationRequests(sn.getStudentID(),sn.getAbsentDay());
+            tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
+        }
     }
    
     @FXML
     private void acceptRequest(ActionEvent event) throws ParseException, SQLException{
         StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
         if(sn==null){
-            Utility.createErrorAlert("Vælg noget", "Der er ikke valgt en elev");
+            Utility.createErrorAlert("Der er ikke valgt en elev", "Vælg venligt den elev du vil rette fravær på");
         }
         else{
             Attendance att = new Attendance(sn.getStudentID(),sn.getAbsentDay());
