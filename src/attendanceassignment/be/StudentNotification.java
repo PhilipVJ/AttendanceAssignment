@@ -24,19 +24,25 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     private final StringProperty firstName;
     private Date absentDay;
     private final StringProperty className;
-//    private final String absence;
+    private final int studentID;
 
-    public StudentNotification(String firstName, String lastName , String className, Date absentDay) throws ParseException {
+
+    public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) throws ParseException {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
-//        DateFormat format = new SimpleDateFormat("dd/MM-yyyy");
-//        Date date = format.parse(absentDay);
+        
         this.absentDay = absentDay;
         this.className = new SimpleStringProperty();
+        this.studentID = studentID;
         
         this.firstName.set(firstName);
         this.lastName.set(lastName);       
         this.className.set(className);
+        
+    }
+
+    public int getStudentID() {
+        return studentID;
     }
 
     public String getLastName() {

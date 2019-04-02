@@ -101,6 +101,10 @@ public class AttendanceModel {
         return bllMan.getTeacherNotifications(user.getId());
     }
 
+    public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException {
+        bllMan.deleteNotificationRequests(studentID,absentDay);
+    }
+
 
 
 

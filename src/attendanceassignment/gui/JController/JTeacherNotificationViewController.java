@@ -5,9 +5,11 @@
  */
 package attendanceassignment.gui.JController;
 
+import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
 import attendanceassignment.be.StudentNotification;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -78,9 +80,21 @@ public class JTeacherNotificationViewController implements Initializable
     @FXML
     private void rejectRequest(ActionEvent event){
     }
-
+   
     @FXML
-    private void acceptRequest(ActionEvent event){
+    private void acceptRequest(ActionEvent event) throws ParseException, SQLException{
+        StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
+        if(sn==null){
+            Utility.createErrorAlert("Vælg noget", "Der er ikke valgt en elev");
+        }
+        else{
+            Attendance att = new Attendance(sn.getStudentID(),sn.getAbsentDay());
+            aModel.addAttendance(att);
+            aModel.deleteNotificationRequests(sn.getStudentID(),sn.getAbsentDay());
+            tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
+        }
+            
+           
     }
     public void setModel(AttendanceModel model) {
         this.aModel = model;
@@ -89,6 +103,7 @@ public class JTeacherNotificationViewController implements Initializable
         rootLayout = toSet;
     }
     public void loadTV() throws SQLException, SQLServerException, ParseException{
+        
         int teacherID = aModel.getUser().getId();    
         ArrayList<StudentNotification> tvStudents = aModel.getTeacherNotifications(teacherID);
         ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);

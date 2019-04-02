@@ -267,14 +267,31 @@ public class AbscensData {
                 String lastName = rs.getNString("lastname");
                 String className = rs.getNString("classname");
                 Date absentDay = rs.getDate("date");
-//                DateFormat format = new SimpleDateFormat("dd/MM-yyyy");
-//                String absentDay = format.format(dates);
+                int id = rs.getInt("personID");
 
-                StudentNotification toAdd = new StudentNotification(firstName, lastName, className, absentDay);
+                StudentNotification toAdd = new StudentNotification(firstName, lastName, className, absentDay,id);
                 notifications.add(toAdd);
             }
         }
         return notifications;
     }
+    
+    public void deleteNotificationRequests(int studentID, Date date) throws SQLServerException, SQLException{
+        
+        String sql = "delete from AttendanceChange where studentID =(?) and date = (?)";
+
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
+
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            pst.setInt(1, studentID);
+            pst.setDate(2, sqlDate);
+            pst.execute();
+           
+
+        }
+    
+    }
+    
+    
  
 }
