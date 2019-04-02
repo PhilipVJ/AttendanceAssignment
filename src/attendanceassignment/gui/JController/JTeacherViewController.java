@@ -101,18 +101,17 @@ public class JTeacherViewController implements Initializable {
         this.aModel = model;
     }
 
-    public void setUser() {
+    public void setUser(){
         userNameTag.setText("Logget ind som: " + aModel.getUser().getFirstname());
-        
-        //mock husk at ændre!!!!
-        numberOfRequests.setText("Antal anmodninger: " + "2");
+              
     }
 
     public void setRootLayout(BorderPane toSet) {
         rootLayout = toSet;
     }
 
-    public void loadViews() {
+    public void loadViews() throws SQLException, SQLException, SQLServerException, SQLServerException, ParseException {
+        
         // Loads the combobox with all the teachers classes
         ObservableList<String> allClasses = FXCollections.observableArrayList(aModel.getUser().getAllClasses());
         classChooser.setItems(allClasses);
@@ -135,7 +134,9 @@ public class JTeacherViewController implements Initializable {
 
         tableView.setShowRoot(false);
         
-      
+        aModel.loadTeacherNotifications();
+        int requests = aModel.getNumberOfNotifications();
+        numberOfRequests.setText("Antal anmodninger: " + requests);
 
     }
 

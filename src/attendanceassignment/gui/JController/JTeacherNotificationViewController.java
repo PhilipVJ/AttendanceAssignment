@@ -66,7 +66,7 @@ public class JTeacherNotificationViewController implements Initializable
     }    
 
     @FXML
-    private void back(ActionEvent event) throws IOException{
+    private void back(ActionEvent event) throws IOException, SQLException, SQLServerException, ParseException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));          
         AnchorPane root = loader.load();
         JTeacherViewController con = loader.getController();
@@ -111,9 +111,8 @@ public class JTeacherNotificationViewController implements Initializable
         rootLayout = toSet;
     }
     public void loadTV() throws SQLException, SQLServerException, ParseException{
-        
-        int teacherID = aModel.getUser().getId();    
-        ArrayList<StudentNotification> tvStudents = aModel.getTeacherNotifications(teacherID);
+            
+        ArrayList<StudentNotification> tvStudents = aModel.getNotifications();
         ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);
         TreeItem<StudentNotification> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
         
@@ -138,13 +137,5 @@ public class JTeacherNotificationViewController implements Initializable
         tableView.setRoot(root);
 
     }
-    
-//    public void setTvData() throws SQLException, SQLServerException, ParseException{
-//        int teacherID = aModel.getUser().getId();
-//        ArrayList<StudentNotification> tvStudents = aModel.getTeacherNotifications(teacherID);
-//        ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);
-//        TreeItem<StudentNotification> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
-//        tableView.setRoot(root);
-////        tableView.setRoot(root);
-//    }
+
 }

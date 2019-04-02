@@ -29,6 +29,7 @@ public class AttendanceModel {
     private final BLLManager bllMan;
 
     private final ObservableList<Student> students = FXCollections.observableArrayList();
+    private ArrayList<StudentNotification> notifications;
     private User user;
 
     public AttendanceModel() throws IOException {
@@ -97,15 +98,21 @@ public class AttendanceModel {
         return bllMan.getAllSchoolDays();
     }
     
-    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException {
-        return bllMan.getTeacherNotifications(user.getId());
+    public void loadTeacherNotifications() throws SQLException, SQLServerException, ParseException {
+        notifications = bllMan.getTeacherNotifications(user.getId());
+        
+        
     }
 
     public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException {
         bllMan.deleteNotificationRequests(studentID,absentDay);
     }
-
-
-
+    public int getNumberOfNotifications() throws SQLException, SQLServerException, ParseException {
+        return notifications.size();
+    }
+    
+    public ArrayList<StudentNotification> getNotifications(){
+        return notifications;
+    }
 
 }

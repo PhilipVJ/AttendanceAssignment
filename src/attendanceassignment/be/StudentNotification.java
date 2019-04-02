@@ -6,11 +6,7 @@
 package attendanceassignment.be;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -27,7 +23,7 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     private final int studentID;
 
 
-    public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) throws ParseException {
+    public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
         
