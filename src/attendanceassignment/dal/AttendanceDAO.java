@@ -367,7 +367,7 @@ public class AttendanceDAO
 
     }
 
-    public void acceptAttendance(Attendance att) throws SQLException
+    public void acceptAttendance(Attendance att) throws SQLException 
     {
         Connection con = null;
 
@@ -375,7 +375,7 @@ public class AttendanceDAO
         {
             con = dbc.getConnection();
             con.setAutoCommit(false);
-            //SQL one
+            //Insert attendence
             String sql = "INSERT INTO Attendance VALUES (?,?);";
             PreparedStatement insert = con.prepareStatement(sql);
 
@@ -383,7 +383,7 @@ public class AttendanceDAO
             insert.setInt(1, att.getId());
             insert.setDate(2, sqlDate);
             insert.executeUpdate();
-            // SQL two
+            // Delete the request
             String sqltwo = "delete from AttendanceChange where studentID =(?) and date = (?)";
             PreparedStatement delete = con.prepareStatement(sqltwo);
             delete.setInt(1, att.getId());
@@ -395,25 +395,17 @@ public class AttendanceDAO
         } catch (SQLException ex)
         {
             if (con != null)
-            {
+            {                
                 con.rollback();
-
             }
         } finally
-
         {
-
             if (con != null)
             {
-
-                con.setAutoCommit(true); //set default again (will actually commit the last transaction)
-
-                con.close(); //close the connection --> if no conn.commit() it will rollback
-
+                con.setAutoCommit(true); 
+                con.close(); 
             }
-
         }
-
     }
 
     public User userLogin(String username, String password) throws SQLException
