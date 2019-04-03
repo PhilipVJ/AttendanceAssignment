@@ -99,4 +99,9 @@ public class BLLManager {
     public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException {
          abscensData.deleteNotificationRequests(studentID,absentDay);
     }
+
+    public void acceptAttendance(Attendance att) throws SQLException
+    {
+        abscensData.acceptAttendance(att);
+    }
 }

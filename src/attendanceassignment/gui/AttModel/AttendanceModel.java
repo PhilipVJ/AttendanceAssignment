@@ -115,4 +115,9 @@ public class AttendanceModel {
         return notifications;
     }
 
+    public void acceptAttendance(Attendance att) throws SQLException, SQLException
+    {
+       bllMan.acceptAttendance(att);
+    }
+
 }
