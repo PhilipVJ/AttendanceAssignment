@@ -13,16 +13,13 @@ import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -38,16 +35,15 @@ import javafx.scene.layout.BorderPane;
 public class JLoginController implements Initializable {
 
     private AttendanceModel atModel;
+    private BorderPane rootLayout;
 
     @FXML
     private JFXTextField username;
     @FXML
     private JFXPasswordField password;
 
-    private BorderPane rootLayout;
-
-    public JLoginController() throws IOException {
-
+    
+    public JLoginController(){
     }
 
 
@@ -56,7 +52,6 @@ public class JLoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
             atModel = new AttendanceModel(bll);
@@ -66,8 +61,8 @@ public class JLoginController implements Initializable {
     }
 
     @FXML
-    private void login(ActionEvent event) throws SQLException, IOException, SQLServerException, ParseException{
-
+    private void login(ActionEvent event) {
+        try {
         User user = atModel.login(username.getText(), password.getText());
         if (user==null)
         {
@@ -93,13 +88,14 @@ public class JLoginController implements Initializable {
             con.setUser();
             con.setRootLayout(rootLayout);
             rootLayout.setCenter(root);
+        }} catch (IOException | SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
 
     }
 
     @FXML
     private void exit(ActionEvent event) {
-        
         Platform.exit();
     }
 

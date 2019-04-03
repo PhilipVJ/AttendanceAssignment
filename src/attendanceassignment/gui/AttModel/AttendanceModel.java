@@ -35,10 +35,8 @@ public class AttendanceModel {
     /**
      * calls barchart data from bll applies attendance to weekdays
      */
-    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException {
-
+    public boolean setAttendance(Attendance attendance) throws SQLException {
         return bllMan.setAttendance(attendance);
-
     }
 
     public User login(String username, String password) throws SQLException, IOException {
@@ -74,12 +72,9 @@ public class AttendanceModel {
         return bllMan.getAllNonRequestedAbsentDays(user.getId());
     }
 
-    public void addAttendance(Attendance att) throws ParseException, SQLException {
+    public void addAttendance(Attendance att) throws SQLException {
         bllMan.addAttendance(att);
     }
-
-
-
 
     public ArrayList<Student> getClassStudents(String className) throws SQLException {
         return bllMan.getClassStudents(className);
@@ -94,16 +89,15 @@ public class AttendanceModel {
         return bllMan.getAllSchoolDays();
     }
     
-    public void loadTeacherNotifications() throws SQLException, SQLServerException, ParseException {
+    public void loadTeacherNotifications() throws SQLException, SQLServerException {
         notifications = bllMan.getTeacherNotifications(user.getId());
-        
-        
     }
 
     public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException {
         bllMan.deleteNotificationRequests(studentID,absentDay);
     }
-    public int getNumberOfNotifications() throws SQLException, SQLServerException, ParseException {
+    
+    public int getNumberOfNotifications() throws SQLException, SQLServerException {
         return notifications.size();
     }
     

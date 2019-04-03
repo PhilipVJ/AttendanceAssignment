@@ -14,7 +14,6 @@ import attendanceassignment.dal.AttendanceDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,7 +31,7 @@ public class BLLManager
         this.aDAO = aDAO;
     }
 
-    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException
+    public boolean setAttendance(Attendance attendance) throws SQLException
     {
 
         return aDAO.setAttendance(attendance);
@@ -77,7 +76,7 @@ public class BLLManager
         return aDAO.getAllNonRequestedAbsentDays(id);
     }
 
-    public void addAttendance(Attendance att) throws ParseException, SQLException
+    public void addAttendance(Attendance att) throws SQLException
     {
         aDAO.setAttendance(att);
     }
@@ -99,7 +98,7 @@ public class BLLManager
 
     }
 
-    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException
     {
 
         return aDAO.getTeacherNotifications(teacherId);

@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.AttendanceAssignment;
+import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,8 +44,8 @@ public class RootlayoutController implements Initializable {
     }    
 
     @FXML
-    private void logOut(ActionEvent event) throws IOException {
-        
+    private void logOut(ActionEvent event) {
+        try {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(AttendanceAssignment.class.getResource("/attendanceassignment/gui/JView/JLogin.fxml"));
 
@@ -52,6 +53,9 @@ public class RootlayoutController implements Initializable {
         JLoginController con = loader.getController();     
         con.setRootLayout(borderPane);
         borderPane.setCenter(logIn);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     @FXML

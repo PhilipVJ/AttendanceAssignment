@@ -31,6 +31,9 @@ import javafx.scene.layout.BorderPane;
 public class JStudentChangeAttendanceController implements Initializable
 {
 
+    private AttendanceModel atModel;
+    private BorderPane rootLayout;
+
     @FXML
     private JFXListView<Date> absentDays;
     @FXML
@@ -41,8 +44,6 @@ public class JStudentChangeAttendanceController implements Initializable
     private Label checker;
     @FXML
     private Label userNameTag;
-    private AttendanceModel atModel;
-    private BorderPane rootLayout;
 
     /**
      * Initializes the controller class.
@@ -53,35 +54,40 @@ public class JStudentChangeAttendanceController implements Initializable
         // TODO
     }
 
-    void loadView() throws SQLException
+    void loadView()
     {
-
-        String studentClassName = atModel.getUser().getAllClasses().get(0);
-        userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
-
-        // Loads the teacher view
-        ArrayList<Teacher> allTeachers = atModel.getAllTeachers();
-
-        for (Teacher teacher : allTeachers)
+        try
         {
-            // Checks if the teacher teaches in the students class
-            if (teacher.getClassses().contains(studentClassName))
+            String studentClassName = atModel.getUser().getAllClasses().get(0);
+            userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
+
+            // Loads the teacher view
+            ArrayList<Teacher> allTeachers = atModel.getAllTeachers();
+
+            for (Teacher teacher : allTeachers)
             {
-                teacherView.getItems().add(teacher);
+                // Checks if the teacher teaches in the students class
+                if (teacher.getClassses().contains(studentClassName))
+                {
+                    teacherView.getItems().add(teacher);
+                }
             }
-        }
-        // Loads the absence days view
-        ArrayList<Date> absentDays = atModel.getAllNonRequestedAbsentDays();
-        for (Date date : absentDays)
-        {
-            this.absentDays.getItems().add(date);
-        }
+            // Loads the absence days view
+            ArrayList<Date> absentDays = atModel.getAllNonRequestedAbsentDays();
+            for (Date date : absentDays)
+            {
+                this.absentDays.getItems().add(date);
+            }
 
-        // Loads the request view
-        ArrayList<Date> requests = atModel.getRequestedDays();
-        for (Date date : requests)
+            // Loads the request view
+            ArrayList<Date> requests = atModel.getRequestedDays();
+            for (Date date : requests)
+            {
+                this.requests.getItems().add(date);
+            }
+        } catch (SQLException ex)
         {
-            this.requests.getItems().add(date);
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
     }
 
@@ -96,8 +102,9 @@ public class JStudentChangeAttendanceController implements Initializable
     }
 
     @FXML
-    private void goBack(ActionEvent event) throws IOException
+    private void goBack(ActionEvent event)
     {
+        try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
         AnchorPane root = loader.load();
         JStudentMainViewController con = loader.getController();
@@ -105,12 +112,14 @@ public class JStudentChangeAttendanceController implements Initializable
         con.setUser();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     @FXML
     private void sendRequest(ActionEvent event)
     {
-
         Date dateToReq = absentDays.getSelectionModel().getSelectedItem();
         Teacher teacher = teacherView.getSelectionModel().getSelectedItem();
 

@@ -44,7 +44,8 @@ public class JStudentDaysStatestikController implements Initializable {
     }
     
     @FXML
-    public void getBackButton(ActionEvent event) throws IOException, SQLException {
+    public void getBackButton(ActionEvent event) {
+    try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentStatistics.fxml"));
         AnchorPane root = loader.load();
         JStudentStatisticsController con = loader.getController();
@@ -52,25 +53,30 @@ public class JStudentDaysStatestikController implements Initializable {
         con.setUser();
         con.loadView();
         con.setRootLayout(rootLayout);
-        rootLayout.setCenter(root);
+        rootLayout.setCenter(root);    
+    } catch (IOException ex) {
+        Utility.createErrorAlert("Programmet kan ikke gå tilbage", "Prøv venligst igen eller kontakt support!");
+    }
     }
 
-    public void loadView() throws SQLException
+    public void loadView()
     {
         userLabel.setText("Logget ind som: " + atModel.getUser().getFirstname());
         openBarChart();
     }
     
-    public void openBarChart() throws SQLException
+    public void openBarChart()
     {
-        int id = atModel.getUser().getId();
+        try {
+            int id = atModel.getUser().getId();
         ArrayList<Integer> abscentDays = Utility.whichDayAbscent(atModel.getAbsentDays(id));
         
-        Utility.makeBarChart(abscentDays, barChart); 
-       
+        Utility.makeBarChart(abscentDays, barChart);
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke åbne dette graf vindue op", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
-            
     public void setModel(AttendanceModel atModel)
     {
         this.atModel = atModel;
@@ -86,7 +92,6 @@ public class JStudentDaysStatestikController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
 
 }

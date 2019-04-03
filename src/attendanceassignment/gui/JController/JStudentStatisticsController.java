@@ -30,6 +30,9 @@ import javafx.scene.layout.BorderPane;
  */
 public class JStudentStatisticsController implements Initializable
 {
+    private AttendanceModel atModel;
+    private BorderPane rootLayout;
+    
     @FXML
     private Label lblFravær;
     @FXML
@@ -37,8 +40,6 @@ public class JStudentStatisticsController implements Initializable
     @FXML
     private LineChart<String, Double> lineChart;
 
-    private AttendanceModel atModel;
-    private BorderPane rootLayout;
 
     /**
      * Initializes the controller @FXML private JFXListView<?> requests; class.
@@ -50,8 +51,9 @@ public class JStudentStatisticsController implements Initializable
     }
    
     @FXML
-    private void showOverview(ActionEvent event) throws IOException, SQLException
+    private void showOverview(ActionEvent event)
     {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentDaysStatestik.fxml"));
         AnchorPane root = loader.load();
         JStudentDaysStatestikController con = loader.getController();
@@ -59,6 +61,9 @@ public class JStudentStatisticsController implements Initializable
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     public void setModel(AttendanceModel atModel)
@@ -66,13 +71,17 @@ public class JStudentStatisticsController implements Initializable
         this.atModel = atModel;
     }
 
-    public void loadView() throws SQLException
+    public void loadView()
     {
+        try {
         userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
         int id = atModel.getUser().getId();
         lblFravær.setText("Fravær: " + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
         setchart();
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     public void setRootLayout(BorderPane toSet)
@@ -85,8 +94,9 @@ public class JStudentStatisticsController implements Initializable
     }
     
     @FXML
-    private void goBack(ActionEvent event) throws IOException
+    private void goBack(ActionEvent event)
     {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
         AnchorPane root = loader.load();
         JStudentMainViewController con = loader.getController();
@@ -94,15 +104,22 @@ public class JStudentStatisticsController implements Initializable
         con.setUser();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
-    public void setchart() throws SQLException
+    public void setchart()
     {
+        try {
         int id = atModel.getUser().getId();
         ArrayList<Date> allSchoolDays = atModel.getAllSchoolDays();
         ArrayList<Date> abscentDays = atModel.getAbsentDays(id);
         
         Utility.makeLineChart(allSchoolDays, abscentDays,lineChart);
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan desværre ikke lave grafen", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
 

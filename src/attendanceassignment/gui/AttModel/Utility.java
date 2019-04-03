@@ -47,7 +47,6 @@ public final class Utility
      */
     public static long compareDateWithToday(Date toCompare)
     {
-
         java.sql.Date sqlDate = new java.sql.Date(toCompare.getTime());
         java.sql.Date sqlDateToday = new java.sql.Date(new Date().getTime());
         String dateBeforeString = sqlDate.toString();

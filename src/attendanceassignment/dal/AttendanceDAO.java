@@ -17,7 +17,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +81,7 @@ public class AttendanceDAO
 
     }
 
-    public boolean setAttendance(Attendance attendance) throws ParseException, SQLServerException, SQLException
+    public boolean setAttendance(Attendance attendance) throws SQLServerException, SQLException
     {
         boolean success = false;
         String sql = "INSERT INTO Attendance VALUES (?,?);";
@@ -318,7 +317,7 @@ public class AttendanceDAO
 
     }
 
-    public ArrayList<StudentNotification> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException, ParseException
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException
     {
 
         ArrayList<StudentNotification> notifications = new ArrayList<>();

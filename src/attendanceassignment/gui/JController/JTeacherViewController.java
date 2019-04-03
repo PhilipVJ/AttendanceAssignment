@@ -13,12 +13,10 @@ import com.jfoenix.controls.JFXTreeTableView;
 
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -75,7 +73,6 @@ public class JTeacherViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         classAbsence.setVisible(false);
     }
 
@@ -84,7 +81,8 @@ public class JTeacherViewController implements Initializable {
     }
 
     @FXML
-    private void showRequests(ActionEvent event) throws IOException, SQLException, SQLServerException, ParseException {
+    private void showRequests(ActionEvent event) {
+       try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherNotificationView.fxml"));          
         AnchorPane root = loader.load();
         JTeacherNotificationViewController con = loader.getController();
@@ -92,6 +90,9 @@ public class JTeacherViewController implements Initializable {
         con.loadTV();
         con.setRootLayout(rootLayout);   
         rootLayout.setCenter(root);
+       } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     public void setModel(AttendanceModel model) {
@@ -107,8 +108,8 @@ public class JTeacherViewController implements Initializable {
         rootLayout = toSet;
     }
 
-    public void loadViews() throws SQLException, SQLException, SQLServerException, SQLServerException, ParseException {
-        
+    public void loadViews() {
+        try {
         // Loads the combobox with all the teachers classes
         ObservableList<String> allClasses = FXCollections.observableArrayList(aModel.getUser().getAllClasses());
         classChooser.setItems(allClasses);
@@ -134,6 +135,9 @@ public class JTeacherViewController implements Initializable {
         aModel.loadTeacherNotifications();
         int requests = aModel.getNumberOfNotifications();
         numberOfRequests.setText("Antal anmodninger: " + requests);
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
 
     }
 
@@ -172,7 +176,8 @@ public class JTeacherViewController implements Initializable {
     }
 
     @FXML
-    private void showAttendanceLine(ActionEvent event) throws SQLException {
+    private void showAttendanceLine(ActionEvent event) {
+        try {
         TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
         if (chosenStudent != null) {
             Stage newStage = new Stage();
@@ -200,11 +205,14 @@ public class JTeacherViewController implements Initializable {
             newStage.setScene(newScene);
             newStage.show();
         }
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     @FXML
-    private void showAttendanceBar(ActionEvent event) throws SQLException {
-
+    private void showAttendanceBar(ActionEvent event) {
+        try {
         TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
         if (chosenStudent != null) {
 
@@ -231,7 +239,9 @@ public class JTeacherViewController implements Initializable {
 
             newStage.setScene(newScene);
             newStage.show();
-
+        }
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
     }   
 }

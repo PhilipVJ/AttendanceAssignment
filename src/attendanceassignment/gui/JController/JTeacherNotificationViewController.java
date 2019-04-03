@@ -63,8 +63,9 @@ public class JTeacherNotificationViewController implements Initializable
     }
 
     @FXML
-    private void back(ActionEvent event) throws IOException, SQLException, SQLServerException, ParseException
+    private void back(ActionEvent event)
     {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));
         AnchorPane root = loader.load();
         JTeacherViewController con = loader.getController();
@@ -73,11 +74,15 @@ public class JTeacherNotificationViewController implements Initializable
         con.setUser();
         con.loadViews();
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     @FXML
-    private void rejectRequest(ActionEvent event) throws ParseException, SQLException
+    private void rejectRequest(ActionEvent event)
     {
+        try {
         StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
         if (sn == null)
         {
@@ -87,11 +92,15 @@ public class JTeacherNotificationViewController implements Initializable
             aModel.deleteNotificationRequests(sn.getStudentID(), sn.getAbsentDay());
             tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
         }
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     @FXML
-    private void acceptRequest(ActionEvent event) throws ParseException, SQLException
+    private void acceptRequest(ActionEvent event)
     {
+        try {
         StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
 
         if (sn == null)
@@ -102,6 +111,9 @@ public class JTeacherNotificationViewController implements Initializable
         Attendance att = new Attendance(sn.getStudentID(), sn.getAbsentDay());
         aModel.acceptAttendance(att);
         tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
+        } catch (SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     public void setModel(AttendanceModel model)
@@ -114,9 +126,8 @@ public class JTeacherNotificationViewController implements Initializable
         rootLayout = toSet;
     }
 
-    public void loadTV() throws SQLException, SQLServerException, ParseException
+    public void loadTV()
     {
-
         ArrayList<StudentNotification> tvStudents = aModel.getNotifications();
         ObservableList<StudentNotification> students = FXCollections.observableArrayList(tvStudents);
         TreeItem<StudentNotification> root = new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren);
@@ -139,7 +150,6 @@ public class JTeacherNotificationViewController implements Initializable
         absentDayCol.setCellValueFactory(new TreeItemPropertyValueFactory<StudentNotification, String>("absentDay"));
         tableView.setShowRoot(false);
         tableView.setRoot(root);
-
-    }
+     }
 
 }

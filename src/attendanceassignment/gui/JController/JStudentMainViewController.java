@@ -11,7 +11,6 @@ import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -31,11 +30,13 @@ import javafx.scene.layout.BorderPane;
  */
 public class JStudentMainViewController implements Initializable {
 
-    @FXML
-    private Label userLabel;
     private AttendanceModel atModel;
     private Date date;
     private BorderPane rootLayout;
+    
+    @FXML
+    private Label userLabel;
+    
 
     /**
      * Initializes the controller class.
@@ -46,7 +47,8 @@ public class JStudentMainViewController implements Initializable {
     }
 
     @FXML
-    private void setAttendance(ActionEvent event) throws ParseException, SQLException, IOException {
+    private void setAttendance(ActionEvent event) {
+        try {
         int curTime = LocalDateTime.now().getHour();
         int tooLate = 15;
         int tooEarly = 8;
@@ -70,12 +72,14 @@ public class JStudentMainViewController implements Initializable {
         }
         if(curTime < tooEarly){
             Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan først sættes fra klokken " + tooEarly);
+        }} catch (IOException | SQLException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }         
     }
 
     @FXML
-    private void showStatistics(ActionEvent event) throws IOException, SQLException {
-
+    private void showStatistics(ActionEvent event) {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentStatistics.fxml"));
         AnchorPane root = loader.load();
         JStudentStatisticsController con = loader.getController();
@@ -83,6 +87,9 @@ public class JStudentMainViewController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
     void setModel(AttendanceModel atModel) {
@@ -98,7 +105,8 @@ public class JStudentMainViewController implements Initializable {
     }
 
     @FXML
-    private void changeAttendance(ActionEvent event) throws IOException, SQLException {
+    private void changeAttendance(ActionEvent event) {
+        try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentChangeAttendance.fxml"));
         AnchorPane root = loader.load();
         JStudentChangeAttendanceController con = loader.getController();
@@ -106,6 +114,9 @@ public class JStudentMainViewController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
+        } catch (IOException ex) {
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }
     }
 
 }
