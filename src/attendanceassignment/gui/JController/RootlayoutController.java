@@ -53,8 +53,8 @@ public class RootlayoutController implements Initializable {
         JLoginController con = loader.getController();     
         con.setRootLayout(borderPane);
         borderPane.setCenter(logIn);
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
         }
     }
 

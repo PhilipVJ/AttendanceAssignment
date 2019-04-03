@@ -20,8 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -55,8 +53,8 @@ public class JLoginController implements Initializable {
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
             atModel = new AttendanceModel(bll);
-        } catch (IOException ex) {
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
         }
     }
 
@@ -88,9 +86,16 @@ public class JLoginController implements Initializable {
             con.setUser();
             con.setRootLayout(rootLayout);
             rootLayout.setCenter(root);
-        }} catch (IOException | SQLException ex) {
+        }
+        }catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        }
+        
+        catch (SQLException ex) {
             Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
+            
+        
 
     }
 

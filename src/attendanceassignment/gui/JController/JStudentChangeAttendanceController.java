@@ -112,8 +112,8 @@ public class JStudentChangeAttendanceController implements Initializable
         con.setUser();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
         }
     }
 
@@ -152,7 +152,7 @@ public class JStudentChangeAttendanceController implements Initializable
             }
         } catch (SQLException ex)
         {
-            Utility.createErrorAlert("Problemer med SQL serveren", "En fejl opstod med SQl serveren. Prøv igen senere");
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
 
     }

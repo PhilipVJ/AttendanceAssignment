@@ -54,9 +54,9 @@ public class JStudentDaysStatestikController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);    
-    } catch (IOException ex) {
-        Utility.createErrorAlert("Programmet kan ikke gå tilbage", "Prøv venligst igen eller kontakt support!");
-    }
+    } catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        }
     }
 
     public void loadView()
@@ -73,7 +73,7 @@ public class JStudentDaysStatestikController implements Initializable {
         
         Utility.makeBarChart(abscentDays, barChart);
         } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke åbne dette graf vindue op", "Prøv venligst igen senere eller kontakt support!");
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
     }
 

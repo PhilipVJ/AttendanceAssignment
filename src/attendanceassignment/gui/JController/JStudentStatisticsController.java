@@ -61,8 +61,8 @@ public class JStudentStatisticsController implements Initializable
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(IOException ex2){
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
         }
     }
 
@@ -73,14 +73,14 @@ public class JStudentStatisticsController implements Initializable
 
     public void loadView()
     {
-        try {
+        try{
         userNameTag.setText("Logget ind som: " + atModel.getUser().getFirstname());
         DecimalFormat df = new DecimalFormat("#.00");
         int id = atModel.getUser().getId();
         lblFravær.setText("Fravær: " + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
         setchart();
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        }catch (SQLException ex) {
+            Utility.createErrorAlert("Der opstod et problem med databasen", "Prøv venligst igen senere eller kontakt support!");
         }
     }
 
@@ -105,7 +105,7 @@ public class JStudentStatisticsController implements Initializable
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
         } catch (IOException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
         }
     }
 
@@ -118,7 +118,7 @@ public class JStudentStatisticsController implements Initializable
         
         Utility.makeLineChart(allSchoolDays, abscentDays,lineChart);
         } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan desværre ikke lave grafen", "Prøv venligst igen senere eller kontakt support!");
+            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
         }
     }
 
