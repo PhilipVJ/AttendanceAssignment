@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -47,8 +48,8 @@ public class JStudentMainViewController implements Initializable {
     @FXML
     private void setAttendance(ActionEvent event) throws ParseException, SQLException, IOException {
         int curTime = LocalDateTime.now().getHour();
-        int tooLate = 25;
-        int tooEarly = 0;
+        int tooLate = 15;
+        int tooEarly = 8;
         date = new Date();
         boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
         
@@ -56,6 +57,10 @@ public class JStudentMainViewController implements Initializable {
              
                 Attendance att = new Attendance(atModel.getUser().getId(), date);
                 atModel.addAttendance(att);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Tilstedeværelse er sat");
+                        alert.setContentText("Du er nu registreret");
+                        alert.showAndWait();
         }
         if(attendanceHasBeenSet==true){
             Utility.createErrorAlert("Tilstedeværelse er sat", "Du er allerede sat som tilstedeværende for i dag");

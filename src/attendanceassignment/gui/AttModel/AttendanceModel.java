@@ -17,8 +17,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -27,13 +25,11 @@ import javafx.collections.ObservableList;
 public class AttendanceModel {
 
     private final BLLManager bllMan;
-
-    private final ObservableList<Student> students = FXCollections.observableArrayList();
     private ArrayList<StudentNotification> notifications;
     private User user;
 
-    public AttendanceModel() throws IOException {
-        bllMan = new BLLManager();
+    public AttendanceModel(BLLManager bllMan) throws IOException {
+        this.bllMan = bllMan;
     }
 
     /**

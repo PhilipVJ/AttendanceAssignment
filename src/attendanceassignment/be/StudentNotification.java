@@ -22,7 +22,6 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     private final StringProperty className;
     private final int studentID;
 
-
     public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
@@ -52,8 +51,6 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     public Date getAbsentDay() {
         return absentDay;
     }
-
-   
 
     public String getClassName() {
         return className.get();

@@ -156,7 +156,7 @@ public final class Utility
         barChart.getData().add(series);
         barChart.setLegendVisible(false);
         barChart.getXAxis().setLabel("");
-        barChart.getYAxis().setLabel("Hvor mange dage med fravær");
+        barChart.getYAxis().setLabel("Antal dage med fravær");
     }
 
     public static boolean checkNetwork() throws SocketException, IOException

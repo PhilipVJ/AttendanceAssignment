@@ -11,30 +11,36 @@ import java.util.Date;
  *
  * @author Anders
  */
-public class Attendance {
+public class Attendance
+{
 
     int id;
     Date attendance;
 
-    public Attendance(int id, Date attendance) {
+    public Attendance(int id, Date attendance)
+    {
         this.id = id;
         this.attendance = attendance;
 
     }
 
-    public void setDate(Date attendance) {
+    public void setDate(Date attendance)
+    {
         this.attendance = attendance;
     }
 
-    public Date getDate() {
+    public Date getDate()
+    {
         return attendance;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 

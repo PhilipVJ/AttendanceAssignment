@@ -21,8 +21,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,8 +50,6 @@ public class JTeacherViewController implements Initializable {
     private AttendanceModel aModel;
     private BorderPane rootLayout;
     
-    @FXML
-    private AnchorPane anchorPane;
     @FXML
     private Label userNameTag;
     @FXML

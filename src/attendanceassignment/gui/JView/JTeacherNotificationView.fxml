@@ -12,10 +12,10 @@
       <JFXButton layoutX="203.0" layoutY="412.0" onAction="#acceptRequest" prefHeight="50.0" prefWidth="150.0" text="Accepter" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="192.0" />
       <JFXTreeTableView fx:id="tableView" prefHeight="400.0" prefWidth="550.0">
          <columns>
-            <TreeTableColumn fx:id="firstNameCol" prefWidth="137.5" text="First Name" />
-            <TreeTableColumn fx:id="lastNameCol" prefWidth="137.5" text="Last Name" />
-            <TreeTableColumn fx:id="classNameCol" prefWidth="137.5" text="Class Name" />
-            <TreeTableColumn fx:id="absentDayCol" prefWidth="137.5" text="Absent Date" />
+            <TreeTableColumn fx:id="firstNameCol" prefWidth="137.5" text="Fornavn" />
+            <TreeTableColumn fx:id="lastNameCol" prefWidth="137.5" text="Efternavn" />
+            <TreeTableColumn fx:id="classNameCol" prefWidth="137.5" text="Klassenavn" />
+            <TreeTableColumn fx:id="absentDayCol" prefWidth="137.5" text="Fraværsdag" />
          </columns>
       </JFXTreeTableView>
    </children>

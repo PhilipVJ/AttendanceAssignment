@@ -10,10 +10,7 @@ import attendanceassignment.be.Student;
 import attendanceassignment.be.StudentNotification;
 import attendanceassignment.be.User;
 import attendanceassignment.be.Teacher;
-import attendanceassignment.dal.AbscensData;
-import attendanceassignment.dal.UserDB;
-
-import attendanceassignment.dal.TeacherDAO;
+import attendanceassignment.dal.AttendanceDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,83 +22,97 @@ import java.util.Date;
  *
  * @author Anders
  */
-public class BLLManager {
+public class BLLManager
+{
 
-    AbscensData abscensData = new AbscensData();
-    TeacherDAO tDAO = new TeacherDAO();
-    UserDB userDb = new UserDB();
+    AttendanceDAO aDAO;
 
-    public BLLManager() throws IOException {
+    public BLLManager(AttendanceDAO aDAO) throws IOException
+    {
+        this.aDAO = aDAO;
+    }
+
+    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException
+    {
+
+        return aDAO.setAttendance(attendance);
 
     }
 
-    public boolean setAttendance(Attendance attendance) throws ParseException, SQLException {
+    public User login(String username, String password) throws SQLException, IOException
+    {
 
-        return abscensData.setAttendance(attendance);
-
-    }
-
-    public User login(String username, String password) throws SQLException, IOException {
-
-        return userDb.userLogin(username, password);
+        return aDAO.userLogin(username, password);
 
     }
 
-    public ArrayList<Teacher> getAllTeachers() throws SQLException {
-        return tDAO.getAllTeachers();
+    public ArrayList<Teacher> getAllTeachers() throws SQLException
+    {
+        return aDAO.getAllTeachers();
 
     }
 
-    public ArrayList<Date> getAbsentDays(int id) throws SQLException {
-        return abscensData.getAbsentDays(id);
+    public ArrayList<Date> getAbsentDays(int id) throws SQLException
+    {
+        return aDAO.getAbsentDays(id);
     }
 
-    public boolean requestAttendanceChange(int student, int teacher, Date date) throws SQLException {
-        return abscensData.requestAttendanceChange(student, teacher, date);
+    public boolean requestAttendanceChange(int student, int teacher, Date date) throws SQLException
+    {
+        return aDAO.requestAttendanceChange(student, teacher, date);
     }
 
-    public boolean checkForRequestedDay(int studentId, Date date) throws SQLException {
-        return abscensData.checkForRequestedDay(studentId, date);
+    public boolean checkForRequestedDay(int studentId, Date date) throws SQLException
+    {
+        return aDAO.checkForRequestedDay(studentId, date);
     }
 
-    public ArrayList<Date> getRequestedDays(int id) throws SQLException {
-        return abscensData.getAllRequestsByStudent(id);
+    public ArrayList<Date> getRequestedDays(int id) throws SQLException
+    {
+        return aDAO.getAllRequestsByStudent(id);
     }
 
-    public ArrayList<Date> getAllNonRequestedAbsentDays(int id) throws SQLException {
-        return abscensData.getAllNonRequestedAbsentDays(id);
+    public ArrayList<Date> getAllNonRequestedAbsentDays(int id) throws SQLException
+    {
+        return aDAO.getAllNonRequestedAbsentDays(id);
     }
 
-    public void addAttendance(Attendance att) throws ParseException, SQLException {
-        abscensData.setAttendance(att);
+    public void addAttendance(Attendance att) throws ParseException, SQLException
+    {
+        aDAO.setAttendance(att);
     }
 
-    public ArrayList<Student> getClassStudents(String className) throws SQLException {
-        return abscensData.getClassStudents(className);
+    public ArrayList<Student> getClassStudents(String className) throws SQLException
+    {
+        return aDAO.getClassStudents(className);
     }
 
-    public boolean checkForAttendance(int studentId, Date date) throws SQLException {
-        return abscensData.checkForAttendance(studentId, date);
+    public boolean checkForAttendance(int studentId, Date date) throws SQLException
+    {
+        return aDAO.checkForAttendance(studentId, date);
     }
 
-    public ArrayList<Date> getAllSchoolDays() throws SQLException {
+    public ArrayList<Date> getAllSchoolDays() throws SQLException
+    {
 
-        return abscensData.allSchoolDays();
-
-    }
-    
-    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException {
-
-        return abscensData.getTeacherNotifications(teacherId);
+        return aDAO.allSchoolDays();
 
     }
 
-    public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException {
-         abscensData.deleteNotificationRequests(studentID,absentDay);
+    public ArrayList<StudentNotification> getTeacherNotifications(int teacherId) throws SQLException, SQLServerException, ParseException
+    {
+
+        return aDAO.getTeacherNotifications(teacherId);
+
+    }
+
+    public void deleteNotificationRequests(int studentID, Date absentDay) throws SQLException
+    {
+        aDAO.deleteNotificationRequests(studentID, absentDay);
     }
 
     public void acceptAttendance(Attendance att) throws SQLException
     {
-        abscensData.acceptAttendance(att);
+        aDAO.acceptAttendance(att);
     }
 }

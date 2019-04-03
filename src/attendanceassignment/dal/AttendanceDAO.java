@@ -8,6 +8,8 @@ package attendanceassignment.dal;
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.Student;
 import attendanceassignment.be.StudentNotification;
+import attendanceassignment.be.Teacher;
+import attendanceassignment.be.User;
 import attendanceassignment.gui.AttModel.Utility;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
@@ -19,21 +21,64 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author nikla
  */
-public class AbscensData
+public class AttendanceDAO
 {
 
     DbConnection dbc;
 
-    public AbscensData() throws IOException
+    public AttendanceDAO(DbConnection con) throws IOException
     {
-        dbc = new DbConnection();
+        this.dbc = con;
+
+    }
+
+    public ArrayList<Teacher> getAllTeachers() throws SQLServerException, SQLException
+    {
+
+        ArrayList<Teacher> allTeachers = new ArrayList<>();
+        String sql = "SELECT * FROM Person WHERE pType='Teacher'";
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);)
+        {
+            ResultSet rs = pst.executeQuery();
+            while (rs.next())
+            {
+                String firstName = rs.getString("firstname");
+
+                String lastname = rs.getString("lastname");
+
+                int id = rs.getInt("personID");
+
+                Teacher toAdd = new Teacher(firstName, lastname, id);
+                toAdd.addClasses(getClasses(id));
+
+                allTeachers.add(toAdd);
+
+            }
+            return allTeachers;
+        }
+    }
+
+    public ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
+    {
+        ArrayList<String> allClasses = new ArrayList<>();
+        String sql = "SELECT * FROM PersonClass INNER JOIN Class ON PersonClass.classID = Class.classID WHERE personID=(?);";
+        ResultSet rs = null;
+        Connection con = dbc.getConnection();
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, id);
+        rs = pst.executeQuery();
+        while (rs.next())
+        {
+            String className = rs.getString("classname");
+            allClasses.add(className);
+
+        }
+        return allClasses;
 
     }
 
@@ -371,6 +416,59 @@ public class AbscensData
 
     }
 
+    public User userLogin(String username, String password) throws SQLException
+    {
+
+        User user = null;
+        String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
+        ResultSet rs = null;
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);)
+        {
+
+            pst.setString(1, username);
+            pst.setString(2, password);
+
+            rs = pst.executeQuery();
+
+            if (rs.next())
+            {
+                int id = rs.getInt("personID");
+                user = getUser(id);
+            }
+        }
+        return user;
+    }
+
+    private User getUser(int id) throws SQLServerException, SQLException
+    {
+
+        User user = null;
+        String sql = "SELECT * FROM Person WHERE personID = ?";
+        ResultSet rs = null;
+        try (Connection con = dbc.getConnection(); PreparedStatement pst = con.prepareStatement(sql);)
+        {
+
+            pst.setInt(1, id);
+
+            rs = pst.executeQuery();
+            if (rs.next())
+            {
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String type = rs.getString("pType");
+                user = new User(id, firstName, lastName, type);
+                ArrayList<String> classes = getClasses(id);
+                for (String schoolClass : classes)
+                {
+                    user.addClass(schoolClass);
+                }
+            }
+        }
+
+        return user;
+
+    }
+    
 
 
 }

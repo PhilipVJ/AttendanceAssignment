@@ -6,9 +6,11 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.User;
+import attendanceassignment.bll.BLLManager;
+import attendanceassignment.dal.AttendanceDAO;
+import attendanceassignment.dal.DbConnection;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.Utility;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -26,9 +28,6 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -39,11 +38,7 @@ import javafx.scene.layout.BorderPane;
 public class JLoginController implements Initializable {
 
     private AttendanceModel atModel;
-    private Stage stage;
 
-    private JFXComboBox<String> comboboxChoose;
-    @FXML
-    private AnchorPane anchorPane;
     @FXML
     private JFXTextField username;
     @FXML
@@ -55,13 +50,6 @@ public class JLoginController implements Initializable {
 
     }
 
-    public ObservableList chooseYouRole() {
-        ObservableList<String> role = FXCollections.observableArrayList(
-                "Student",
-                "Teacher",
-                "Admin");
-        return role;
-    }
 
     /**
      * Initializes the controller class.
@@ -70,7 +58,8 @@ public class JLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            atModel = new AttendanceModel();
+            BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
+            atModel = new AttendanceModel(bll);
         } catch (IOException ex) {
             Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
