@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JTeacherViewController">
    <children>
@@ -14,7 +15,7 @@
       <JFXButton layoutX="489.0" layoutY="15.0" onAction="#showRequests" prefHeight="31.0" prefWidth="126.0" text="Vis" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0" />
       <JFXButton layoutX="200.0" layoutY="295.0" onAction="#showAttendanceLine" prefHeight="50.0" prefWidth="150.0" text="Vis fraværskurve" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="192.0" />
       <JFXComboBox fx:id="classChooser" focusColor="#4fb6bf" layoutX="24.0" layoutY="70.0" onAction="#chooseClass" prefHeight="31.0" prefWidth="160.0" promptText="Vælg klasse" styleClass="combo-box" stylesheets="@../../css/Style.css" unFocusColor="#dab521" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="54.0" />
-      <Label fx:id="numberOfRequests" layoutX="245.0" layoutY="44.0" prefHeight="21.0" prefWidth="154.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0" />
+      <Label fx:id="numberOfRequests" layoutX="245.0" layoutY="44.0" prefHeight="21.0" prefWidth="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="15.0" />
       <JFXTreeTableView fx:id="tableView" layoutX="200.0" layoutY="50.0" prefHeight="356.0" prefWidth="332.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="54.0">
          <columns>
             <TreeTableColumn fx:id="firstNameCol" prefWidth="81.0" text="Fornavn" />
@@ -22,7 +23,10 @@
             <TreeTableColumn fx:id="classNameCol" prefWidth="75.0" text="Hold" />
             <TreeTableColumn fx:id="absenceCol" prefWidth="67.0" text="Fravær" />
          </columns></JFXTreeTableView>
-      <Label fx:id="classAbsence" layoutX="20.0" layoutY="144.0" prefHeight="20.0" prefWidth="189.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0" />
+      <Label fx:id="classAbsence" layoutX="14.0" layoutY="99.0" prefHeight="20.0" prefWidth="189.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="99.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <JFXButton layoutX="376.0" layoutY="425.0" onAction="#showAttendanceBar" prefHeight="50.0" prefWidth="150.0" text="Vis søjlediagram" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>

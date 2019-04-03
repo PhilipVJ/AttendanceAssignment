@@ -17,6 +17,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,7 +50,7 @@ public class JTeacherViewController implements Initializable {
 
     private AttendanceModel aModel;
     private BorderPane rootLayout;
-    
+  
     @FXML
     private Label userNameTag;
     @FXML
@@ -160,7 +161,9 @@ public class JTeacherViewController implements Initializable {
         
             double averageAbsence = combinedAbsence / classStudents.size();
 
-            classAbsence.setText("Gennemsnitlig fravær: " + averageAbsence + "%");
+            DecimalFormat df = new DecimalFormat("#.00");
+            
+            classAbsence.setText("Gennemsnitlig fravær: " + df.format(averageAbsence) + "%");
 
         } catch (SQLException ex) {
             Utility.createErrorAlert("Der er ikke forbindelse til serveren!", "Kan ikke få fat i oplysninger på elevernes fravær historik.");
@@ -230,5 +233,5 @@ public class JTeacherViewController implements Initializable {
             newStage.show();
 
         }
-    }
+    }   
 }
