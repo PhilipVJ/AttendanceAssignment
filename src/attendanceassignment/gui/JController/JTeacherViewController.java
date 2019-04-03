@@ -167,7 +167,7 @@ public class JTeacherViewController implements Initializable {
             classAbsence.setText("Gennemsnitlig fravær: " + averageAbsence + "%");
 
         } catch (SQLException ex) {
-            Logger.getLogger(JTeacherViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Utility.createErrorAlert("Der er ikke forbindelse til serveren!", "Kan ikke få fat i oplysninger på elevernes fravær historik.");
         }
 
     }
