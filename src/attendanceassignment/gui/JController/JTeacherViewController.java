@@ -88,8 +88,8 @@ public class JTeacherViewController implements Initializable {
         con.loadTV();
         con.setRootLayout(rootLayout);   
         rootLayout.setCenter(root);
-       } catch (IOException ex) {
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+       } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -133,8 +133,8 @@ public class JTeacherViewController implements Initializable {
         aModel.loadTeacherNotifications();
         int requests = aModel.getNumberOfNotifications();
         numberOfRequests.setText("Antal anmodninger: " + requests);
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
 
     }
@@ -167,10 +167,9 @@ public class JTeacherViewController implements Initializable {
             
             classAbsence.setText("Gennemsnitlig fravær: " + df.format(averageAbsence) + "%");
 
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
-
     }
 
     @FXML
@@ -203,8 +202,8 @@ public class JTeacherViewController implements Initializable {
             newStage.setScene(newScene);
             newStage.show();
         }
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
