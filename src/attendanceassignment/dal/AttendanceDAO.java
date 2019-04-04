@@ -25,7 +25,7 @@ import java.util.Date;
  *
  * @author nikla
  */
-public class AttendanceDAO
+public class AttendanceDAO implements IDatabase
 {
 
     DbConnection dbc;
@@ -47,6 +47,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Teacher> getAllTeachers() throws SQLServerException, SQLException
     {
 
@@ -80,6 +81,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
     {
         ArrayList<String> allClasses = new ArrayList<>();
@@ -106,6 +108,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public boolean setAttendance(Attendance attendance) throws SQLServerException, SQLException
     {
         boolean success = false;
@@ -134,6 +137,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException
     {
 
@@ -159,6 +163,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException
     {
 
@@ -191,6 +196,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Date> allSchoolDays() throws SQLServerException, SQLException
     {
         ArrayList<Date> presentDays = new ArrayList<>();
@@ -221,6 +227,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException
      */
+    @Override
     public boolean checkForRequestedDay(int studentId, Date toCheck) throws SQLServerException, SQLException
     {
 
@@ -250,6 +257,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException
     {
 
@@ -283,6 +291,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException
     {
 
@@ -314,6 +323,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Date> getAllNonRequestedAbsentDays(int studentID) throws SQLServerException, SQLException
     {
 
@@ -366,6 +376,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<Student> getClassStudents(String className) throws SQLServerException, SQLException
     {
         ArrayList<Student> classStudents = new ArrayList<>();
@@ -401,6 +412,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public ArrayList<StudentNotification> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException
     {
 
@@ -440,6 +452,7 @@ public class AttendanceDAO
      * @throws SQLServerException
      * @throws SQLException 
      */
+    @Override
     public void deleteNotificationRequests(int studentID, Date date) throws SQLServerException, SQLException
     {
 
@@ -462,6 +475,7 @@ public class AttendanceDAO
      * @param att
      * @throws SQLException 
      */
+    @Override
     public void acceptAttendance(Attendance att) throws SQLException 
     {
         Connection con = null;
@@ -510,6 +524,7 @@ public class AttendanceDAO
      * @return
      * @throws SQLException 
      */
+    @Override
     public User userLogin(String username, String password) throws SQLException
     {
 

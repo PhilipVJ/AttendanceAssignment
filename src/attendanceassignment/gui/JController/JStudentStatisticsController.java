@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
@@ -61,8 +62,8 @@ public class JStudentStatisticsController implements Initializable
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -79,8 +80,8 @@ public class JStudentStatisticsController implements Initializable
         int id = atModel.getUser().getId();
         lblFravær.setText("Fravær: " + df.format(Utility.calculateAbsencePercentage(atModel.getAllSchoolDays(), atModel.getAbsentDays(id))) + "%");
         setchart();
-        }catch (SQLException ex) {
-            Utility.createErrorAlert("Der opstod et problem med databasen", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -104,8 +105,8 @@ public class JStudentStatisticsController implements Initializable
         con.setUser();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -117,8 +118,8 @@ public class JStudentStatisticsController implements Initializable
         ArrayList<Date> abscentDays = atModel.getAbsentDays(id);
         
         Utility.makeLineChart(allSchoolDays, abscentDays,lineChart);
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 

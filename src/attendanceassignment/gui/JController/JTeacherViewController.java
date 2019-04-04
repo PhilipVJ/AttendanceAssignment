@@ -7,6 +7,7 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Student;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -240,8 +241,8 @@ public class JTeacherViewController implements Initializable {
             newStage.setScene(newScene);
             newStage.show();
         }
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }   
 }
