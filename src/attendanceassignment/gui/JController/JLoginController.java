@@ -59,7 +59,6 @@ public class JLoginController implements Initializable {
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
 
@@ -94,7 +93,7 @@ public class JLoginController implements Initializable {
         }} catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+
         } 
         
             

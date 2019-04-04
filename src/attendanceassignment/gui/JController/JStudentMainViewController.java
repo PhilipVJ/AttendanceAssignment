@@ -9,9 +9,7 @@ import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -78,7 +76,7 @@ public class JStudentMainViewController implements Initializable {
         }} catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+ 
         } 
     }
 
@@ -95,7 +93,7 @@ public class JStudentMainViewController implements Initializable {
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+
         } 
     }
 
@@ -124,7 +122,7 @@ public class JStudentMainViewController implements Initializable {
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+      
         } 
     }
 

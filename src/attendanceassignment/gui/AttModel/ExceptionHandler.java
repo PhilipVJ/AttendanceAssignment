@@ -17,20 +17,20 @@ public class ExceptionHandler
         switch (ex.getClass().getSimpleName())
         {
             case "SQLServerException":
-                handleSqlServerException(ex);
+                handleSqlServerException();
                 break;
             case "SQLException":    
                 handleSqlException();
                 break;
-            case "IOException":
+            case "FileNotFoundException":
                 handleIOException();
                 break;
             default:
-                throw new AssertionError();
+                handleUnknownError();
         }
     }
     
-    private static void handleSqlServerException(Exception ex)
+    private static void handleSqlServerException()
     {
         Utility.createErrorAlert("Der kan ikke oprettes forbindelse til serveren", "Kontakt support eller prøv igen senere!");
     }
@@ -43,6 +43,11 @@ public class ExceptionHandler
     private static void handleIOException()
     {
         Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+    }
+
+    private static void handleUnknownError()
+    {
+        Utility.createErrorAlert("Ukendt fejl opstod", "Der opstod en ukendt fejl i systemet.");
     }
     
     
