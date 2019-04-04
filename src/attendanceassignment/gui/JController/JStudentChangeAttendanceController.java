@@ -10,9 +10,7 @@ import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXListView;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -119,7 +117,7 @@ public class JStudentChangeAttendanceController implements Initializable
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+
         } 
     }
 
@@ -159,7 +157,7 @@ public class JStudentChangeAttendanceController implements Initializable
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+
         } 
 
     }
