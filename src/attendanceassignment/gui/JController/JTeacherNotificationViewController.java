@@ -8,6 +8,7 @@ package attendanceassignment.gui.JController;
 import attendanceassignment.be.Attendance;
 import attendanceassignment.be.StudentNotification;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -72,8 +73,8 @@ public class JTeacherNotificationViewController implements Initializable
         con.setUser();
         con.loadViews();
         rootLayout.setCenter(root);
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -90,8 +91,8 @@ public class JTeacherNotificationViewController implements Initializable
             aModel.deleteNotificationRequests(sn.getStudentID(), sn.getAbsentDay());
             tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
         }
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
@@ -109,8 +110,8 @@ public class JTeacherNotificationViewController implements Initializable
         Attendance att = new Attendance(sn.getStudentID(), sn.getAbsentDay());
         aModel.acceptAttendance(att);
         tableView.getRoot().getChildren().remove(tableView.getSelectionModel().getSelectedItem());
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 

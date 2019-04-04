@@ -11,6 +11,7 @@ import attendanceassignment.be.StudentNotification;
 import attendanceassignment.be.User;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.dal.AttendanceDAO;
+import attendanceassignment.dal.IDatabase;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,9 +25,9 @@ import java.util.Date;
 public class BLLManager
 {
 
-    AttendanceDAO aDAO;
+    IDatabase aDAO;
 
-    public BLLManager(AttendanceDAO aDAO) throws IOException
+    public BLLManager(IDatabase aDAO) throws IOException
     {
         this.aDAO = aDAO;
     }
