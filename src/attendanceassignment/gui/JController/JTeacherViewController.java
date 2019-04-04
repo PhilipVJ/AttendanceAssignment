@@ -175,6 +175,7 @@ public class JTeacherViewController implements Initializable {
     @FXML
     private void showAttendanceLine(ActionEvent event) {
         try {
+        //sikrer at en student er markeret
         TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
         if (chosenStudent != null) {
             Stage newStage = new Stage();
@@ -210,6 +211,7 @@ public class JTeacherViewController implements Initializable {
     @FXML
     private void showAttendanceBar(ActionEvent event) {
         try {
+        //sikrer at en student er markeret
         TreeItem<Student> chosenStudent = tableView.getSelectionModel().getSelectedItem();
         if (chosenStudent != null) {
 

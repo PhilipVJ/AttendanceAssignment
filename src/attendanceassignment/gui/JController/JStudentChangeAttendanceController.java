@@ -126,19 +126,19 @@ public class JStudentChangeAttendanceController implements Initializable
     {
         Date dateToReq = absentDays.getSelectionModel().getSelectedItem();
         Teacher teacher = teacherView.getSelectionModel().getSelectedItem();
-
+        //sikrer at en dato er valgt
         if (dateToReq == null)
         {
             checker.setText("Vælg en dag du ønsker ændret");
             return;
         }
-
+        //sikrer at en teacher er valgt
         if (teacher == null)
         {
             checker.setText("Vælg en lærer at sende anmodningen til");
             return;
         }
-
+        //sikrer at man højst kan ændre sit fravær i op til 14 dage
         if (Utility.compareDateWithToday(dateToReq) > 14)
         {
             Utility.createErrorAlert("Tidsperiode overskredet", "Anmodninger kan kun sendes hvis den valgte dato er indenfor de sidste 14 dage");
@@ -147,6 +147,7 @@ public class JStudentChangeAttendanceController implements Initializable
 
         try
         {
+            //sender datoen videre til databasen
             boolean request = atModel.requestAttendanceChange(teacher.getId(), dateToReq);
             if (request)
             {

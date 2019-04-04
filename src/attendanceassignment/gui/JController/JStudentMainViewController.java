@@ -55,7 +55,8 @@ public class JStudentMainViewController implements Initializable {
         int tooEarly = 8;
         date = new Date();
         boolean attendanceHasBeenSet = atModel.checkForAttendance(date);
-        
+        //sikrer for at man kun kan sætte tilstedeværelse indenfor bestemt tidsramme.
+        //sikrer også at man ikke allerede har sat sin tilstedeværelse den pågældende dag
         if(attendanceHasBeenSet == false && (curTime < tooLate && curTime > tooEarly) && Utility.checkNetwork()==true){
              
                 Attendance att = new Attendance(atModel.getUser().getId(), date);

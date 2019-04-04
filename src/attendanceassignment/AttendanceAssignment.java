@@ -5,6 +5,7 @@
  */
 package attendanceassignment;
 
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import attendanceassignment.gui.JController.JLoginController;
 import attendanceassignment.gui.JController.RootlayoutController;
@@ -56,8 +57,8 @@ public class AttendanceAssignment extends Application {
 
             stage.setScene(scene);
             stage.show();
-        } catch (IOException ex) {
-            Utility.createErrorAlert("Fil ikke fundet", "En eller flere filer blev ikke fundet");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
 
     }

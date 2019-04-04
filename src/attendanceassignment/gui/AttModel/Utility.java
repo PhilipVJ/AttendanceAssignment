@@ -160,6 +160,7 @@ public final class Utility
 
     public static boolean checkNetwork() throws SocketException, IOException
     {
+        // tjekker at man er på skolens netværk
         ProcessBuilder builder = new ProcessBuilder(
                 "cmd.exe", "/c", "ipconfig/all");
         builder.redirectErrorStream(true);
@@ -214,7 +215,6 @@ public final class Utility
 
             if (line.contains("EASV"))
             {
-                System.out.println("Fundet netværk igen");
                 return true;
             }
 

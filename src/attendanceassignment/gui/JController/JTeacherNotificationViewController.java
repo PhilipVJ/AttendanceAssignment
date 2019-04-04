@@ -82,6 +82,7 @@ public class JTeacherNotificationViewController implements Initializable
     private void rejectRequest(ActionEvent event)
     {
         try {
+        //tjekker på om en student er markeret
         StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
         if (sn == null)
         {
@@ -100,8 +101,8 @@ public class JTeacherNotificationViewController implements Initializable
     private void acceptRequest(ActionEvent event)
     {
         try {
+        //tjekker på om en student er markeret
         StudentNotification sn = tableView.getSelectionModel().getSelectedItem().getValue();
-
         if (sn == null)
         {
             Utility.createErrorAlert("Der er ikke valgt en elev", "Vælg venligt den elev du vil rette fravær på");

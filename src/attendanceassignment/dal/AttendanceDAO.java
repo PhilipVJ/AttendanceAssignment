@@ -372,7 +372,7 @@ public class AttendanceDAO implements IDatabase
     /**
      * Get the student of a class from the SQL and put it into a ArrayList
      * @param className
-     * @return
+     * @return Henter students der tilhører en bestemt klasse.
      * @throws SQLServerException
      * @throws SQLException 
      */
@@ -408,7 +408,7 @@ public class AttendanceDAO implements IDatabase
     /**
      * Get the Student notifications from a student from the sql and put it into a arraylist so the teacher can see it
      * @param teacherID
-     * @return
+     * @return Henter elevers fraværs notifikationer til den individuelle lære
      * @throws SQLServerException
      * @throws SQLException 
      */
@@ -474,6 +474,7 @@ public class AttendanceDAO implements IDatabase
      * Teacher Accept the request from a student in the sql  
      * @param att
      * @throws SQLException 
+     * Sætter eleven som tilstedeværende og sletter fraværs notifikationen
      */
     @Override
     public void acceptAttendance(Attendance att) throws SQLException 
@@ -517,13 +518,6 @@ public class AttendanceDAO implements IDatabase
         }
     }
 
-    /**
-     * Checks if the user exist in the Sql server if it do send it to the right view.
-     * @param username
-     * @param password
-     * @return
-     * @throws SQLException 
-     */
     @Override
     public User userLogin(String username, String password) throws SQLException
     {
@@ -548,16 +542,8 @@ public class AttendanceDAO implements IDatabase
         return user;
     }
 
-    /**
-     * getting the current user for the person who is logged in
-     * @param id
-     * @return
-     * @throws SQLServerException
-     * @throws SQLException 
-     */
     private User getUser(int id) throws SQLServerException, SQLException
     {
-
         User user = null;
         String sql = "SELECT * FROM Person WHERE personID = ?";
         ResultSet rs = null;

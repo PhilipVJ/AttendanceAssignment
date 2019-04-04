@@ -61,11 +61,16 @@ public class JLoginController implements Initializable {
             ExceptionHandler.handleException(ex);
         } 
     }
-
+    
+    /*
+    *Login metode + sikring
+    *
+    */ 
     @FXML
     private void login(ActionEvent event) {
         try {
         User user = atModel.login(username.getText(), password.getText());
+        //sikrer at useren findes.
         if (user==null)
         {
             Utility.createErrorAlert("Login fejlede", "Brugernavn eller adgangskode er ugyldigt. Prøv igen.");
