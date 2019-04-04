@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.AttendanceAssignment;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
@@ -53,8 +54,8 @@ public class RootlayoutController implements Initializable {
         JLoginController con = loader.getController();     
         con.setRootLayout(borderPane);
         borderPane.setCenter(logIn);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        } catch(Exception ex){
+           ExceptionHandler.handleException(ex);
         }
     }
 
