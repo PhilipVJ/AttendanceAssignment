@@ -7,6 +7,7 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Teacher;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,10 +88,11 @@ public class JStudentChangeAttendanceController implements Initializable
             {
                 this.requests.getItems().add(date);
             }
-        } catch (SQLException ex)
+        } catch (Exception ex) 
         {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
-        }
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     public void setModel(AttendanceModel atModel)
@@ -112,9 +116,11 @@ public class JStudentChangeAttendanceController implements Initializable
         con.setUser();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @FXML
@@ -150,10 +156,11 @@ public class JStudentChangeAttendanceController implements Initializable
                 requests.getItems().add(dateToReq);
                 absentDays.getItems().remove(dateToReq);
             }
-        } catch (SQLException ex)
+        } catch (Exception ex) 
         {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
-        }
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
 
     }
 

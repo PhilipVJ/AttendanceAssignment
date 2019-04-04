@@ -6,6 +6,7 @@
 package attendanceassignment.gui.JController;
 
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,9 +57,11 @@ public class JStudentDaysStatestikController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);    
-    } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+    } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     public void loadView()
@@ -72,9 +77,11 @@ public class JStudentDaysStatestikController implements Initializable {
         ArrayList<Integer> abscentDays = Utility.whichDayAbscent(atModel.getAbsentDays(id));
         
         Utility.makeBarChart(abscentDays, barChart);
-        } catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     public void setModel(AttendanceModel atModel)

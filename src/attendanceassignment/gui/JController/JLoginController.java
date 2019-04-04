@@ -56,9 +56,11 @@ public class JLoginController implements Initializable {
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
             atModel = new AttendanceModel(bll);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @FXML
