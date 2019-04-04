@@ -9,7 +9,7 @@ package attendanceassignment.gui.AttModel;
  *
  * @author nikla
  */
-public class ExceptionHander
+public class ExceptionHandler
 {
 
     public static void handleException(Exception ex)

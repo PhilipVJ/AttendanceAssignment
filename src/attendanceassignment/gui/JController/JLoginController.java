@@ -10,7 +10,7 @@ import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.AttendanceDAO;
 import attendanceassignment.dal.DbConnection;
 import attendanceassignment.gui.AttModel.AttendanceModel;
-import attendanceassignment.gui.AttModel.ExceptionHander;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -91,7 +91,7 @@ public class JLoginController implements Initializable {
             rootLayout.setCenter(root);
         }} catch (Exception ex) 
         {
-            ExceptionHander.handleException(ex);
+            ExceptionHandler.handleException(ex);
             Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
