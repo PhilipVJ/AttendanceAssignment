@@ -11,7 +11,6 @@
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="550.0" stylesheets="@../../css/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendanceassignment.gui.JController.JTeacherViewController">
    <children>
       <Label fx:id="userNameTag" layoutX="143.0" layoutY="20.0" prefHeight="21.0" prefWidth="219.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-      <JFXButton layoutX="45.0" layoutY="276.0" onAction="#back" prefHeight="50.0" prefWidth="100.0" text="Tilbage" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" />
       <JFXButton layoutX="489.0" layoutY="15.0" onAction="#showRequests" prefHeight="31.0" prefWidth="126.0" text="Vis" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0" />
       <JFXButton layoutX="200.0" layoutY="295.0" onAction="#showAttendanceLine" prefHeight="50.0" prefWidth="150.0" text="Vis fraværskurve" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="192.0" />
       <JFXComboBox fx:id="classChooser" focusColor="#4fb6bf" layoutX="24.0" layoutY="70.0" onAction="#chooseClass" prefHeight="31.0" prefWidth="160.0" promptText="Vælg klasse" styleClass="combo-box" stylesheets="@../../css/Style.css" unFocusColor="#dab521" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="54.0" />
@@ -27,6 +26,6 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <JFXButton layoutX="376.0" layoutY="425.0" onAction="#showAttendanceBar" prefHeight="50.0" prefWidth="150.0" text="Vis søjlediagram" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="15.0" />
+      <JFXButton layoutX="376.0" layoutY="425.0" onAction="#showAttendanceBar" prefHeight="50.0" prefWidth="150.0" text="Fraværsdage" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>

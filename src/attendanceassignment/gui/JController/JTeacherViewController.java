@@ -77,9 +77,6 @@ public class JTeacherViewController implements Initializable {
         classAbsence.setVisible(false);
     }
 
-    @FXML
-    private void back(ActionEvent event) {     
-    }
 
     @FXML
     private void showRequests(ActionEvent event) {
