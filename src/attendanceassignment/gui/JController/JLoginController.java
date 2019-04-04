@@ -10,6 +10,7 @@ import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.AttendanceDAO;
 import attendanceassignment.dal.DbConnection;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHander;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -20,6 +21,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -86,14 +89,12 @@ public class JLoginController implements Initializable {
             con.setUser();
             con.setRootLayout(rootLayout);
             rootLayout.setCenter(root);
-        }
-        }catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+        }} catch (Exception ex) 
+        {
+            ExceptionHander.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         
-        catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
-        }
             
         
 

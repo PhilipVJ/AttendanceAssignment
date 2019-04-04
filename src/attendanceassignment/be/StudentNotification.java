@@ -22,14 +22,7 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     private final StringProperty className;
     private final int studentID;
 
-    /**
-     * Constructor for the Student notification class
-     * @param firstName
-     * @param lastName
-     * @param className
-     * @param absentDay
-     * @param studentID 
-     */
+    
     public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
