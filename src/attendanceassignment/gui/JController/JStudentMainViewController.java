@@ -7,6 +7,7 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,11 +75,11 @@ public class JStudentMainViewController implements Initializable {
         }
         if(curTime < tooEarly){
             Utility.createErrorAlert("Udenfor tidsperioden", "Fravær kan først sættes fra klokken " + tooEarly);
-        }} catch (SQLException ex) {
-            Utility.createErrorAlert("Programmet kan ikke få kontakt til serveren", "Prøv venligst igen senere eller kontakt support!");
-        }catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sæt databasefilen i den rette mappe og prøv igen");
-        }         
+        }} catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @FXML
@@ -89,9 +92,11 @@ public class JStudentMainViewController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sæt databasefilen i den rette mappe og prøv igen");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     void setModel(AttendanceModel atModel) {
@@ -116,9 +121,11 @@ public class JStudentMainViewController implements Initializable {
         con.loadView();
         con.setRootLayout(rootLayout);
         rootLayout.setCenter(root);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
 }

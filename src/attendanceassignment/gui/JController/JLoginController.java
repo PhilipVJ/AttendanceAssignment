@@ -10,7 +10,7 @@ import attendanceassignment.bll.BLLManager;
 import attendanceassignment.dal.AttendanceDAO;
 import attendanceassignment.dal.DbConnection;
 import attendanceassignment.gui.AttModel.AttendanceModel;
-import attendanceassignment.gui.AttModel.ExceptionHander;
+import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -56,9 +56,11 @@ public class JLoginController implements Initializable {
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
             atModel = new AttendanceModel(bll);
-        } catch(IOException ex2){
-            Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
-        }
+        } catch (Exception ex) 
+        {
+            ExceptionHandler.handleException(ex);
+            Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @FXML
@@ -91,7 +93,7 @@ public class JLoginController implements Initializable {
             rootLayout.setCenter(root);
         }} catch (Exception ex) 
         {
-            ExceptionHander.handleException(ex);
+            ExceptionHandler.handleException(ex);
             Logger.getLogger(JLoginController.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
