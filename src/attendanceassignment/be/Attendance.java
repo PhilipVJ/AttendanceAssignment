@@ -17,6 +17,11 @@ public class Attendance
     int id;
     Date attendance;
 
+    /**
+     * Constructor for the Attendance class
+     * @param id
+     * @param attendance 
+     */
     public Attendance(int id, Date attendance)
     {
         this.id = id;
@@ -24,21 +29,37 @@ public class Attendance
 
     }
 
+    /**
+     * Sets the date for attendance
+     * @param attendance 
+     */
     public void setDate(Date attendance)
     {
         this.attendance = attendance;
     }
 
+    /**
+     * Gets the date for attendance class
+     * @return Date
+     */
     public Date getDate()
     {
         return attendance;
     }
 
+    /**
+     * Getting the Id for attendance class
+     * @return Id
+     */
     public int getId()
     {
         return id;
     }
 
+    /**
+     * Set the Id for the attendance class
+     * @param id 
+     */
     public void setId(int id)
     {
         this.id = id;

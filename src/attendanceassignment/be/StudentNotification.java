@@ -22,6 +22,14 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
     private final StringProperty className;
     private final int studentID;
 
+    /**
+     * Constructor for the Student notification class
+     * @param firstName
+     * @param lastName
+     * @param className
+     * @param absentDay
+     * @param studentID 
+     */
     public StudentNotification(String firstName, String lastName , String className, Date absentDay, int studentID) {
         this.firstName = new SimpleStringProperty();
         this.lastName = new SimpleStringProperty();
@@ -36,30 +44,58 @@ public class StudentNotification extends RecursiveTreeObject<StudentNotification
         
     }
 
+    /**
+     * Get the StudentId for a student in notification class
+     * @return StudentId
+     */
     public int getStudentID() {
         return studentID;
     }
 
+    /**
+     * Gets the last name of a student in notification class
+     * @return LastName 
+     */
     public String getLastName() {
         return lastName.get();
     }
 
+    /**
+     * Gets the first name of a student in notification class
+     * @return FirstName
+     */
     public String getFirstName() {
         return firstName.get();
     }
 
+    /**
+     * Get the date for absent day of a student in notification class
+     * @return AbsentDay
+     */
     public Date getAbsentDay() {
         return absentDay;
     }
 
+    /**
+     * Gets the class name of a student in notification class
+     * @return classnames in studentNotification
+     */
     public String getClassName() {
         return className.get();
     }
 
+    /**
+     * Sets the date for absent of a student in notification class
+     * @param absentDay 
+     */
     public void setAbsentDay(Date absentDay) {
         this.absentDay = absentDay;
     }
 
+    /**
+     * Override to a string with lastname, firstname, absentday and classname
+     * @return Lastname firstName, absentDays and className
+     */
     @Override
     public String toString() {
         return  lastName +""  + firstName + "" + absentDay + ""+ className ;

@@ -22,6 +22,10 @@ public class DbConnection
     private static final String PROP_FILE = "data/database.info";
     private final SQLServerDataSource ds;
 
+    /**
+     * Constructor for the DbConnection
+     * @throws IOException 
+     */
     private DbConnection() throws IOException
     {
         Properties databaseProperties = new Properties();

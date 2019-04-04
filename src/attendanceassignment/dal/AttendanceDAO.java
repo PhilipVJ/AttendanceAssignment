@@ -30,12 +30,23 @@ public class AttendanceDAO
 
     DbConnection dbc;
 
+    /**
+     * Constructor of the AttendanceDao
+     * @param con
+     * @throws IOException 
+     */
     public AttendanceDAO(DbConnection con) throws IOException
     {
         this.dbc = con;
 
     }
 
+    /**
+     * Gets all the Teacher from the Sql server and puts in into a Arraylist
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Teacher> getAllTeachers() throws SQLServerException, SQLException
     {
 
@@ -62,6 +73,13 @@ public class AttendanceDAO
         }
     }
 
+    /**
+     * Gets all the Classes from the Sql server and put it into a ArrayList
+     * @param id
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<String> getClasses(int id) throws SQLServerException, SQLException
     {
         ArrayList<String> allClasses = new ArrayList<>();
@@ -81,6 +99,13 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Setting the Attendance date into the sql server when a student hit the "im here" button
+     * @param attendance
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public boolean setAttendance(Attendance attendance) throws SQLServerException, SQLException
     {
         boolean success = false;
@@ -99,6 +124,16 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Set the day a student want a attendance change if they have been in school but forgot to
+     * set them as present in the sql server
+     * @param student
+     * @param teacher
+     * @param toChange
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public boolean requestAttendanceChange(int student, int teacher, Date toChange) throws SQLServerException, SQLException
     {
 
@@ -117,6 +152,13 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Gets all the absentdays from the sqlserver where a student have not been in school
+     * @param studentID
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Date> getAbsentDays(int studentID) throws SQLServerException, SQLException
     {
 
@@ -143,6 +185,12 @@ public class AttendanceDAO
         return absentDays;
     }
 
+    /**
+     * Gets all the schoolDays from the sqlserver and put them into a arrayList
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Date> allSchoolDays() throws SQLServerException, SQLException
     {
         ArrayList<Date> presentDays = new ArrayList<>();
@@ -194,6 +242,14 @@ public class AttendanceDAO
         return false;
     }
 
+    /**
+     * Checking if the student allready have set there present in the sql server
+     * @param studentId
+     * @param toCheck
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public boolean checkForAttendance(int studentId, Date toCheck) throws SQLServerException, SQLException
     {
 
@@ -220,6 +276,13 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Get all the requested days from a student from the sql server
+     * @param studentID
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Date> getAllRequestsByStudent(int studentID) throws SQLServerException, SQLException
     {
 
@@ -244,6 +307,13 @@ public class AttendanceDAO
         return requestedDays;
     }
 
+    /**
+     * Get and check if the student have set presence later on the day befor 15:00 and remove the not been there to been there.
+     * @param studentID
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Date> getAllNonRequestedAbsentDays(int studentID) throws SQLServerException, SQLException
     {
 
@@ -289,6 +359,13 @@ public class AttendanceDAO
         return requestedDays;
     }
 
+    /**
+     * Get the student of a class from the SQL and put it into a ArrayList
+     * @param className
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<Student> getClassStudents(String className) throws SQLServerException, SQLException
     {
         ArrayList<Student> classStudents = new ArrayList<>();
@@ -317,6 +394,13 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Get the Student notifications from a student from the sql and put it into a arraylist so the teacher can see it
+     * @param teacherID
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<StudentNotification> getTeacherNotifications(int teacherID) throws SQLServerException, SQLException
     {
 
@@ -349,6 +433,13 @@ public class AttendanceDAO
         return notifications;
     }
 
+    /**
+     * Delete the day where a student have not been present in the sql
+     * @param studentID
+     * @param date
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public void deleteNotificationRequests(int studentID, Date date) throws SQLServerException, SQLException
     {
 
@@ -366,6 +457,11 @@ public class AttendanceDAO
 
     }
 
+    /**
+     * Teacher Accept the request from a student in the sql  
+     * @param att
+     * @throws SQLException 
+     */
     public void acceptAttendance(Attendance att) throws SQLException 
     {
         Connection con = null;
@@ -407,6 +503,13 @@ public class AttendanceDAO
         }
     }
 
+    /**
+     * Checks if the user exist in the Sql server if it do send it to the right view.
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException 
+     */
     public User userLogin(String username, String password) throws SQLException
     {
 
@@ -430,6 +533,13 @@ public class AttendanceDAO
         return user;
     }
 
+    /**
+     * getting the current user for the person who is logged in
+     * @param id
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     private User getUser(int id) throws SQLServerException, SQLException
     {
 

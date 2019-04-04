@@ -20,6 +20,13 @@ public class User
     private final int id;
     private final ArrayList<String> classes;
 
+    /**
+     * Constructor for the user class
+     * @param id
+     * @param firstname
+     * @param lastname
+     * @param type 
+     */
     public User(int id, String firstname, String lastname, String type)
     {
         this.id = id;
@@ -29,38 +36,64 @@ public class User
         classes = new ArrayList<>();
     }
 
+    /**
+     * add a classname to a arraylist in the Userclass
+     * @param className 
+     */
     public void addClass(String className)
     {
-
         classes.add(className);
     }
 
+    /**
+     * Get the first name of a user in Userclass
+     * @return FirstName
+     */
     public String getFirstname()
     {
         return firstName;
     }
 
+    /**
+     * Get the last name of a user in userclass
+     * @return LastName
+     */
     public String getLastname()
     {
         return lastName;
     }
 
+    /**
+     * Getting the type of a user , "Teacher or a student" in UserClass
+     * @return TheType
+     */
     public String getType()
     {
         return type;
     }
 
+    /**
+     * Get the id of a user in User class
+     * @return GetId
+     */
     public int getId()
     {
         return id;
     }
 
-    // Returns the list of all classes. If the user is a student - the list size is only 1.
+    /**
+     * Returns the list of all classes. If the user is a student - the list size is only 1.
+     * @return ArrayList of classes in Users
+     */
     public ArrayList<String> getAllClasses()
     {
         return classes;
     }
     
+    /**
+     * Get a string with the first name and last name of a user.
+     * @return FirstName and lastName
+     */
     public String toString()
     {
         return firstName + " " +lastName;
