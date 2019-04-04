@@ -42,7 +42,7 @@ public class ExceptionHandler
 
     private static void handleIOException()
     {
-        Utility.createErrorAlert("Database filen kunne ikke fines", "Sikre at filen er i den rette mappe og prøv igen");
+        Utility.createErrorAlert("Database filen kunne ikke findes", "Sikre at filen er i den rette mappe og prøv igen");
     }
 
     private static void handleUnknownError()
