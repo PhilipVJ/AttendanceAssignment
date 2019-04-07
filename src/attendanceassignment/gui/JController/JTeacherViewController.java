@@ -9,14 +9,13 @@ import attendanceassignment.be.Student;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableView;
 
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -81,7 +80,7 @@ public class JTeacherViewController implements Initializable {
     @FXML
     private void showRequests(ActionEvent event) {
        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherNotificationView.fxml"));          
+        FXMLLoader loader = aModel.createFXMLLoader(ViewEnum.JTeacherNotificationView);       
         AnchorPane root = loader.load();
         JTeacherNotificationViewController con = loader.getController();
         con.setModel(aModel);

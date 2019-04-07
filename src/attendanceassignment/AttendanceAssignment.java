@@ -6,12 +6,10 @@
 package attendanceassignment;
 
 import attendanceassignment.gui.AttModel.ExceptionHandler;
-import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.LoaderFactory;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import attendanceassignment.gui.JController.JLoginController;
 import attendanceassignment.gui.JController.RootlayoutController;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,8 +31,9 @@ public class AttendanceAssignment extends Application {
             // Sets up the stage and scene
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);
+            LoaderFactory factory = new LoaderFactory();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/Rootlayout.fxml"));
+            FXMLLoader loader = factory.createFXMLLoader(ViewEnum.Rootlayout);
             BorderPane rootLayout = loader.load();
             RootlayoutController rCon = loader.getController();
 
@@ -43,8 +42,7 @@ public class AttendanceAssignment extends Application {
             sDragOne.makeDraggable(menuBar, stage);
 
             Scene scene = new Scene(rootLayout);
-            FXMLLoader loaderTwo = new FXMLLoader();
-            loaderTwo.setLocation(AttendanceAssignment.class.getResource("/attendanceassignment/gui/JView/JLogin.fxml"));
+            FXMLLoader loaderTwo = factory.createFXMLLoader(ViewEnum.JLogin);
 
             AnchorPane logIn = (AnchorPane) loaderTwo.load();
             JLoginController con = loaderTwo.getController();

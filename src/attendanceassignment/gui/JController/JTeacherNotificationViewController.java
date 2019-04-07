@@ -10,6 +10,7 @@ import attendanceassignment.be.StudentNotification;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -65,7 +66,7 @@ public class JTeacherNotificationViewController implements Initializable
     private void back(ActionEvent event)
     {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));
+        FXMLLoader loader = aModel.createFXMLLoader(ViewEnum.JTeacherView);
         AnchorPane root = loader.load();
         JTeacherViewController con = loader.getController();
         con.setModel(aModel);

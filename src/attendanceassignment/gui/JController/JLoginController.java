@@ -11,7 +11,9 @@ import attendanceassignment.dal.AttendanceDAO;
 import attendanceassignment.dal.DbConnection;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
+import attendanceassignment.gui.AttModel.LoaderFactory;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -55,7 +57,8 @@ public class JLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
-            atModel = new AttendanceModel(bll);
+          LoaderFactory factory = new LoaderFactory();
+            atModel = new AttendanceModel(bll, factory);
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
@@ -77,7 +80,7 @@ public class JLoginController implements Initializable {
             return;
         }
         if (user.getType().equals("Teacher")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JTeacherView.fxml"));          
+            FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JTeacherView);
             AnchorPane root = loader.load();
             JTeacherViewController con = loader.getController();
             con.setModel(atModel);
@@ -88,7 +91,7 @@ public class JLoginController implements Initializable {
         }
         
         if (user.getType().equals("Student")) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
+            FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentMainView);
             AnchorPane root = loader.load();
             JStudentMainViewController con = loader.getController();
             con.setModel(atModel);

@@ -9,6 +9,7 @@ import attendanceassignment.be.Attendance;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -84,7 +85,7 @@ public class JStudentMainViewController implements Initializable {
     @FXML
     private void showStatistics(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentStatistics.fxml"));
+        FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentStatistics);
         AnchorPane root = loader.load();
         JStudentStatisticsController con = loader.getController();
         con.setModel(atModel);
@@ -113,7 +114,7 @@ public class JStudentMainViewController implements Initializable {
     @FXML
     private void changeAttendance(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentChangeAttendance.fxml"));
+        FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentChangeAttendance);
         AnchorPane root = loader.load();
         JStudentChangeAttendanceController con = loader.getController();
         con.setModel(atModel);

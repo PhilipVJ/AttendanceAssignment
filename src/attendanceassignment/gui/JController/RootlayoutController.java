@@ -7,8 +7,8 @@ package attendanceassignment.gui.JController;
 
 import attendanceassignment.AttendanceAssignment;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
-import attendanceassignment.gui.AttModel.Utility;
-import java.io.IOException;
+import attendanceassignment.gui.AttModel.LoaderFactory;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -35,20 +35,21 @@ public class RootlayoutController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private MenuBar menuBar;
+    
+    private LoaderFactory factory;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      factory = new LoaderFactory();
     }    
 
     @FXML
     private void logOut(ActionEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(AttendanceAssignment.class.getResource("/attendanceassignment/gui/JView/JLogin.fxml"));
+        FXMLLoader loader = factory.createFXMLLoader(ViewEnum.JLogin);
 
         AnchorPane logIn = (AnchorPane) loader.load();
         JLoginController con = loader.getController();     

@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.fxml.FXMLLoader;
 
 /**
  *
@@ -27,9 +28,11 @@ public class AttendanceModel {
     private final BLLManager bllMan;
     private ArrayList<StudentNotification> notifications;
     private User user;
+    private LoaderFactory loaderFactory;
 
-    public AttendanceModel(BLLManager bllMan) throws IOException {
+    public AttendanceModel(BLLManager bllMan, LoaderFactory factory) throws IOException {
         this.bllMan = bllMan;
+        this.loaderFactory = factory;
     }
 
     /**
@@ -108,6 +111,11 @@ public class AttendanceModel {
     public void acceptAttendance(Attendance att) throws SQLException, SQLException
     {
        bllMan.acceptAttendance(att);
+    }
+    
+    public FXMLLoader createFXMLLoader(ViewEnum type)
+    {
+     return loaderFactory.createFXMLLoader(type);
     }
 
 }

@@ -9,6 +9,7 @@ import attendanceassignment.be.Teacher;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class JStudentChangeAttendanceController implements Initializable
     private void goBack(ActionEvent event)
     {
         try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentMainView.fxml"));
+        FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentMainView);
         AnchorPane root = loader.load();
         JStudentMainViewController con = loader.getController();
         con.setModel(atModel);
@@ -117,7 +118,6 @@ public class JStudentChangeAttendanceController implements Initializable
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
-
         } 
     }
 

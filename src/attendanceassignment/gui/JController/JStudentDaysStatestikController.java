@@ -8,15 +8,12 @@ package attendanceassignment.gui.JController;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
 import attendanceassignment.gui.AttModel.Utility;
+import attendanceassignment.gui.AttModel.ViewEnum;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +46,7 @@ public class JStudentDaysStatestikController implements Initializable {
     @FXML
     public void getBackButton(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/attendanceassignment/gui/JView/JStudentStatistics.fxml"));
+        FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentStatistics);
         AnchorPane root = loader.load();
         JStudentStatisticsController con = loader.getController();
         con.setModel(atModel);
