@@ -12,6 +12,7 @@ import attendanceassignment.gui.JController.JLoginController;
 import attendanceassignment.gui.JController.RootlayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +39,7 @@ public class AttendanceAssignment extends Application {
             RootlayoutController rCon = loader.getController();
 
             SceneDragger sDragOne = new SceneDragger();
-            Parent menuBar = rCon.getMenuBar();
+            Node menuBar = rCon.getMenuBar();
             sDragOne.makeDraggable(menuBar, stage);
 
             Scene scene = new Scene(rootLayout);
