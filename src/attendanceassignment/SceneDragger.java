@@ -6,7 +6,7 @@
 package attendanceassignment;
 
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -27,7 +27,7 @@ public class SceneDragger
      * @param stage
      */
 
-    public void makeDraggable(Parent root, Stage stage)
+    public void makeDraggable(Node root, Stage stage)
     {
         root.setOnMousePressed(new EventHandler<MouseEvent>()
         {
