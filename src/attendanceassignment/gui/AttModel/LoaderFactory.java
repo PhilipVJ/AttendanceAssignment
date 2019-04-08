@@ -12,6 +12,13 @@ import javafx.fxml.FXMLLoader;
  * @author Philip
  */
 public class LoaderFactory {
+    
+    private static LoaderFactory factory = null;
+    
+    private LoaderFactory()
+    {
+    
+    }
 
     public FXMLLoader createFXMLLoader(ViewEnum fxmlName) {
 
@@ -19,5 +26,14 @@ public class LoaderFactory {
         String extension = ".fxml";
         FXMLLoader loader = new FXMLLoader(getClass().getResource(filePath + fxmlName + extension));
         return loader;
+    }
+    
+    public static LoaderFactory getInstance()
+    {
+        if(factory==null)
+        {
+            factory = new LoaderFactory();
+        }
+        return factory;
     }
 }

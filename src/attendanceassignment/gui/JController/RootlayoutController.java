@@ -36,20 +36,20 @@ public class RootlayoutController implements Initializable {
     @FXML
     private MenuBar menuBar;
     
-    private LoaderFactory factory;
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      factory = new LoaderFactory();
+
     }    
 
     @FXML
     private void logOut(ActionEvent event) {
         try {
-        FXMLLoader loader = factory.createFXMLLoader(ViewEnum.JLogin);
+        FXMLLoader loader = LoaderFactory.getInstance().createFXMLLoader(ViewEnum.JLogin);
 
         AnchorPane logIn = (AnchorPane) loader.load();
         JLoginController con = loader.getController();     

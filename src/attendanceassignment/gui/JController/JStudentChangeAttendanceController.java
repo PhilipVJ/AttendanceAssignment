@@ -8,6 +8,7 @@ package attendanceassignment.gui.JController;
 import attendanceassignment.be.Teacher;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
+import attendanceassignment.gui.AttModel.LoaderFactory;
 import attendanceassignment.gui.AttModel.Utility;
 import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXListView;
@@ -108,7 +109,7 @@ public class JStudentChangeAttendanceController implements Initializable
     private void goBack(ActionEvent event)
     {
         try{
-        FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentMainView);
+        FXMLLoader loader = LoaderFactory.getInstance().createFXMLLoader(ViewEnum.JStudentMainView);
         AnchorPane root = loader.load();
         JStudentMainViewController con = loader.getController();
         con.setModel(atModel);

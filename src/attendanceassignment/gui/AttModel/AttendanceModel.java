@@ -30,9 +30,9 @@ public class AttendanceModel {
     private User user;
     private LoaderFactory loaderFactory;
 
-    public AttendanceModel(BLLManager bllMan, LoaderFactory factory) throws IOException {
+    public AttendanceModel(BLLManager bllMan) throws IOException {
         this.bllMan = bllMan;
-        this.loaderFactory = factory;
+
     }
 
     /**
@@ -113,9 +113,6 @@ public class AttendanceModel {
        bllMan.acceptAttendance(att);
     }
     
-    public FXMLLoader createFXMLLoader(ViewEnum type)
-    {
-     return loaderFactory.createFXMLLoader(type);
-    }
+
 
 }

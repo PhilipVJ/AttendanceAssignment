@@ -31,7 +31,7 @@ public class AttendanceAssignment extends Application {
             // Sets up the stage and scene
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);
-            LoaderFactory factory = new LoaderFactory();
+            LoaderFactory factory = LoaderFactory.getInstance();
 
             FXMLLoader loader = factory.createFXMLLoader(ViewEnum.Rootlayout);
             BorderPane rootLayout = loader.load();

@@ -11,9 +11,9 @@ package attendanceassignment.gui.AttModel;
  */
 
    public enum ViewEnum{
-
-       JLogin, JStudentChangeAttendance, JStudentDaysStatestik, JStudentMainView, JStudentStatistics, JTeacherNotificationView, JTeacherView, Rootlayout;
-
-   
+       
+       JLogin, JStudentChangeAttendance, JStudentDaysStatestik, 
+       JStudentMainView, JStudentStatistics, JTeacherNotificationView, 
+       JTeacherView, Rootlayout;
 
 }

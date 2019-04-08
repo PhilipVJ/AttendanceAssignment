@@ -8,6 +8,7 @@ package attendanceassignment.gui.JController;
 import attendanceassignment.be.Student;
 import attendanceassignment.gui.AttModel.AttendanceModel;
 import attendanceassignment.gui.AttModel.ExceptionHandler;
+import attendanceassignment.gui.AttModel.LoaderFactory;
 import attendanceassignment.gui.AttModel.Utility;
 import attendanceassignment.gui.AttModel.ViewEnum;
 import com.jfoenix.controls.JFXComboBox;
@@ -80,7 +81,7 @@ public class JTeacherViewController implements Initializable {
     @FXML
     private void showRequests(ActionEvent event) {
        try {
-        FXMLLoader loader = aModel.createFXMLLoader(ViewEnum.JTeacherNotificationView);       
+        FXMLLoader loader = LoaderFactory.getInstance().createFXMLLoader(ViewEnum.JTeacherNotificationView);       
         AnchorPane root = loader.load();
         JTeacherNotificationViewController con = loader.getController();
         con.setModel(aModel);

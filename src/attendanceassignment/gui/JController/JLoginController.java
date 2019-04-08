@@ -44,6 +44,8 @@ public class JLoginController implements Initializable {
     private JFXTextField username;
     @FXML
     private JFXPasswordField password;
+    
+    private LoaderFactory factory;
 
     
     public JLoginController(){
@@ -57,8 +59,9 @@ public class JLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             BLLManager bll = new BLLManager(new AttendanceDAO(DbConnection.getInstance()));
-          LoaderFactory factory = new LoaderFactory();
-            atModel = new AttendanceModel(bll, factory);
+            factory = LoaderFactory.getInstance();
+     
+            atModel = new AttendanceModel(bll);
         } catch (Exception ex) 
         {
             ExceptionHandler.handleException(ex);
@@ -80,7 +83,7 @@ public class JLoginController implements Initializable {
             return;
         }
         if (user.getType().equals("Teacher")) {
-            FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JTeacherView);
+            FXMLLoader loader = factory.createFXMLLoader(ViewEnum.JTeacherView);
             AnchorPane root = loader.load();
             JTeacherViewController con = loader.getController();
             con.setModel(atModel);
@@ -91,7 +94,7 @@ public class JLoginController implements Initializable {
         }
         
         if (user.getType().equals("Student")) {
-            FXMLLoader loader = atModel.createFXMLLoader(ViewEnum.JStudentMainView);
+            FXMLLoader loader = factory.createFXMLLoader(ViewEnum.JStudentMainView);
             AnchorPane root = loader.load();
             JStudentMainViewController con = loader.getController();
             con.setModel(atModel);
